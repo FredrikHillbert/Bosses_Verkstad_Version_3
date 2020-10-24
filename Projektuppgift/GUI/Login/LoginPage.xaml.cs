@@ -1,5 +1,4 @@
-﻿using GUI.Home;
-using Logic.Services;
+﻿using GUI.Admin.Home;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,40 +15,45 @@ using System.Windows.Shapes;
 namespace GUI.Login
 {
     /// <summary>
-    /// Interaction logic for LoginPage.xaml
+    /// Interaction logic for LogginPage.xaml
     /// </summary>
-    public partial class LoginPage : Page
+    public partial class LogginPage : Page
     {
-        private const string _errorMsg = "Inloggningen misslyckades";
-
-        private LoginService _loginService;
-        public LoginPage()
+        public LogginPage()
         {
             InitializeComponent();
+        }
 
-            _loginService = new LoginService();
+        private void LoginUserName_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (LoginUserName.Text == "Användarnamn")
+            {
+                LoginUserName.Text = "";
+            }
+        }
+
+        private void LoginPassword_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (LoginPassword.Password == "Password")
+            {
+                LoginPassword.Password = "";
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string username = this.tbUsernam.Text;
-            string password = this.pbPassword.Password;
+            string inputError = "Felaktigt användarnamn/lösenord!";
+            string loggin = LoginUserName.Text;
+            string password = LoginPassword.Password;
 
-            bool successful = _loginService.Login(username, password);
-
-            if (successful)
+            if (loggin == "Bosse" && password == "123")
             {
-
-                HomePage homePage = new HomePage();
-
-                this.NavigationService.Navigate(homePage);
+                HomePageAdmin homePageAdmin = new HomePageAdmin();
+                this.NavigationService.Navigate(homePageAdmin);
             }
             else
             {
-
-                MessageBox.Show(_errorMsg);
-                this.tbUsernam.Clear();
-                this.pbPassword.Clear();
+                MessageBox.Show(inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning); 
             }
         }
     }

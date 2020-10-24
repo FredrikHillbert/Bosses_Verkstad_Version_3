@@ -11,14 +11,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GUI.Home
+namespace GUI.Admin.Home
 {
     /// <summary>
-    /// Interaction logic for HomePage.xaml
+    /// Interaction logic for HomePageAdmin.xaml
     /// </summary>
-    public partial class HomePage : Page
+    public partial class HomePageAdmin : Page
     {
-        public HomePage()
+        public HomePageAdmin()
         {
             InitializeComponent();
         }

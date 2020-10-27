@@ -4,7 +4,14 @@ using System.Text;
 
 namespace Logic.Entities
 {
-    class Vehicles
+  public class Bus : Vehicles
     {
+
+        public int NumberOfPassengers { get; set; }
+
+
+
+
+
     }
 }

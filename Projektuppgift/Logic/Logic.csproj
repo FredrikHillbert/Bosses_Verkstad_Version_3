@@ -10,4 +10,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\MechanicServices - ADMIN\" />
+  </ItemGroup>
+
 </Project>

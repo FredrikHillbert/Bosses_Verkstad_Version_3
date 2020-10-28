@@ -22,6 +22,7 @@ namespace GUI.Login
     /// </summary>
     public partial class LogginPage : Page
     {
+        const string _inputError = "Felaktigt imatning!";
         public LogginPage()
         {
             InitializeComponent();
@@ -45,9 +46,11 @@ namespace GUI.Login
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string inputError = "Felaktigt användarnamn/lösenord!";
-            string loggin = LoginUserName.Text;
-            string password = LoginPassword.Password;
+           
+            var loggin = LoginUserName.Text;
+            var password = LoginPassword.Password;
+
+
             IuserLogin iuserLogin = new LoginService();
           
             if (iuserLogin.Login(loggin, password))
@@ -57,7 +60,7 @@ namespace GUI.Login
             }
             else
             {
-                MessageBox.Show(inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning); 
+                MessageBox.Show(_inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning); 
             }
         }
     }

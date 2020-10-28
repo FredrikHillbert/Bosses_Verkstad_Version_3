@@ -15,14 +15,14 @@ namespace Logic.DAL
         private const string path = @"DAL\Mechanic.json";
 
 
-        public List<Mechanic> GetMechanic()
-        {
+        //public List<Mechanic> GetMechanic()
+        //{
 
-            string jsonString = File.ReadAllText(path);
-            List<Mechanic> list = JsonSerializer.Deserialize<List<Mechanic>>(jsonString);
+        //    string jsonString = File.ReadAllText(path);
+        //    List<Mechanic> list = JsonSerializer.Deserialize<List<Mechanic>>(jsonString);
 
-            return list;
-        }
+        //    return list;
+        //}
 
         public void CreateMechanic(string inputText)
         {

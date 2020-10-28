@@ -1,4 +1,4 @@
-﻿using GUI.Admin.User;
+﻿using GUI.Admin.Home;
 using GUI.Login;
 using System;
 using System.Collections.Generic;
@@ -13,22 +13,23 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GUI.Admin.Home
+namespace GUI.Admin.User
 {
     /// <summary>
-    /// Interaction logic for HomePageAdmin.xaml
+    /// Interaction logic for UserOptions.xaml
     /// </summary>
-    public partial class HomePageAdmin : Page
+    public partial class UserOptions : Page
     {
-        public HomePageAdmin()
+        public UserOptions()
         {
             InitializeComponent();
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            UserOptions userOptions = new UserOptions();
-            this.NavigationService.Navigate(userOptions);      
+            HomePageAdmin homePageAdmin = new HomePageAdmin();
+            this.NavigationService.Navigate(homePageAdmin);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

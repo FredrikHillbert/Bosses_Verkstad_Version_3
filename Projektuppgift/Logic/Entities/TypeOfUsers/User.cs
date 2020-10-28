@@ -11,24 +11,24 @@ namespace Logic.Entities
 
         public bool IsAdmin { get; set; }
 
-        public User()
-        {
-            var user = new User();
-            var admin = new Admin();
+        //public User()
+        //{
+        //    var user = new User();
+        //    var admin = new Admin();
       
-            if(user == admin)
-            {
-                IsAdmin = true;
+        //    if(user == admin)
+        //    {
+        //        IsAdmin = true;
 
-            }
+        //    }
 
-            else
-            {
-                IsAdmin = false;
-            }
+        //    else
+        //    {
+        //        IsAdmin = false;
+        //    }
 
 
-        }
+        //}
 
 
 

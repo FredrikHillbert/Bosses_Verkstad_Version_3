@@ -1,4 +1,6 @@
 ﻿using GUI.Admin.Home;
+using Logic.Interface;
+using Logic.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 
 namespace GUI.Login
 {
@@ -45,8 +48,9 @@ namespace GUI.Login
             string inputError = "Felaktigt användarnamn/lösenord!";
             string loggin = LoginUserName.Text;
             string password = LoginPassword.Password;
-
-            if (loggin == "Bosse" && password == "123")
+            IuserLogin iuserLogin = new LoginService();
+          
+            if (iuserLogin.Login(loggin, password))
             {
                 HomePageAdmin homePageAdmin = new HomePageAdmin();
                 this.NavigationService.Navigate(homePageAdmin);

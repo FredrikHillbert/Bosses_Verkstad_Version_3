@@ -1,12 +1,13 @@
 ﻿using Logic.DAL;
 using Logic.Entities;
+using Logic.Interface;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Logic.Services
 {
-    public class LoginService
+    public class LoginService: IuserLogin
     {
         private UserDataAccess _db;
 
@@ -18,10 +19,14 @@ namespace Logic.Services
 
         public bool Login(string username, string password)
         {
-
             List<User> users = _db.GetUsers();
-
+     
             return users.Exists(user => user.Username.Equals(username) && user.Password.Equals(password));
         }
+        public void CreatNewUser(string username, string password)
+        {
+            _db.CreatNewUser(username, password);
+        }
+
     }
 }

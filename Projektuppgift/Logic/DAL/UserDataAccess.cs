@@ -26,5 +26,22 @@ namespace Logic.DAL
             return users;
         }
 
+        public void CreatNewUser(string username, string password)
+        {
+    
+            List<User> users = new List<User>();
+
+            users.Add(new User{Username = username, Password = password });
+
+            string Json = JsonSerializer.Serialize(users);
+           
+            FileStream fileStream = File.OpenWrite(path);
+            StreamWriter streamWriter = new StreamWriter(fileStream);
+
+            streamWriter.WriteLine(Json);
+            streamWriter.Close();
+     
+        }
+
     }
 }

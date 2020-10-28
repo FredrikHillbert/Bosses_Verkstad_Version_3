@@ -8,5 +8,10 @@ namespace Logic.Interface
     {
         bool Login(string username, string password);
         void CreatNewUser(string username, string password);
+        bool CheckIfLoginIsValid(string key, string username, string password)
+        {
+
+
+        }
     }
 }

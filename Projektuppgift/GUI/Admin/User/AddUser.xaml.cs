@@ -20,6 +20,7 @@ namespace GUI.Admin.User
     /// </summary>
     public partial class AddUser : Page
     {
+        
         public AddUser()
         {
             InitializeComponent();
@@ -34,6 +35,12 @@ namespace GUI.Admin.User
             if (checkIfValid.CheckIfLoginIsValid(NewUser.Text, CreatPassword.Password, MatchPassword.Password, employerId.Text))
             {
                 checkIfValid.CreatNewUser(NewUser.Text, CreatPassword.Password);
+                MessageBox.Show("Användarekonto är nu tillagt!", "", MessageBoxButton.OK);
+
+            }
+            else
+            {
+                MessageBox.Show(LogginPage._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
 

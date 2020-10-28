@@ -22,7 +22,7 @@ namespace GUI.Login
     /// </summary>
     public partial class LogginPage : Page
     {
-        const string _inputError = "Felaktigt imatning!";
+      public  const string _inputError = "Felaktigt imatning!";
         public LogginPage()
         {
             InitializeComponent();

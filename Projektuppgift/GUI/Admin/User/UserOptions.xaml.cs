@@ -37,5 +37,11 @@ namespace GUI.Admin.User
             LogginPage logginPage = new LogginPage();
             this.NavigationService.Navigate(logginPage);
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            AddUser addUser = new AddUser();
+            this.NavigationService.Navigate(addUser);
+        }
     }
 }

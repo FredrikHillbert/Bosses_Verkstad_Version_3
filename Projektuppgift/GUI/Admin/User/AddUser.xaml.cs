@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GUI.Login;
+using Logic.Services;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -27,7 +29,12 @@ namespace GUI.Admin.User
         {
             //Om mail, 2 matchande lösenord, id nummer korrekt
             //Spara i lista
+            LoginService checkIfValid = new LoginService();
 
+            if (checkIfValid.CheckIfLoginIsValid(NewUser.Text, CreatPassword.Password, MatchPassword.Password, employerId.Text))
+            {
+                checkIfValid.CreatNewUser(NewUser.Text, CreatPassword.Password);
+            }
 
 
         }
@@ -62,6 +69,12 @@ namespace GUI.Admin.User
             {
                 MatchPassword.Password = "";
             }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            LogginPage logginPage = new LogginPage();
+            this.NavigationService.Navigate(logginPage);
         }
     }
 }

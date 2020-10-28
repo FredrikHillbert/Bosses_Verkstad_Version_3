@@ -22,25 +22,37 @@ namespace Logic.DAL
 
             string jsonString = File.ReadAllText(path);
             List<User> users = JsonSerializer.Deserialize<List<User>>(jsonString);
-
+           
             return users;
         }
 
         public void CreatNewUser(string username, string password)
         {
-    
+          
+
             List<User> users = new List<User>();
+            FileStream fileStream = File.OpenRead(path);
 
-            users.Add(new User{Username = username, Password = password });
+            StreamReader streamReader = new StreamReader(fileStream);
 
-            string Json = JsonSerializer.Serialize(users);
-           
-            FileStream fileStream = File.OpenWrite(path);
+            string Json = streamReader.ReadToEnd();
+
+            users = JsonSerializer.Deserialize<List<User>>(Json);
+            streamReader.Close();
+
+
+
+
+            users.Add(new User { Username = username, Password = password });
+
+            Json = JsonSerializer.Serialize(users);
+
+            fileStream = File.OpenWrite(path);
             StreamWriter streamWriter = new StreamWriter(fileStream);
 
             streamWriter.WriteLine(Json);
             streamWriter.Close();
-     
+
         }
 
     }

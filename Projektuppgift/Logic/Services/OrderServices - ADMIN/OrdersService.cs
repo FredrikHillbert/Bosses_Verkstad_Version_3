@@ -37,14 +37,14 @@ namespace Logic.Services.OrderServices
         }
 
 
-        public bool GetSpecificOrder(string key, List<Orders> listOfOrder)
-        {
+        //public bool GetSpecificOrder(string key, List<Orders> listOfOrder)
+        //{
 
 
 
 
-            //return getOrder.Exists(getOrder => getOrder.OrderDictionary.Equals(listOfOrders) && getOrder.OrderKey.Equals(key));
-        }
+        //    //return getOrder.Exists(getOrder => getOrder.OrderDictionary.Equals(listOfOrders) && getOrder.OrderKey.Equals(key));
+        //}
 
 
     }

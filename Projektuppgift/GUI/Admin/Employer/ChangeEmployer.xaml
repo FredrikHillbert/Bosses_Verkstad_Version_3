@@ -25,7 +25,7 @@
             <Canvas Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,0" Background="#FF2E2E2E" >
                 <Label
                     Content="Ange anställnings-ID på den anställda du vill ha information om"
-                    FontSize="20"
+                    FontSize="18"
                     Foreground="White"
                     Margin="20,10,0,0"       
                     >
@@ -34,7 +34,7 @@
                 <StackPanel Margin="50,75,0,0" Orientation="Horizontal" >
                     <TextBox  FontFamily="Helvetica"
                              FontWeight="Light"
-                             Text="Användar-ID"
+                             Text="Anställnings-ID"
                              x:Name="NewUser"
                              FontSize="20"
                              HorizontalAlignment="Center"
@@ -51,25 +51,259 @@
                         Height="2"
                         Background="White"
                         Opacity="0.5"/>
-
-
-
-
-
-
-
-
-
+                
                 <StackPanel Orientation="Horizontal" >
                     <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
                          Content="Sök" 
                              FontSize="20" 
-                            Margin="20,150,0,0" Click="Button_Click_7"/>
-                    <Button Style="{StaticResource buttomTheme}" Width="150" Height="30"
-                         Content="Se alla anställda" 
+                            Margin="20,175,0,0" Click="Button_Click_7"/>
+                    <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
+                         Content="Ta bort" 
                              FontSize="20" 
-                            Margin="20,150,0,0" Click="Button_Click_8"/>
+                            Margin="20,175,0,0" Click="Button_Click_8"/>
                 </StackPanel>
+
+                <Label
+                    Content="Koppla Anställd med en ett användarkonto"
+                    FontSize="18"
+                    Foreground="White"
+                    Margin="20,300,0,0"       
+                    >
+                </Label>
+                <StackPanel Margin="50,350,0,0" Orientation="Horizontal">
+                <TextBox  FontFamily="Helvetica"
+                             FontWeight="Light"
+                             Text="Anställnings-ID"
+                             x:Name="NewUer"
+                             FontSize="20"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent" 
+                             BorderThickness="0"
+                             Width="150"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="25" 
+                             />
+                </StackPanel>
+                <Border Margin="50,375,0,0" Width="150"
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5"/>
+                <StackPanel Margin="50,400,0,0" Orientation="Horizontal">
+                    <TextBox  FontFamily="Helvetica"
+                             FontWeight="Light"
+                             Text="Användar-ID"
+                             x:Name="ewUer"
+                             FontSize="20"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent" 
+                             BorderThickness="0"
+                             Width="150"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="25" 
+                             />
+                </StackPanel>
+                <Border Margin="50,425,0,0" Width="150"
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5"/>
+
+                <StackPanel Orientation="Horizontal" >
+                    <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
+                         Content="Koppla" 
+                             FontSize="20" 
+                            Margin="20,500,0,0" />
+                    <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
+                         Content="Ta bort" 
+                             FontSize="20" 
+                            Margin="20,500,0,0" />
+
+                </StackPanel>
+
+
+
+
+
+                <Label
+                    Content="Information anställd"
+                    FontSize="25"
+                    Foreground="White"
+                    Margin="655,0,0,0"       
+                    >
+                </Label>
+
+
+                <StackPanel Margin="675,75,0,0" Orientation="Horizontal" >
+                    <TextBox  FontFamily="Helvetica"
+                             FontWeight="Light"
+                             Text="Namn"
+                             x:Name="firstName"
+                             FontSize="20"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent" 
+                             BorderThickness="0"
+                             Width="150"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="25"  
+                             />
+                </StackPanel>
+                <Border Margin="675,100,0,0" Width="150"
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5"/>
+
+                <StackPanel Orientation="Horizontal" Margin="675,125,0,0">
+                    <TextBox FontFamily="Helvetica"
+                             FontWeight="Light"
+                                 Text="Efternamn"
+                             x:Name="lastname"
+                             FontSize="20"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent" 
+                             BorderThickness="0"
+                             Width="150"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="25" 
+                          />
+
+                </StackPanel>
+                <Border Margin="675,150,0,0" Width="150"
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5"/>
+                <StackPanel Orientation="Horizontal" Margin="675,175,0,0">
+                    <TextBox FontFamily="Helvetica"
+                             FontWeight="Light"
+                             x:Name="dateOfBirth"
+                             Text="Födelsedatum"
+                             FontSize="20"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent" 
+                             BorderThickness="0"
+                             Width="150"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="25"  
+                          />
+
+                </StackPanel>
+                <Border Margin="675,200,0,0" Width="150"
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5"/>
+                <StackPanel Orientation="Horizontal" Margin="675,225,0,0">
+                    <TextBox FontFamily="Helvetica"
+                             FontWeight="Light"
+                             x:Name="dateOfEmployment"
+                             Text="Anställningdatum"
+                             FontSize="20"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent" 
+                             BorderThickness="0"
+                             Width="150"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="25"  
+                          />
+                </StackPanel>
+                <Border Margin="675,250,0,0" Width="150"
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5"/>
+                <StackPanel Orientation="Horizontal" Margin="675,275,0,0">
+                    <TextBox FontFamily="Helvetica"
+                             FontWeight="Light"
+                             x:Name="employerId"
+                             Text="Anställnings-ID"
+                             FontSize="20"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent" 
+                             BorderThickness="0"
+                             Width="150"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="25" 
+                          />
+                </StackPanel>
+                <Border Margin="675,300,0,0" Width="150"
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5"/>
+                <StackPanel Orientation="Horizontal" Margin="675,325,0,0">
+                    <Label FontFamily="Helvetica"
+                             FontWeight="Light"
+                             x:Name="MathPassword"
+                             Content="Kompetens"
+                             FontSize="20"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent" 
+                             BorderThickness="0"
+                             Width="150"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="30" 
+                          />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="600,400,0,0">
+                    <RadioButton 
+                       FontFamily="Helvetica"
+                       FontWeight="Light"
+                        FontSize="18"
+                        HorizontalAlignment="Center"
+                        Content="Bromsar" 
+                        Foreground="White"
+                        Opacity="1"
+                        Height="20"
+                        />
+                    <RadioButton Margin="20,0,0,0"
+                       FontFamily="Helvetica"
+                       FontWeight="Light"
+                        FontSize="18"
+                        HorizontalAlignment="Center"
+                        Content="Däck" 
+                        Foreground="White"
+                        Opacity="1"
+                        Height="20"
+                        />
+                    <RadioButton Margin="20,0,0,0"
+                       FontFamily="Helvetica"
+                       FontWeight="Light"
+                        FontSize="18"
+                        HorizontalAlignment="Center"
+                        Content="Vindrutor" 
+                        Foreground="White"
+                        Opacity="1"
+                        Height="20"
+                        />
+                    <RadioButton Margin="20,0,0,0"
+                       FontFamily="Helvetica"
+                       FontWeight="Light"
+                        FontSize="18"
+                        HorizontalAlignment="Center"
+                        Content="Motorer" 
+                        Foreground="White"
+                        Opacity="1"
+                        Height="20"
+                        />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="695,500,0,0">
+                    <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
+                         Content="Ändra" 
+                             FontSize="20"   />
+                </StackPanel>
+
 
 
 

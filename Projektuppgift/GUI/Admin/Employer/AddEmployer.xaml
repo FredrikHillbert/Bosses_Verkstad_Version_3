@@ -150,7 +150,7 @@
                              Height="30" 
                           />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="20,375,0,0">
+                <StackPanel Orientation="Horizontal" Margin="20,400,0,0">
                     <RadioButton 
                        FontFamily="Helvetica"
                        FontWeight="Light"

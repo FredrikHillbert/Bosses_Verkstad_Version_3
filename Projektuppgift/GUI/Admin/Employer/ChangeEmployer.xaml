@@ -64,11 +64,11 @@
                     <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
                          Content="Sök" 
                              FontSize="20" 
-                            Margin="20,150,0,0"/>
+                            Margin="20,150,0,0" Click="Button_Click_7"/>
                     <Button Style="{StaticResource buttomTheme}" Width="150" Height="30"
                          Content="Se alla anställda" 
                              FontSize="20" 
-                            Margin="20,150,0,0"/>
+                            Margin="20,150,0,0" Click="Button_Click_8"/>
                 </StackPanel>
 
 
@@ -89,7 +89,7 @@
                     <Button Style="{StaticResource buttomTheme1}" Width="150" Height="30"
                          Content="Lägg till anställd" 
                              FontSize="15"
-                             Margin="0,60,0,0"  />
+                             Margin="0,60,0,0" Click="Button_Click_5"   />
                     <Button Style="{StaticResource buttomTheme1}" Width="150" Height="30"
                          Content="Ändra anställd" 
                              FontSize="15"
@@ -100,7 +100,7 @@
                 <StackPanel Orientation="Horizontal" Margin="20,500,0,0">
                     <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
                          Content="Logga ut" 
-                             FontSize="20"   />
+                             FontSize="20" Click="Button_Click_6"   />
                 </StackPanel>
 
             </Canvas>
@@ -109,23 +109,23 @@
                 <Button Style="{StaticResource buttomTheme1}" Width="150" Height="35"
                          Content="Startsida" 
                              FontSize="30"
-                             Margin="0,20,0,0" />
+                             Margin="0,20,0,0" Click="Button_Click" />
                 <Button Style="{StaticResource buttomTheme1}" Width="150" Height="35"
                          Content="Nyheter" 
                              FontSize="30"
-                             Margin="200,20,0,0"  />
+                             Margin="200,20,0,0" Click="Button_Click_1"  />
                 <Button Style="{StaticResource buttomTheme1}" Width="150" Height="35"
                          Content="Verkstad" 
                              FontSize="30"
-                             Margin="400,20,0,0"  />
+                             Margin="400,20,0,0" Click="Button_Click_2"  />
                 <Button Style="{StaticResource buttomTheme1}" Width="150" Height="35"
                          Content="Anställda" 
                              FontSize="30"
-                             Margin="600,20,0,0"  />
+                             Margin="600,20,0,0" Click="Button_Click_3"  />
                 <Button Style="{StaticResource buttomTheme1}" Width="210" Height="35"
                          Content="Användare"
                              FontSize="30"
-                             Margin="800,20,0,0"/>
+                             Margin="800,20,0,0" Click="Button_Click_4"/>
             </Canvas>
         </Grid>
     </Grid>

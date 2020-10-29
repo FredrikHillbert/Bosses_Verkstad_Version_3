@@ -1,5 +1,6 @@
 ﻿using GUI.Admin.Home;
 using GUI.Admin.User;
+using GUI.Login;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -57,6 +58,17 @@ namespace GUI.Admin.Employer
         {
             ChangeEmployer changeEmployer = new ChangeEmployer();
             this.NavigationService.Navigate(changeEmployer);
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            //---------------------------------------------------------------------Övrigt?
+        }
+
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+            LogginPage logginPage = new LogginPage();
+            this.NavigationService.Navigate(logginPage);
         }
     }
 }

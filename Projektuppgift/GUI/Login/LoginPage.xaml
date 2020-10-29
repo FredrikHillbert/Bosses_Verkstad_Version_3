@@ -85,11 +85,18 @@
                              Margin="63,0,0,0"  />
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="40,60,0,0">
+                    <StackPanel Orientation="Horizontal" Margin="0,60,0,0">
                         <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
                          Content="Logga in" 
                              FontSize="20"
                              Margin="40,0,0,0" Click="Button_Click"
+                                
+                            />
+                        <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
+                         Content="Avsluta" 
+                             FontSize="20"
+                             Margin="40,0,0,0" Click="Button_Click_1" 
+                                
                             />
                     </StackPanel>
                 </StackPanel>

@@ -1,4 +1,5 @@
 ﻿using GUI.Admin.Home;
+using GUI.Tools;
 using Logic.Interface;
 using Logic.Services;
 using System;
@@ -22,7 +23,7 @@ namespace GUI.Login
     /// </summary>
     public partial class LogginPage : Page
     {
-      public  const string _inputError = "Felaktigt imatning!";
+      
         public LogginPage()
         {
             InitializeComponent();
@@ -32,7 +33,7 @@ namespace GUI.Login
         {
             if (LoginUserName.Text == "Användarnamn")
             {
-                LoginUserName.Text = "";
+                LoginUserName.Text = StringTools._emtyString;
             }
         }
 
@@ -40,7 +41,7 @@ namespace GUI.Login
         {
             if (LoginPassword.Password == "Password")
             {
-                LoginPassword.Password = "";
+                LoginPassword.Password = StringTools._emtyString;
             }
         }
 
@@ -55,12 +56,12 @@ namespace GUI.Login
           
             if (iuserLogin.Login(loggin, password))
             {
-                HomePageAdmin homePageAdmin = new HomePageAdmin();
-                this.NavigationService.Navigate(homePageAdmin);
+                
+                this.NavigationService.Navigate(ClassTools.homePageAdmin);
             }
             else
             {
-                MessageBox.Show(_inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning); 
+                MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning); 
             }
         }
     }

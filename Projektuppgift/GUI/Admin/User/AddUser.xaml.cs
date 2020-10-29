@@ -1,4 +1,5 @@
 ﻿using GUI.Login;
+using GUI.Tools;
 using Logic.Services;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace GUI.Admin.User
             }
             else
             {
-                MessageBox.Show(LogginPage._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
 

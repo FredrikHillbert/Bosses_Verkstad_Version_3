@@ -1,4 +1,6 @@
-﻿using GUI.Login;
+﻿using GUI.Admin.Employer;
+using GUI.Admin.Home;
+using GUI.Login;
 using GUI.Tools;
 using Logic.Services;
 using System;
@@ -33,15 +35,23 @@ namespace GUI.Admin.User
             //Spara i lista
             LoginService checkIfValid = new LoginService();
 
-            if (checkIfValid.CheckIfLoginIsValid(NewUser.Text, CreatPassword.Password, MatchPassword.Password, employerId.Text))
+            if (checkIfValid.CheckIfLoginIsValid(NewUser.Text, CreatPassword.Password, MatchPassword.Password,userId.Text))
             {
                 checkIfValid.CreatNewUser(NewUser.Text, CreatPassword.Password);
                 MessageBox.Show("Användarekonto är nu tillagt!", "", MessageBoxButton.OK);
+                NewUser.Text = "Användarnamn";
+                userId.Text = "Användar-ID";
+                CreatPassword.Password = "Password";
+                MatchPassword.Password = "Password";
 
             }
             else
             {
                 MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                NewUser.Text = "Användarnamn";
+                userId.Text = "Användar-ID";
+                CreatPassword.Password = "Password";
+                MatchPassword.Password ="Password";
             }
 
 
@@ -49,40 +59,64 @@ namespace GUI.Admin.User
 
         private void NewUser_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (NewUser.Text == "Användarnamn")
-            {
-                NewUser.Text = "";
-            }
+            if (NewUser.Text == "Användarnamn") {NewUser.Text = StringTools._emtyString;}
         }
 
-        private void employerId_GotFocus(object sender, RoutedEventArgs e)
+        private void userId_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (employerId.Text == "Anställnings ID")
-            {
-                employerId.Text = "";
-            }
+            if (userId.Text == "Användar-ID") { userId.Text = StringTools._emtyString;}
         }
 
         private void CreatPassword_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (CreatPassword.Password== "Password")
-            {
-                CreatPassword.Password = "";
-            }
+           
+                if (CreatPassword.Password == "Password") { CreatPassword.Password = StringTools._emtyString; }
+              
         }
 
         private void MatchPassword_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (MatchPassword.Password == "Password")
-            {
-                MatchPassword.Password = "";
-            }
+            if (MatchPassword.Password == "Password"){MatchPassword.Password = StringTools._emtyString;}
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             LogginPage logginPage = new LogginPage();
             this.NavigationService.Navigate(logginPage);
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            //--------------------------------------------------------------Nyheter För framtid
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            //-----------------------------------------------------------------Navigition till verkstad!
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            EmployerOptions employerOptions = new EmployerOptions();
+            this.NavigationService.Navigate(employerOptions);
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            UserOptions userOptions = new UserOptions();
+            this.NavigationService.Navigate(userOptions);
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            HomePageAdmin homePageAdmin = new HomePageAdmin();
+            this.NavigationService.Navigate(homePageAdmin);
+        }
+
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+            ChangeUserAccount changeUserAccount = new ChangeUserAccount();
+            this.NavigationService.Navigate(changeUserAccount);
         }
     }
 }

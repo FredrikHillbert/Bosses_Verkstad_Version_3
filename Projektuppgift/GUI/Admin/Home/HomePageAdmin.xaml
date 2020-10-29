@@ -23,7 +23,7 @@
             </Grid.ColumnDefinitions>
 
             <Canvas  Grid.RowSpan="3" Grid.ColumnSpan="3" Margin="0,0,0,0" Background="#FF2E2E2E" >
-
+                <Image Source="/Image/Calander.jpg" Canvas.Left="159" Canvas.Top="10" Height="583" />
             </Canvas>
 
             <Canvas  Grid.RowSpan="2" Background="#FF292929"  Grid.Row="1">
@@ -37,7 +37,7 @@
                              Opacity="1"
                              Height="40"/>
                 <StackPanel>
-                 
+
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="20,500,0,0">
@@ -56,15 +56,15 @@
                 <Button Style="{StaticResource buttomTheme1}" Width="150" Height="35"
                          Content="Nyheter" 
                              FontSize="30"
-                             Margin="200,20,0,0"  />
+                             Margin="200,20,0,0" Click="Button_Click_4"  />
                 <Button Style="{StaticResource buttomTheme1}" Width="150" Height="35"
                          Content="Verkstad" 
                              FontSize="30"
-                             Margin="400,20,0,0"  />
+                             Margin="400,20,0,0" Click="Button_Click_3"  />
                 <Button Style="{StaticResource buttomTheme1}" Width="150" Height="35"
                          Content="Anställda" 
                              FontSize="30"
-                             Margin="600,20,0,0"  />
+                             Margin="600,20,0,0" Click="Button_Click_2"  />
                 <Button Style="{StaticResource buttomTheme1}" Width="210" Height="35"
                          Content="Användare"
                              FontSize="30"

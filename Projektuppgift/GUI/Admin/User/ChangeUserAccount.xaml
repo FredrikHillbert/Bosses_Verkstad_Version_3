@@ -36,7 +36,7 @@
                     <TextBox  FontFamily="Helvetica"
                              FontWeight="Light"
                              Text="Användar-ID"
-                             x:Name="NewUser"
+                             x:Name="searchAfterUser"
                              FontSize="20"
                              HorizontalAlignment="Center"
                              Foreground="White"
@@ -45,7 +45,7 @@
                              Width="150"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="25" 
+                             Height="25" GotFocus="searchAfterUser_GotFocus"  
                              />
                 </StackPanel>
                 <Border Margin="50,100,0,0" Width="150"
@@ -65,11 +65,11 @@
                     <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
                          Content="Ta bort" 
                              FontSize="20" 
-                            Margin="20,150,0,0"/>
+                            Margin="20,150,0,0" Click="Button_Click_7"/>
                     <Button Style="{StaticResource buttomTheme}" Width="150" Height="30"
                          Content="Befintliga konton" 
                              FontSize="20" 
-                            Margin="20,150,0,0"/>
+                            Margin="20,150,0,0" Click="Button_Click_8"/>
                 </StackPanel>
 
 
@@ -90,7 +90,7 @@
                     <Button Style="{StaticResource buttomTheme1}" Width="150" Height="30"
                          Content="Lägg till användare" 
                              FontSize="15"
-                             Margin="0,60,0,0"  />
+                             Margin="0,60,0,0" Click="Button_Click_5"  />
                     <Button Style="{StaticResource buttomTheme1}" Width="150" Height="30"
                          Content="Ändra användare" 
                              FontSize="15"
@@ -101,7 +101,7 @@
                 <StackPanel Orientation="Horizontal" Margin="20,500,0,0">
                     <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
                          Content="Logga ut" 
-                             FontSize="20"   />
+                             FontSize="20" Click="Button_Click_6"   />
                 </StackPanel>
 
             </Canvas>
@@ -110,23 +110,23 @@
                 <Button Style="{StaticResource buttomTheme1}" Width="150" Height="35"
                          Content="Startsida" 
                              FontSize="30"
-                             Margin="0,20,0,0" />
+                             Margin="0,20,0,0" Click="Button_Click" />
                 <Button Style="{StaticResource buttomTheme1}" Width="150" Height="35"
                          Content="Nyheter" 
                              FontSize="30"
-                             Margin="200,20,0,0"  />
+                             Margin="200,20,0,0" Click="Button_Click_1"  />
                 <Button Style="{StaticResource buttomTheme1}" Width="150" Height="35"
                          Content="Verkstad" 
                              FontSize="30"
-                             Margin="400,20,0,0"  />
+                             Margin="400,20,0,0" Click="Button_Click_2"  />
                 <Button Style="{StaticResource buttomTheme1}" Width="150" Height="35"
                          Content="Anställda" 
                              FontSize="30"
-                             Margin="600,20,0,0"  />
+                             Margin="600,20,0,0" Click="Button_Click_3"  />
                 <Button Style="{StaticResource buttomTheme1}" Width="210" Height="35"
                          Content="Användare"
                              FontSize="30"
-                             Margin="800,20,0,0"/>
+                             Margin="800,20,0,0" Click="Button_Click_4"/>
             </Canvas>
         </Grid>
 

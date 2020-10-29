@@ -1,5 +1,7 @@
-﻿using GUI.Admin.Home;
+﻿using GUI.Admin.Employer;
+using GUI.Admin.Home;
 using GUI.Login;
+using GUI.Tools;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -42,6 +44,28 @@ namespace GUI.Admin.User
         {
             AddUser addUser = new AddUser();
             this.NavigationService.Navigate(addUser);
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            EmployerOptions employerOptions = new EmployerOptions();
+            this.NavigationService.Navigate(employerOptions);
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            //-----------------------------------------------------------------Navigition till verkstad!
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            //--------------------------------------------------------------Nyheter För framtid
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            ChangeUserAccount changeUserAccount = new ChangeUserAccount();
+            this.NavigationService.Navigate(changeUserAccount);
         }
     }
 }

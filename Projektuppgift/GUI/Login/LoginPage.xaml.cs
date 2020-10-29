@@ -23,28 +23,32 @@ namespace GUI.Login
     /// </summary>
     public partial class LogginPage : Page
     {
-      
+
+     //-------------------------------------------------------------------------------Lägg till knapp för att avsluta
         public LogginPage()
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// If Textbox got focus = Emty string
+        /// </summary>
         private void LoginUserName_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (LoginUserName.Text == "Användarnamn")
-            {
-                LoginUserName.Text = StringTools._emtyString;
-            }
+            if (LoginUserName.Text == "Användarnamn") {LoginUserName.Text = StringTools._emtyString;}
         }
 
+        /// <summary>
+        /// If Passwordbox got focus = Emty string
+        /// </summary>   
         private void LoginPassword_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (LoginPassword.Password == "Password")
-            {
-                LoginPassword.Password = StringTools._emtyString;
-            }
+            if (LoginPassword.Password == "Password"){LoginPassword.Password = StringTools._emtyString;}
         }
 
+        /// <summary>
+        /// If Username and password is correct, iuserLogin.Login(loggin, password)==True.
+        /// Else Username and password is incorrect, messagebox shows
+        /// </summary>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
            
@@ -56,8 +60,8 @@ namespace GUI.Login
           
             if (iuserLogin.Login(loggin, password))
             {
-                
-                this.NavigationService.Navigate(ClassTools.homePageAdmin);
+                HomePageAdmin homePageAdmin = new HomePageAdmin();
+                this.NavigationService.Navigate(homePageAdmin);
             }
             else
             {

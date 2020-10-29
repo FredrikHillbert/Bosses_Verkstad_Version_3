@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GUI.Admin.Home;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,12 @@ namespace GUI.Admin.Workshop
         public CaseOptions()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            HomePageAdmin homePageAdmin = new HomePageAdmin();
+            this.NavigationService.Navigate(homePageAdmin);
         }
     }
 }

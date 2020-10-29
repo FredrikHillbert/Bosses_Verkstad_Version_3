@@ -1,5 +1,6 @@
 ﻿using GUI.Admin.Employer;
 using GUI.Admin.User;
+using GUI.Admin.Workshop;
 using GUI.Login;
 using GUI.Tools;
 using System;
@@ -31,7 +32,7 @@ namespace GUI.Admin.Home
         /// </summary>       
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            UserOptions userOptions = new UserOptions();
+            CaseOption userOptions = new CaseOption();
             this.NavigationService.Navigate(userOptions);      
         }
 
@@ -54,7 +55,8 @@ namespace GUI.Admin.Home
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            //-----------------------------------------------------------------Navigition till verkstad!
+            CaseOptions caseOptions = new CaseOptions();
+            this.NavigationService.Navigate(caseOptions);
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)

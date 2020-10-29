@@ -1,5 +1,6 @@
 ﻿using GUI.Admin.Employer;
 using GUI.Admin.Home;
+using GUI.Admin.Workshop;
 using GUI.Login;
 using GUI.Tools;
 using System;
@@ -20,9 +21,9 @@ namespace GUI.Admin.User
     /// <summary>
     /// Interaction logic for UserOptions.xaml
     /// </summary>
-    public partial class UserOptions : Page
+    public partial class CaseOption : Page
     {
-        public UserOptions()
+        public CaseOption()
         {
             InitializeComponent();
             
@@ -54,7 +55,8 @@ namespace GUI.Admin.User
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            //-----------------------------------------------------------------Navigition till verkstad!
+            CaseOptions caseOptions = new CaseOptions();
+            this.NavigationService.Navigate(caseOptions);
         }
 
         private void Button_Click_5(object sender, RoutedEventArgs e)

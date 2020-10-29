@@ -44,7 +44,7 @@
                              Width="150"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="25" GotFocus="employerIdSearch_GotFocus"  
+                             Height="25" 
                              />
                 </StackPanel>
                 <Border Margin="50,100,0,0" Width="150"
@@ -56,15 +56,15 @@
                     <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
                          Content="Sök" 
                              FontSize="20" 
-                            Margin="20,175,0,0" Click="Button_Click_7"/>
+                            Margin="20,175,0,0" />
                     <Button Style="{StaticResource buttomTheme}" Width="120" Height="30"
                          Content="Klarmarkera" 
                              FontSize="20" 
-                            Margin="20,175,0,0" Click="Button_Click_8"/>
+                            Margin="20,175,0,0" />
                     <Button Style="{StaticResource buttomTheme}" Width="150" Height="30"
                          Content="Se alla ärenden" 
                              FontSize="20" 
-                            Margin="20,175,0,0" Click="Button_Click_8"/>
+                            Margin="20,175,0,0" />
                 </StackPanel>
 
                 <Label
@@ -87,7 +87,7 @@
                              Width="150"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="25" GotFocus="employerIdMatch_GotFocus" 
+                             Height="25" 
                              />
                 </StackPanel>
                 <Border Margin="50,375,0,0" Width="150"
@@ -107,7 +107,7 @@
                              Width="150"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="25" GotFocus="UserIdMatch_GotFocus" 
+                             Height="25" 
                              />
                 </StackPanel>
                 <Border Margin="50,425,0,0" Width="150"
@@ -119,14 +119,10 @@
                     <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
                          Content="Dela" 
                              FontSize="20" 
-                            Margin="60,500,0,0" Click="Button_Click_9" />
-                  
+                            Margin="60,500,0,0"  />
+
 
                 </StackPanel>
-
-
-
-
 
                 <Label
                     Content="Information ärende"
@@ -150,7 +146,7 @@
                              Width="150"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="25" GotFocus="firstName_GotFocus"  
+                             Height="25" 
                              />
                 </StackPanel>
                 <Border Margin="675,100,0,0" Width="150"
@@ -171,7 +167,7 @@
                              Width="150"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="25" GotFocus="lastname_GotFocus" 
+                             Height="25" 
                           />
 
                 </StackPanel>
@@ -192,7 +188,7 @@
                              Width="150"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="25" GotFocus="dateOfBirth_GotFocus"  
+                             Height="25" 
                           />
 
                 </StackPanel>
@@ -213,7 +209,7 @@
                              Width="150"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="25" GotFocus="dateOfEmployment_GotFocus"  
+                             Height="25"  
                           />
                 </StackPanel>
                 <Border Margin="675,250,0,0" Width="150"
@@ -233,7 +229,7 @@
                              Width="150"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="25" GotFocus="employerId_GotFocus" 
+                             Height="25" 
                           />
                 </StackPanel>
                 <Border Margin="675,300,0,0" Width="150"
@@ -302,7 +298,7 @@
                 <StackPanel Orientation="Horizontal" Margin="695,500,0,0">
                     <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
                          Content="Ändra" 
-                             FontSize="20" Click="Button_Click_11"   />
+                             FontSize="20"/>
                 </StackPanel>
 
 
@@ -324,7 +320,7 @@
                     <Button Style="{StaticResource buttomTheme1}" Width="150" Height="30"
                          Content="Lägg till ärende" 
                              FontSize="15"
-                             Margin="0,60,0,0" Click="Button_Click_5"   />
+                             Margin="0,60,0,0"    />
                     <Button Style="{StaticResource buttomTheme1}" Width="150" Height="30"
                          Content="Dela/Ändra ärende" 
                              FontSize="15"
@@ -335,7 +331,7 @@
                 <StackPanel Orientation="Horizontal" Margin="20,500,0,0">
                     <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
                          Content="Logga ut" 
-                             FontSize="20" Click="Button_Click_6"   />
+                             FontSize="20"    />
                 </StackPanel>
 
             </Canvas>
@@ -344,23 +340,23 @@
                 <Button Style="{StaticResource buttomTheme1}" Width="150" Height="35"
                          Content="Startsida" 
                              FontSize="30"
-                             Margin="0,20,0,0" Click="Button_Click" />
+                             Margin="0,20,0,0"  />
                 <Button Style="{StaticResource buttomTheme1}" Width="150" Height="35"
                          Content="Nyheter" 
                              FontSize="30"
-                             Margin="200,20,0,0" Click="Button_Click_1"  />
+                             Margin="200,20,0,0"   />
                 <Button Style="{StaticResource buttomTheme1}" Width="150" Height="35"
                          Content="Verkstad" 
                              FontSize="30"
-                             Margin="400,20,0,0" Click="Button_Click_2"  />
+                             Margin="400,20,0,0"   />
                 <Button Style="{StaticResource buttomTheme1}" Width="150" Height="35"
                          Content="Anställda" 
                              FontSize="30"
-                             Margin="600,20,0,0" Click="Button_Click_3"  />
+                             Margin="600,20,0,0"   />
                 <Button Style="{StaticResource buttomTheme1}" Width="210" Height="35"
                          Content="Användare"
                              FontSize="30"
-                             Margin="800,20,0,0" Click="Button_Click_4"/>
+                             Margin="800,20,0,0" />
             </Canvas>
         </Grid>
 

@@ -45,7 +45,7 @@ namespace GUI.Admin.Employer
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            UserOptions userOptions = new UserOptions();
+            CaseOption userOptions = new CaseOption();
             this.NavigationService.Navigate(userOptions);
         }
 

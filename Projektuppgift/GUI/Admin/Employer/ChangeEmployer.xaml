@@ -35,7 +35,7 @@
                     <TextBox  FontFamily="Helvetica"
                              FontWeight="Light"
                              Text="Anställnings-ID"
-                             x:Name="NewUser"
+                             x:Name="employerIdSearch"
                              FontSize="20"
                              HorizontalAlignment="Center"
                              Foreground="White"
@@ -44,7 +44,7 @@
                              Width="150"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="25" 
+                             Height="25" GotFocus="employerIdSearch_GotFocus"  
                              />
                 </StackPanel>
                 <Border Margin="50,100,0,0" Width="150"
@@ -74,7 +74,7 @@
                 <TextBox  FontFamily="Helvetica"
                              FontWeight="Light"
                              Text="Anställnings-ID"
-                             x:Name="NewUer"
+                             x:Name="employerIdMatch"
                              FontSize="20"
                              HorizontalAlignment="Center"
                              Foreground="White"
@@ -83,7 +83,7 @@
                              Width="150"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="25" 
+                             Height="25" GotFocus="employerIdMatch_GotFocus" 
                              />
                 </StackPanel>
                 <Border Margin="50,375,0,0" Width="150"
@@ -94,7 +94,7 @@
                     <TextBox  FontFamily="Helvetica"
                              FontWeight="Light"
                              Text="Användar-ID"
-                             x:Name="ewUer"
+                             x:Name="UserIdMatch"
                              FontSize="20"
                              HorizontalAlignment="Center"
                              Foreground="White"
@@ -103,7 +103,7 @@
                              Width="150"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="25" 
+                             Height="25" GotFocus="UserIdMatch_GotFocus" 
                              />
                 </StackPanel>
                 <Border Margin="50,425,0,0" Width="150"
@@ -115,11 +115,11 @@
                     <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
                          Content="Koppla" 
                              FontSize="20" 
-                            Margin="20,500,0,0" />
+                            Margin="20,500,0,0" Click="Button_Click_9" />
                     <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
                          Content="Ta bort" 
                              FontSize="20" 
-                            Margin="20,500,0,0" />
+                            Margin="20,500,0,0" Click="Button_Click_10" />
 
                 </StackPanel>
 
@@ -149,7 +149,7 @@
                              Width="150"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="25"  
+                             Height="25" GotFocus="firstName_GotFocus"  
                              />
                 </StackPanel>
                 <Border Margin="675,100,0,0" Width="150"
@@ -170,7 +170,7 @@
                              Width="150"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="25" 
+                             Height="25" GotFocus="lastname_GotFocus" 
                           />
 
                 </StackPanel>
@@ -191,7 +191,7 @@
                              Width="150"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="25"  
+                             Height="25" GotFocus="dateOfBirth_GotFocus"  
                           />
 
                 </StackPanel>
@@ -212,7 +212,7 @@
                              Width="150"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="25"  
+                             Height="25" GotFocus="dateOfEmployment_GotFocus"  
                           />
                 </StackPanel>
                 <Border Margin="675,250,0,0" Width="150"
@@ -232,7 +232,7 @@
                              Width="150"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="25" 
+                             Height="25" GotFocus="employerId_GotFocus" 
                           />
                 </StackPanel>
                 <Border Margin="675,300,0,0" Width="150"
@@ -301,7 +301,7 @@
                 <StackPanel Orientation="Horizontal" Margin="695,500,0,0">
                     <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
                          Content="Ändra" 
-                             FontSize="20"   />
+                             FontSize="20" Click="Button_Click_11"   />
                 </StackPanel>
 
 

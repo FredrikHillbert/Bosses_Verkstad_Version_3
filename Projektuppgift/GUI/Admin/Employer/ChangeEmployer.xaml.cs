@@ -1,6 +1,7 @@
 ﻿using GUI.Admin.Home;
 using GUI.Admin.User;
 using GUI.Login;
+using GUI.Tools;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -68,12 +69,68 @@ namespace GUI.Admin.Employer
 
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
-            //----------------------------------------------------------------Sök efter Anställd, koppla till konto eller ta bort
+            //----------------------------------------------------------------Sök efter Anställd, koppla till konto eller ta bort, koppla till textbo samt koppla kompetens till radiobuttom.
+
         }
 
         private void Button_Click_8(object sender, RoutedEventArgs e)
         {
             //--------------------------------------------------------------Vissa all anställda
+        }
+
+        private void Button_Click_9(object sender, RoutedEventArgs e)
+        {
+            //--------------------------------------------------------------Funktion koppla användar-id med anställnings-id
+        }
+
+        private void Button_Click_10(object sender, RoutedEventArgs e)
+        {
+            //-------------------------------------------------------------Funktion ta bort koppling mellan användar-id med anställnings-id
+        }
+
+        private void Button_Click_11(object sender, RoutedEventArgs e)
+        {
+            //------------------------------------------------------------Ändra Information om anställd, 
+        }
+
+        private void employerIdSearch_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (employerIdSearch.Text == "Anställnings-ID") { employerIdSearch.Text = StringTools._emtyString; }
+        }
+
+        private void employerIdMatch_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (employerIdMatch.Text == "Anställnings-ID") { employerIdMatch.Text = StringTools._emtyString; }
+        }
+
+        private void UserIdMatch_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (UserIdMatch.Text == "Användar-ID") { UserIdMatch.Text = StringTools._emtyString; }
+        }
+
+        private void firstName_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (firstName.Text == "Namn") { firstName.Text = StringTools._emtyString; }
+        }
+
+        private void lastname_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (lastname.Text == "Efternamn") { lastname.Text = StringTools._emtyString; }
+        }
+
+        private void dateOfBirth_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (dateOfBirth.Text == "Födelsedatum") { dateOfBirth.Text = StringTools._emtyString; }
+        }
+
+        private void dateOfEmployment_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (dateOfEmployment.Text == "Anställningdatum") { dateOfEmployment.Text = StringTools._emtyString; }
+        }
+
+        private void employerId_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (employerId.Text == "Anställnings-ID") { employerId.Text = StringTools._emtyString; }
         }
     }
 }

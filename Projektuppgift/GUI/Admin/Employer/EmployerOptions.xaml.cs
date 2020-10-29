@@ -39,7 +39,8 @@ namespace GUI.Admin.Employer
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            //-----------------------------------------------------------------Navigition till verkstad!
+            CaseOption userOptions = new CaseOption();
+            this.NavigationService.Navigate(userOptions);
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)

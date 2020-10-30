@@ -1,5 +1,6 @@
 ﻿using GUI.Admin.Home;
 using GUI.Admin.User;
+using GUI.Admin.Workshop;
 using GUI.Login;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace GUI.Admin.Employer
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            CaseOption userOptions = new CaseOption();
+            CaseOptions userOptions = new CaseOptions();
             this.NavigationService.Navigate(userOptions);
         }
 

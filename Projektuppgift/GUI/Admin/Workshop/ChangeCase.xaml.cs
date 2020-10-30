@@ -1,4 +1,7 @@
 ﻿using System;
+using GUI.Admin.Home;
+using GUI.Admin.User;
+using GUI.Login;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -10,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GUI.Admin.Employer;
 
 namespace GUI.Admin.Workshop
 {
@@ -21,6 +25,39 @@ namespace GUI.Admin.Workshop
         public ChangeCase()
         {
             InitializeComponent();
+        }
+        private void Button_Exit(object sender, RoutedEventArgs e)
+        {
+            LogginPage logginPage = new LogginPage();
+            this.NavigationService.Navigate(logginPage);
+        }
+        private void Button_Start(object sender, RoutedEventArgs e)
+        {
+            HomePageAdmin homePageAdmin = new HomePageAdmin();
+            this.NavigationService.Navigate(homePageAdmin);
+        }
+
+        private void Button_Add(object sender, RoutedEventArgs e)
+        {
+            AddCase addCase = new AddCase();
+            this.NavigationService.Navigate(addCase);
+        }
+        private void Button_Workshop(object sender, RoutedEventArgs e) //Till CaseOptions (om man vill rensa)
+        {
+            CaseOptions caseOptions = new CaseOptions();
+            this.NavigationService.Navigate(caseOptions);
+        }
+
+        private void Button_List(object sender, RoutedEventArgs e)
+        {
+            EmployerOptions employerOptions = new EmployerOptions();
+            this.NavigationService.Navigate(employerOptions);
+        }
+
+        private void Button_Users(object sender, RoutedEventArgs e) //Dras til UserOptions. Kallas CaseOption..
+        {
+            CaseOption userOptions = new CaseOption();
+            this.NavigationService.Navigate(userOptions);
         }
     }
 }

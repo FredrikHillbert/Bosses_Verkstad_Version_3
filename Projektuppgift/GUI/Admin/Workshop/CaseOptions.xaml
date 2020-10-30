@@ -40,18 +40,18 @@
                     <Button Style="{StaticResource buttomTheme1}" Width="150" Height="30"
                          Content="Lägg till ärende" 
                              FontSize="15"
-                             Margin="0,60,0,0"   />
+                             Margin="0,60,0,0"  Click="Button_Add" />
                     <Button Style="{StaticResource buttomTheme1}" Width="150" Height="30"
                          Content="Dela/Ändra ärende" 
                              FontSize="15"
-                             Margin="0,10,0,0"   />
+                             Margin="0,10,0,0"   Click="Button_Dela"/>
                    
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="20,500,0,0">
                     <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
                          Content="Logga ut" 
-                             FontSize="20"   />
+                             FontSize="20"  Click="Button_Exit" />
                 </StackPanel>
             </Canvas>
             <Canvas  Grid.RowSpan="1" Grid.ColumnSpan="3" Background="#FF343434">
@@ -67,15 +67,15 @@
                 <Button Style="{StaticResource buttomTheme1}" Width="150" Height="35"
                          Content="Verkstad" 
                              FontSize="30"
-                             Margin="400,20,0,0"   />
+                             Margin="400,20,0,0" Click="Button_Workshop"  />
                 <Button Style="{StaticResource buttomTheme1}" Width="150" Height="35"
                          Content="Anställda" 
                              FontSize="30"
-                             Margin="600,20,0,0"  />
+                             Margin="600,20,0,0" Click="Button_List"/>
                 <Button Style="{StaticResource buttomTheme1}" Width="210" Height="35"
                          Content="Användare"
                              FontSize="30"
-                             Margin="800,20,0,0"/>
+                             Margin="800,20,0,0" Click="Button_Users"/>
             </Canvas>
         </Grid>
 

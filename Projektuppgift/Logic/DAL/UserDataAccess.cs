@@ -32,41 +32,61 @@ namespace Logic.DAL
         public void CreateNewUser(string id, List<User>listOfUsers)
         {
 
-            Dictionary<string, List<User>> test = new Dictionary<string, List<User>>();
-
-            test.Add(id, listOfUsers);
+            Dictionary<string, List<User>> userInfo = new Dictionary<string, List<User>>();
 
 
-            try
-            {
+                try
+                {
+                    FileStream fileStream = File.OpenRead(path2);
 
-                FileStream fileStream = File.OpenRead(path2);
+                    StreamReader streamReader = new StreamReader(fileStream);
 
-                StreamReader streamReader = new StreamReader(fileStream);
+                    string Json = streamReader.ReadToEnd();
 
-                string Json = streamReader.ReadToEnd();
+                    userInfo = JsonSerializer.Deserialize<Dictionary<string, List<User>>>(Json);
+                    streamReader.Close();
+                   userInfo.Add(id, listOfUsers);
 
-                test = JsonSerializer.Deserialize<Dictionary<string, List<User>>>(Json);
-                streamReader.Close();
+                   Json = JsonSerializer.Serialize(userInfo);
 
-                Json = JsonSerializer.Serialize(test);
+                 fileStream = File.OpenWrite(path2);
+                  StreamWriter streamWriter = new StreamWriter(fileStream);
 
-                fileStream = File.OpenWrite(path2);
-                StreamWriter streamWriter = new StreamWriter(fileStream);
+                  streamWriter.WriteLine(Json);
+                  streamWriter.Close();
+                    
 
-                streamWriter.WriteLine(Json);
-                streamWriter.Close();
+                }
+
+                catch (Exception)
+                {
+
+
+                userInfo.Add(id, listOfUsers);
+
+
+                FileStream fileStream = File.Create(path2);
+
+                 StreamReader streamReader = new StreamReader(fileStream);
+
+                 streamReader.Close();
+                  
+
+                 string  Json = JsonSerializer.Serialize(userInfo);
+
+                 fileStream = File.OpenWrite(path2);
+                 StreamWriter streamWriter = new StreamWriter(fileStream);
+
+                 streamWriter.WriteLine(Json);
+                 streamWriter.Close();
+
+
+
 
             }
 
-            catch (Exception)
-            {
-                File.Create(path2);
+            
 
-            }     
-
-
-           
 
 
         }
@@ -105,6 +125,24 @@ namespace Logic.DAL
             catch (Exception)
             {
                 File.Create(path);
+
+                users.Add(new User { Username = username, Password = password });
+
+
+                FileStream fileStream = File.Create(path);
+
+                StreamReader streamReader = new StreamReader(fileStream);
+
+                streamReader.Close();
+
+
+                string Json = JsonSerializer.Serialize(users);
+
+                fileStream = File.OpenWrite(path);
+                StreamWriter streamWriter = new StreamWriter(fileStream);
+
+                streamWriter.WriteLine(Json);
+                streamWriter.Close();
             }
         }
 

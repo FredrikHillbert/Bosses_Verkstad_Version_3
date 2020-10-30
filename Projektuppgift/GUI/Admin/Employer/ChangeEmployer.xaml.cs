@@ -100,16 +100,7 @@ namespace GUI.Admin.Employer
             if (employerIdSearch.Text == "Anställnings-ID") { employerIdSearch.Text = StringTools._emtyString; }
         }
 
-        private void employerIdMatch_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (employerIdMatch.Text == "Anställnings-ID") { employerIdMatch.Text = StringTools._emtyString; }
-        }
-
-        private void UserIdMatch_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (UserIdMatch.Text == "Användar-ID") { UserIdMatch.Text = StringTools._emtyString; }
-        }
-
+      
         private void firstName_GotFocus(object sender, RoutedEventArgs e)
         {
             if (firstName.Text == "Namn") { firstName.Text = StringTools._emtyString; }

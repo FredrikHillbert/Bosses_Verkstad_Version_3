@@ -65,7 +65,7 @@ namespace GUI.Admin.User
 
         private void userId_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (userId.Text == "Användar-ID") { userId.Text = StringTools._emtyString;}
+            if (userId.Text == "Anställnings-ID") { userId.Text = StringTools._emtyString;}
         }
 
         private void CreatPassword_GotFocus(object sender, RoutedEventArgs e)

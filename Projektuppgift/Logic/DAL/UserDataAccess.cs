@@ -36,25 +36,37 @@ namespace Logic.DAL
 
             test.Add(id, listOfUsers);
 
-            FileStream fileStream = File.OpenRead(path2);
 
-            StreamReader streamReader = new StreamReader(fileStream);
+            try
+            {
 
-            string Json = streamReader.ReadToEnd();
+                FileStream fileStream = File.OpenRead(path2);
 
-            test = JsonSerializer.Deserialize<Dictionary<string, List<User>>>(Json);
-            streamReader.Close();
+                StreamReader streamReader = new StreamReader(fileStream);
+
+                string Json = streamReader.ReadToEnd();
+
+                test = JsonSerializer.Deserialize<Dictionary<string, List<User>>>(Json);
+                streamReader.Close();
+
+                Json = JsonSerializer.Serialize(test);
+
+                fileStream = File.OpenWrite(path2);
+                StreamWriter streamWriter = new StreamWriter(fileStream);
+
+                streamWriter.WriteLine(Json);
+                streamWriter.Close();
+
+            }
+
+            catch (Exception)
+            {
+                File.Create(path2);
+
+            }     
 
 
-
-            Json = JsonSerializer.Serialize(test);
-
-            fileStream = File.OpenWrite(path2);
-            StreamWriter streamWriter = new StreamWriter(fileStream);
-
-            streamWriter.WriteLine(Json);
-            streamWriter.Close();
-
+           
 
 
         }
@@ -62,31 +74,38 @@ namespace Logic.DAL
 
         public void CreatNewUserList(string username, string password)
         {
-
+            
 
             List<User> users = new List<User>();
-            FileStream fileStream = File.OpenRead(path);
 
-            StreamReader streamReader = new StreamReader(fileStream);
+            try
+            {
+                FileStream fileStream = File.OpenRead(path);
 
-            string Json = streamReader.ReadToEnd();
+                StreamReader streamReader = new StreamReader(fileStream);
 
-            users = JsonSerializer.Deserialize<List<User>>(Json);
-            streamReader.Close();
+                string Json = streamReader.ReadToEnd();
+
+                users = JsonSerializer.Deserialize<List<User>>(Json);
+                streamReader.Close();
 
 
 
 
-            users.Add(new User { Username = username, Password = password });
+                users.Add(new User { Username = username, Password = password });
 
-            Json = JsonSerializer.Serialize(users);
+                Json = JsonSerializer.Serialize(users);
 
-            fileStream = File.OpenWrite(path);
-            StreamWriter streamWriter = new StreamWriter(fileStream);
+                fileStream = File.OpenWrite(path);
+                StreamWriter streamWriter = new StreamWriter(fileStream);
 
-            streamWriter.WriteLine(Json);
-            streamWriter.Close();
-
+                streamWriter.WriteLine(Json);
+                streamWriter.Close();
+            }
+            catch (Exception)
+            {
+                File.Create(path);
+            }
         }
 
 

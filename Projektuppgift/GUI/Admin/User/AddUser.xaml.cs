@@ -3,6 +3,7 @@ using GUI.Admin.Home;
 using GUI.Admin.Workshop;
 using GUI.Login;
 using GUI.Tools;
+using Logic.Interface;
 using Logic.Services;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ namespace GUI.Admin.User
         {
             //Om mail, 2 matchande lösenord, id nummer korrekt
             //Spara i lista
-            LoginService checkIfValid = new LoginService();
+            IuserLogin checkIfValid = new LoginService();
 
             if (checkIfValid.CheckIfLoginIsValid(NewUser.Text, CreatPassword.Password, MatchPassword.Password, userId.Text))
             {

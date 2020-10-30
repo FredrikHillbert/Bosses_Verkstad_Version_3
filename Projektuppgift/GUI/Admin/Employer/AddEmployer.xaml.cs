@@ -15,6 +15,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Logic.Entities;
+using Logic.Services.MechanicServices___ADMIN;
+using Logic.Interface;
 
 namespace GUI.Admin.Employer
 {
@@ -23,6 +26,9 @@ namespace GUI.Admin.Employer
     /// </summary>
     public partial class AddEmployer : Page
     {
+        Mechanic mechanic = new Mechanic();
+        
+
         public AddEmployer()
         {
             InitializeComponent();
@@ -71,6 +77,29 @@ namespace GUI.Admin.Employer
 
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
+            List<Mechanic> listOfMechanic = new List<Mechanic>();
+            ImechanicLogin mechanicService = new MechanicService();
+
+
+            if (mechanicService.CheckIfValid(firstName.Text, lastname.Text, dateOfBirth.Text, dateOfEmployment.Text, employerId.Text))
+                {
+                listOfMechanic.Add(new Mechanic(firstName.Text, lastname.Text,
+                                                  dateOfBirth.Text, dateOfEmployment.Text,
+                                                    (bool)Bromsar.IsChecked, (bool)Motor.IsChecked, (bool)Tire.IsChecked,
+                                                    (bool)vindrutor.IsChecked, (bool)Kaross.IsChecked));
+
+                string id = employerId.Text;
+                //metod för att skicka vidare.
+
+                mechanicService.CreateNewMechanic(id,listOfMechanic);
+                MessageBox.Show("Mekaniker är nu tillagt!", "", MessageBoxButton.OK);
+            }
+
+            else
+            {
+                MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
             //-----------------------------------------------------------------Funktion Läggtill
         }
 
@@ -97,6 +126,28 @@ namespace GUI.Admin.Employer
         private void employerId_GotFocus(object sender, RoutedEventArgs e)
         {
             if (employerId.Text == "Anställnings-ID") { employerId.Text = StringTools._emtyString; }
+        }
+
+        private void Bromsar_Checked(object sender, RoutedEventArgs e)
+        {
+
+            Bromsar.IsChecked = true;
+
+        }
+
+        private void Tire_Checked(object sender, RoutedEventArgs e)
+        {
+            mechanic.Tire = true;
+        }
+
+        private void vindrutor_Checked(object sender, RoutedEventArgs e)
+        {
+            mechanic.Window = true;
+        }
+
+        private void Motor_Checked(object sender, RoutedEventArgs e)
+        {
+            mechanic.Engine = true;
         }
     }
 }

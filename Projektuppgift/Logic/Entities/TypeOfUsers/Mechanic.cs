@@ -6,14 +6,40 @@ using System.Text;
 
 namespace Logic.Entities
 {
-    class Mechanic : User
+    public class Mechanic : User
     {
-        public string NameOfMechanic { get; set; }
+        public Mechanic()
+        {
+        }
 
-        public DateTime BirthdayOfMechanic { get; set; }
+        public Mechanic(string firstName, string lastName, string birthDay, string dateOfEmp, bool engine, bool tire, bool window, bool brakes, bool kaross)
+        {
+            FirstNameOfMechanic = firstName;
+            LastNameOfMechanic = lastName;
+            BirthdayOfMechanic = birthDay;
+            DateOfEmploymentOfMechanic = dateOfEmp;
+            Engine = engine;
+            Tire = tire;
+            Brakes = brakes;
+            Kaross = kaross;
+            Window = window;
+        }
 
-        public DateTime DateOfEmploymentOfMechanic { get; set; }
 
-        
+        public string FirstNameOfMechanic { get; set; }
+
+        public string LastNameOfMechanic { get; set; }
+
+        public string BirthdayOfMechanic { get; set; }
+
+        public string DateOfEmploymentOfMechanic { get; set; }
+
+        public bool Engine { get; set; }
+        public bool Tire { get; set; }
+        public bool Window { get; set; }
+        public bool Brakes { get; set; }
+        public bool Kaross { get; set; }
+
+
     }
 }

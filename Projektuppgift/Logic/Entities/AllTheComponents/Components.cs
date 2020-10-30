@@ -4,58 +4,58 @@ using System.Text;
 
 namespace Logic.Entities.AllTheComponents
 {
-   public class Components
-    {
+   //public class Components
+   // {
 
-        public bool Engine { get; set; }
+   //     public bool Engine { get; set; }
 
-        public bool Tire { get; set; }
-        public bool Window { get; set; }
-        public bool Brakes { get; set; }
-        public bool Kaross { get; set; }
+   //     public bool Tire { get; set; }
+   //     public bool Window { get; set; }
+   //     public bool Brakes { get; set; }
+   //     public bool Kaross { get; set; }
 
 
 
-        public bool WhatIsBroken()
-        {
+   //     //public bool WhatIsBroken()
+   //     //{
             
-            if (Engine == true)
-            {
+   //     //    if (Engine == true)
+   //     //    {
 
-                return Engine;
+   //     //        return Engine;
 
-            }
-            if (Tire == true)
-            {
+   //     //    }
+   //     //    if (Tire == true)
+   //     //    {
 
-                return Tire;
+   //     //        return Tire;
 
-            }
-            if (Window == true)
-            {
+   //     //    }
+   //     //    if (Window == true)
+   //     //    {
 
-                return Window;
+   //     //        return Window;
 
-            }
-            if (Brakes == true)
-            {
+   //     //    }
+   //     //    if (Brakes == true)
+   //     //    {
 
-                return Brakes;
+   //     //        return Brakes;
 
-            }
-            if (Kaross == true)
-            {
+   //     //    }
+   //     //    if (Kaross == true)
+   //     //    {
 
-                return Kaross;
+   //     //        return Kaross;
 
-            }
+   //     //    }
 
-            return false;
+   //     //    return false;
 
 
             
 
-        }
+   //     //}
 
 
         
@@ -63,5 +63,5 @@ namespace Logic.Entities.AllTheComponents
 
 
 
-    }
+   // }
 }

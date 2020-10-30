@@ -7,11 +7,7 @@ namespace Logic.Entities
 {
    public class Admin : User
     {
-        public Admin()
-        {
-            IsAdmin = true;
-        }
-       
+        
 
       
 

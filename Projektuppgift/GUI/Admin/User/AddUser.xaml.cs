@@ -36,9 +36,9 @@ namespace GUI.Admin.User
             //Spara i lista
             LoginService checkIfValid = new LoginService();
 
-            if (checkIfValid.CheckIfLoginIsValid(NewUser.Text, CreatPassword.Password, MatchPassword.Password,userId.Text))
+            if (checkIfValid.CheckIfLoginIsValid(NewUser.Text, CreatPassword.Password, MatchPassword.Password, userId.Text))
             {
-                checkIfValid.CreatNewUser(NewUser.Text, CreatPassword.Password);
+                checkIfValid.CreateNewUser(NewUser.Text, CreatPassword.Password, userId.Text);
                 MessageBox.Show("Användarekonto är nu tillagt!", "", MessageBoxButton.OK);
                 NewUser.Text = "Användarnamn";
                 userId.Text = "Användar-ID";

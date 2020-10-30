@@ -14,10 +14,6 @@ namespace Logic.Entities
 
         public DateTime DateOfEmploymentOfMechanic { get; set; }
 
-        public Mechanic()
-        {
-            IsAdmin = false;
-        }
-
+        
     }
 }

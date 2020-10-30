@@ -24,9 +24,19 @@ namespace Logic.Services
      
             return users.Exists(user => user.Username.Equals(username) && user.Password.Equals(password));
         }
-        public void CreatNewUser(string username, string password)
+
+        
+        public void CreateNewUser(string username, string password, string id)
         {
-            _db.CreatNewUser(username, password);
+
+            List<User> newUser = new List<User>();
+
+            newUser.Add(new User { Username = username, Password = password });
+            // för att fixa en dic
+            _db.CreateNewUser(id, newUser);
+
+            //för att fixa en lista
+            _db.CreatNewUserList(username, password);
         }
         public bool CheckIfLoginIsValid(string username, string password, string password2, string id)
         {

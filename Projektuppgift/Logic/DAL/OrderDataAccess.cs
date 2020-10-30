@@ -50,31 +50,31 @@ namespace Logic.DAL
         }
 
 
-        public void GetSpecificOrder(string key, List<Orders> listOfOrders)
-        {
-            // hämtar ut en specifik order som användaren vill åt genom att leta efter den nyckeln som användaren har skickat in. 
+        //public void GetSpecificOrder(string key, List<Orders> listOfOrders)
+        //{
+        //    // hämtar ut en specifik order som användaren vill åt genom att leta efter den nyckeln som användaren har skickat in. 
 
 
-            var dictonaryOrder = new Orders();
+        //    var dictonaryOrder = new Orders();
 
-            FileStream fileStream = File.OpenRead(path);
-            StreamReader streamReader = new StreamReader(fileStream);
+        //    FileStream fileStream = File.OpenRead(path);
+        //    StreamReader streamReader = new StreamReader(fileStream);
 
-            string Json = streamReader.ReadToEnd();
+        //    string Json = streamReader.ReadToEnd();
 
-            dictonaryOrder.OrderDictionary = JsonSerializer.Deserialize<Dictionary<string, List<Orders>>>(Json);
-            streamReader.Close();
+        //    dictonaryOrder.OrderDictionary = JsonSerializer.Deserialize<Dictionary<string, List<Orders>>>(Json);
+        //    streamReader.Close();
 
-            if (dictonaryOrder.OrderDictionary.TryGetValue(key, out listOfOrders))
-            {
+        //    if (dictonaryOrder.OrderDictionary.TryGetValue(key, out listOfOrders))
+        //    {
 
-                foreach (var item in dictonaryOrder.OrderDictionary[key])
-                {
+        //        foreach (var item in dictonaryOrder.OrderDictionary[key])
+        //        {
 
-                    item.ToString();
+        //            item.ToString();
 
-                }
-            }
+        //        }
+        //    }
 
 
 
@@ -99,4 +99,4 @@ namespace Logic.DAL
 
 
     }
-}
+

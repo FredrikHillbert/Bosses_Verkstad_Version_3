@@ -14,7 +14,8 @@ namespace Logic.DAL
     public class UserDataAccess
     {
         private const string path = @"DAL\User.json";
-        private const string path2 = @"DAL\UserDic.json";
+        public const string path2 = @"DAL\Mechanic.json";
+        public const string path3 = @"DAL\MechanicLoggin.json";
 
         /// <summary>
         /// https://docs.microsoft.com/en-us/dotnet/standard/serialization/system-text-json-how-to
@@ -29,63 +30,63 @@ namespace Logic.DAL
             return users;
         }
 
-        public void CreateNewUser(string id, List<User>listOfUsers)
+        public void CreateNewUser(string id, List<User> listOfUsers)
         {
 
             Dictionary<string, List<User>> userInfo = new Dictionary<string, List<User>>();
 
 
-                try
-                {
-                    FileStream fileStream = File.OpenRead(path2);
+            try
+            {
+                FileStream fileStream = File.OpenRead(path3);
 
-                    StreamReader streamReader = new StreamReader(fileStream);
+                StreamReader streamReader = new StreamReader(fileStream);
 
-                    string Json = streamReader.ReadToEnd();
+                string Json = streamReader.ReadToEnd();
 
-                    userInfo = JsonSerializer.Deserialize<Dictionary<string, List<User>>>(Json);
-                    streamReader.Close();
-                   userInfo.Add(id, listOfUsers);
+                userInfo = JsonSerializer.Deserialize<Dictionary<string, List<User>>>(Json);
+                streamReader.Close();
+                userInfo.Add(id, listOfUsers);
 
-                   Json = JsonSerializer.Serialize(userInfo);
+                Json = JsonSerializer.Serialize(userInfo);
 
-                 fileStream = File.OpenWrite(path2);
-                  StreamWriter streamWriter = new StreamWriter(fileStream);
+                fileStream = File.OpenWrite(path3);
+                StreamWriter streamWriter = new StreamWriter(fileStream);
 
-                  streamWriter.WriteLine(Json);
-                  streamWriter.Close();
-                    
+                streamWriter.WriteLine(Json);
+                streamWriter.Close();
 
-                }
 
-                catch (Exception)
-                {
+            }
+
+            catch (Exception)
+            {
 
 
                 userInfo.Add(id, listOfUsers);
 
 
-                FileStream fileStream = File.Create(path2);
+                FileStream fileStream = File.Create(path3);
 
-                 StreamReader streamReader = new StreamReader(fileStream);
+                StreamReader streamReader = new StreamReader(fileStream);
 
-                 streamReader.Close();
-                  
+                streamReader.Close();
 
-                 string  Json = JsonSerializer.Serialize(userInfo);
 
-                 fileStream = File.OpenWrite(path2);
-                 StreamWriter streamWriter = new StreamWriter(fileStream);
+                string Json = JsonSerializer.Serialize(userInfo);
 
-                 streamWriter.WriteLine(Json);
-                 streamWriter.Close();
+                fileStream = File.OpenWrite(path3);
+                StreamWriter streamWriter = new StreamWriter(fileStream);
+
+                streamWriter.WriteLine(Json);
+                streamWriter.Close();
 
 
 
 
             }
 
-            
+
 
 
 
@@ -94,7 +95,7 @@ namespace Logic.DAL
 
         public void CreatNewUserList(string username, string password)
         {
-            
+
 
             List<User> users = new List<User>();
 
@@ -176,6 +177,25 @@ namespace Logic.DAL
 
 
 
+        //}
+        //public bool ActivUser(string Id)
+        //{
+        //    Dictionary<string, List<string>> DeklarerarDictionary = new Dictionary<string, List<string>>();
+
+        //    FileStream fileStream = File.OpenRead(path2);
+        //    StreamReader streamReader = new StreamReader(fileStream);
+
+        //    string Json = streamReader.ReadToEnd();
+
+        //    DeklarerarDictionary = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(Json);
+        //    streamReader.Close();
+
+        //    if (DeklarerarDictionary.ContainsKey(Id))//-------------------------Kollar efter användare finns
+        //    {
+        //        return true;
+
+        //    }
+        //    return false;
         //}
     }
 }

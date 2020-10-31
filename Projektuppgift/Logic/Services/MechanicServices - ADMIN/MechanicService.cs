@@ -4,11 +4,13 @@ using Logic.Interface;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Text;
+using System.Text.Json;
 
 namespace Logic.Services.MechanicServices___ADMIN
 {
-   public class MechanicService : ImechanicLogin
+    public class MechanicService : ImechanicLogin
     {
         private MechanicDataAccess _db;
 
@@ -26,13 +28,13 @@ namespace Logic.Services.MechanicServices___ADMIN
             _db.CreateNewMechanic(id, listOfMechanic);
 
             //för att fixa en lista
-           
+
         }
 
 
         public bool CheckIfValid(string firstName, string lastName, string dateOfBirth, string dateOfEmp, string id)
         {
-            if(firstName != String.Empty && lastName != String.Empty && dateOfBirth != String.Empty && dateOfEmp != String.Empty && id != String.Empty)
+            if (firstName != String.Empty && lastName != String.Empty && dateOfBirth != String.Empty && dateOfEmp != String.Empty && id != String.Empty)
             {
                 return true;
             }
@@ -44,9 +46,25 @@ namespace Logic.Services.MechanicServices___ADMIN
         }
 
 
+        public bool ActivUser(string Id)
+        {
+            Dictionary<string, List<Mechanic>> DeklarerarDictionary = new Dictionary<string, List<Mechanic>>();
 
+            FileStream fileStream = File.OpenRead(UserDataAccess.path2);
+            StreamReader streamReader = new StreamReader(fileStream);
 
+            string Json = streamReader.ReadToEnd();
 
+            DeklarerarDictionary = JsonSerializer.Deserialize<Dictionary<string, List<Mechanic>>>(Json);
+            streamReader.Close();
+
+            if (DeklarerarDictionary.ContainsKey(Id))//-------------------------Kollar efter användare finns
+            {
+                return true;
+
+            }
+            return false;
+        }
 
     }
 }

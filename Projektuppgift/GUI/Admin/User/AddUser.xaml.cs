@@ -5,6 +5,7 @@ using GUI.Login;
 using GUI.Tools;
 using Logic.Interface;
 using Logic.Services;
+using Logic.Services.MechanicServices___ADMIN;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -33,12 +34,13 @@ namespace GUI.Admin.User
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //Om mail, 2 matchande lösenord, id nummer korrekt
-            //Spara i lista
+         
             IuserLogin checkIfValid = new LoginService();
+            ImechanicLogin mechanic = new MechanicService();
 
-            if (checkIfValid.CheckIfLoginIsValid(NewUser.Text, CreatPassword.Password, MatchPassword.Password, userId.Text))
+            if (checkIfValid.CheckIfLoginIsValid(NewUser.Text, CreatPassword.Password, MatchPassword.Password, userId.Text)&& (mechanic.ActivUser(userId.Text)))
             {
+                //Kolla om användare finns Lägg till i samma dic som  användare
                 checkIfValid.CreateNewUser(NewUser.Text, CreatPassword.Password, userId.Text);
                 MessageBox.Show("Användarekonto är nu tillagt!", "", MessageBoxButton.OK);
                 NewUser.Text = "Användarnamn";

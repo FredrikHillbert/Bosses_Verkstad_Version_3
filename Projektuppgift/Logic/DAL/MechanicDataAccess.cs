@@ -13,18 +13,17 @@ namespace Logic.DAL
     {
 
 
-        private const string path = @"DAL\Mechanic.json";
 
 
         public void CreateNewMechanic(string id, List<Mechanic>listOfMechanic)
         {
-
+            
             Dictionary<string, List <Mechanic>> mechanicInfo = new Dictionary<string, List<Mechanic>>();
 
 
             try
             {
-                FileStream fileStream = File.OpenRead(path);
+                FileStream fileStream = File.OpenRead(UserDataAccess.path2);
 
                 StreamReader streamReader = new StreamReader(fileStream);
 
@@ -36,7 +35,7 @@ namespace Logic.DAL
 
                 Json = JsonSerializer.Serialize(mechanicInfo);
 
-                fileStream = File.OpenWrite(path);
+                fileStream = File.OpenWrite(UserDataAccess.path2);
                 StreamWriter streamWriter = new StreamWriter(fileStream);
 
                 streamWriter.WriteLine(Json);
@@ -52,7 +51,7 @@ namespace Logic.DAL
                 mechanicInfo.Add(id, listOfMechanic);
 
 
-                FileStream fileStream = File.Create(path);
+                FileStream fileStream = File.Create(UserDataAccess.path2);
 
                 StreamReader streamReader = new StreamReader(fileStream);
 
@@ -61,7 +60,7 @@ namespace Logic.DAL
 
                 string Json = JsonSerializer.Serialize(mechanicInfo);
 
-                fileStream = File.OpenWrite(path);
+                fileStream = File.OpenWrite(UserDataAccess.path2);
                 StreamWriter streamWriter = new StreamWriter(fileStream);
 
                 streamWriter.WriteLine(Json);

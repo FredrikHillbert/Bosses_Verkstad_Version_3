@@ -10,6 +10,7 @@ namespace Logic.Interface
         bool CheckIfValid(string firstName, string lastName, string dateOfBirth, string dateOfEmp, string id);
 
         void CreateNewMechanic(string id, List<Mechanic> listOfMechanic);
+        public bool ActivUser(string Id);
 
 
 

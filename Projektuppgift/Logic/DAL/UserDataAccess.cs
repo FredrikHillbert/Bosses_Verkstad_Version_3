@@ -30,27 +30,62 @@ namespace Logic.DAL
             return users;
         }
 
-        public void CreateNewUser(string id, List<User> listOfUsers)
+        public void CreateNewUser(string username, string password, string id)
         {
 
-            Dictionary<string, List<User>> userInfo = new Dictionary<string, List<User>>();
+            Dictionary<string, List<Mechanic>> userInfo = new Dictionary<string, List<Mechanic>>();
 
+            List<Mechanic> DeklareraLista = new List<Mechanic>();
 
             try
             {
-                FileStream fileStream = File.OpenRead(path3);
+                FileStream fileStream = File.OpenRead(path2);
 
                 StreamReader streamReader = new StreamReader(fileStream);
 
                 string Json = streamReader.ReadToEnd();
 
-                userInfo = JsonSerializer.Deserialize<Dictionary<string, List<User>>>(Json);
+                userInfo = JsonSerializer.Deserialize<Dictionary<string, List<Mechanic>>>(Json);
                 streamReader.Close();
-                userInfo.Add(id, listOfUsers);
+                
+
+                if (userInfo.ContainsKey(id))//-------------------------Kollar efter användare finns
+                {
+                    string firstName = "";
+                    string lastName = "";
+                    string birthDay = "";
+                    string dateOfEmp = "";
+                    bool engine = false;
+                    bool tire = false;
+                    bool brakes = false;
+                    bool kaross = false;
+                    bool window = false;
+                    foreach (var item in userInfo[id])
+                    {
+                         firstName= item.FirstNameOfMechanic;
+                        lastName =item.LastNameOfMechanic; 
+                         birthDay= item.BirthdayOfMechanic;
+                         dateOfEmp =item.DateOfEmploymentOfMechanic;
+                         engine = item.Engine;
+                         tire= item.Tire;
+                          brakes =item.Brakes;
+                       kaross = item.Kaross;
+                      window= item.Window;
+                    }
+                    DeklareraLista.Add(new Mechanic{FirstNameOfMechanic= firstName, LastNameOfMechanic = lastName, BirthdayOfMechanic = birthDay,
+                        DateOfEmploymentOfMechanic= dateOfEmp, Engine=engine, Tire = tire, Brakes = brakes, Kaross = kaross, Window = window,
+                        Username = username, Password = password, UserID = id });
+
+                    userInfo.Remove(id);
+                    userInfo.Add(id, DeklareraLista);
+
+
+                }
+                
 
                 Json = JsonSerializer.Serialize(userInfo);
 
-                fileStream = File.OpenWrite(path3);
+                fileStream = File.OpenWrite(path2);
                 StreamWriter streamWriter = new StreamWriter(fileStream);
 
                 streamWriter.WriteLine(Json);
@@ -63,7 +98,7 @@ namespace Logic.DAL
             {
 
 
-                userInfo.Add(id, listOfUsers);
+             
 
 
                 FileStream fileStream = File.Create(path3);

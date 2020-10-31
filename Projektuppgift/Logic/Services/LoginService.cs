@@ -30,8 +30,8 @@ namespace Logic.Services
         {
 
             List<User> newUser = new List<User>();
-           
-         //   _db.CreateNewUser(id, newUser );
+
+            _db.CreateNewUser(username, password,id);
 
             //för att fixa en lista
             _db.CreatNewUserList(username, password);

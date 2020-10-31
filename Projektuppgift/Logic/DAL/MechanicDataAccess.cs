@@ -15,10 +15,10 @@ namespace Logic.DAL
 
 
 
-        public void CreateNewMechanic(string id, List<Mechanic>listOfMechanic)
+        public void CreateNewMechanic(string id, List<Mechanic> listOfMechanic)
         {
-            
-            Dictionary<string, List <Mechanic>> mechanicInfo = new Dictionary<string, List<Mechanic>>();
+
+            Dictionary<string, List<Mechanic>> mechanicInfo = new Dictionary<string, List<Mechanic>>();
 
 
             try
@@ -67,16 +67,12 @@ namespace Logic.DAL
                 streamWriter.Close();
 
 
-
-
             }
 
 
 
-
-
         }
-
+      
 
 
 

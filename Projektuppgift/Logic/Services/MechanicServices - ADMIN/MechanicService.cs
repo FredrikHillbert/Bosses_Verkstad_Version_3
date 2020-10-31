@@ -55,7 +55,7 @@ namespace Logic.Services.MechanicServices___ADMIN
 
             string Json = streamReader.ReadToEnd();
 
-            DeklarerarDictionary = JsonSerializer.Deserialize<Dictionary<string, List<Mechanic>>>(Json);
+            DeklarerarDictionary = JsonSerializer.Deserialize<Dictionary<string, List<Mechanic>>>(Json);///------------------------Problem Med att ta bort fil andra gången!
             streamReader.Close();
 
             if (DeklarerarDictionary.ContainsKey(Id))//-------------------------Kollar efter användare finns
@@ -64,6 +64,36 @@ namespace Logic.Services.MechanicServices___ADMIN
 
             }
             return false;
+        }
+
+        public void DeleteMechanic(string id)
+
+        {
+            Dictionary<string, List<Mechanic>> userInfo = new Dictionary<string, List<Mechanic>>();
+            FileStream fileStream = File.OpenRead(UserDataAccess.path2);
+
+            StreamReader streamReader = new StreamReader(fileStream);
+
+            string Json = streamReader.ReadToEnd();
+
+            userInfo = JsonSerializer.Deserialize<Dictionary<string, List<Mechanic>>>(Json);
+            streamReader.Close();
+
+            if (userInfo.ContainsKey(id))//-------------------------Kollar efter användare finns
+            {
+                userInfo.Remove(id);
+
+            }
+
+
+            Json = JsonSerializer.Serialize(userInfo);
+
+            fileStream = File.OpenWrite(UserDataAccess.path2);
+            StreamWriter streamWriter = new StreamWriter(fileStream);
+
+            streamWriter.WriteLine(Json);
+            streamWriter.Close();
+
         }
 
     }

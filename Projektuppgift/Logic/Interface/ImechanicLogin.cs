@@ -11,7 +11,7 @@ namespace Logic.Interface
 
         void CreateNewMechanic(string id, List<Mechanic> listOfMechanic);
         public bool ActivUser(string Id);
-
+        public void DeleteMechanic(string id);
 
 
 

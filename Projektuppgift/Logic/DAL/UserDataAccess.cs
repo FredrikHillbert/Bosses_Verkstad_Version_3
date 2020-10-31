@@ -51,30 +51,44 @@ namespace Logic.DAL
 
                 if (userInfo.ContainsKey(id))//-------------------------Kollar efter användare finns
                 {
-                    string firstName = "";
-                    string lastName = "";
-                    string birthDay = "";
-                    string dateOfEmp = "";
-                    bool engine = false;
-                    bool tire = false;
-                    bool brakes = false;
-                    bool kaross = false;
-                    bool window = false;
+                    string 
+                    firstName = String.Empty,
+                    lastName = String.Empty,
+                    birthDay = String.Empty,
+                    dateOfEmp = String.Empty;
+
+                    bool 
+                     engine = false,
+                     tire = false,
+                     brakes = false,
+                     kaross = false,
+                     window = false;
+
                     foreach (var item in userInfo[id])
                     {
-                         firstName= item.FirstNameOfMechanic;
-                        lastName =item.LastNameOfMechanic; 
-                         birthDay= item.BirthdayOfMechanic;
-                         dateOfEmp =item.DateOfEmploymentOfMechanic;
-                         engine = item.Engine;
-                         tire= item.Tire;
-                          brakes =item.Brakes;
-                       kaross = item.Kaross;
-                      window= item.Window;
+                     firstName= item.FirstNameOfMechanic;
+                     lastName =item.LastNameOfMechanic; 
+                     birthDay= item.BirthdayOfMechanic;
+                     dateOfEmp =item.DateOfEmploymentOfMechanic;
+                     engine = item.Engine;
+                     tire= item.Tire;
+                     brakes =item.Brakes;
+                     kaross = item.Kaross;
+                     window= item.Window;
                     }
-                    DeklareraLista.Add(new Mechanic{FirstNameOfMechanic= firstName, LastNameOfMechanic = lastName, BirthdayOfMechanic = birthDay,
-                        DateOfEmploymentOfMechanic= dateOfEmp, Engine=engine, Tire = tire, Brakes = brakes, Kaross = kaross, Window = window,
-                        Username = username, Password = password, UserID = id });
+                    DeklareraLista.Add(new Mechanic{
+                        FirstNameOfMechanic= firstName,
+                        LastNameOfMechanic = lastName, 
+                        BirthdayOfMechanic = birthDay,
+                        DateOfEmploymentOfMechanic= dateOfEmp, 
+                        Engine=engine, 
+                        Tire = tire, 
+                        Brakes = brakes, 
+                        Kaross = kaross, 
+                        Window = window,
+                        Username = username, 
+                        Password = password, 
+                        UserID = id });
 
                     userInfo.Remove(id);
                     userInfo.Add(id, DeklareraLista);
@@ -97,7 +111,7 @@ namespace Logic.DAL
             catch (Exception)
             {
 
-
+                ///----------------------------------------------------------------Inte färgidt
              
 
 

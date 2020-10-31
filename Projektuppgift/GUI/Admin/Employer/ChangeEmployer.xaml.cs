@@ -3,6 +3,8 @@ using GUI.Admin.User;
 using GUI.Admin.Workshop;
 using GUI.Login;
 using GUI.Tools;
+using Logic.Interface;
+using Logic.Services.MechanicServices___ADMIN;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -77,7 +79,22 @@ namespace GUI.Admin.Employer
 
         private void Button_Click_8(object sender, RoutedEventArgs e)
         {
-            //--------------------------------------------------------------Vissa all anställda
+            ImechanicLogin mechanic = new MechanicService();
+      
+            if ((mechanic.ActivUser(employerIdSearch.Text)))
+            {
+
+                if (MessageBox.Show("Är du säker på att du vill ta bort anställd!", "", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    mechanic.DeleteMechanic(employerIdSearch.Text);   
+                }
+
+            }
+            else
+            {
+                MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+             
+            }
         }
 
         private void Button_Click_9(object sender, RoutedEventArgs e)

@@ -24,8 +24,4 @@
     </Resource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Admin\Workshop\" />
-  </ItemGroup>
-
 </Project>

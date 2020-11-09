@@ -2,7 +2,6 @@
 using GUI.Admin.User;
 using GUI.Admin.Employer;
 using GUI.Login;
-using GUI.Admin.Workshop;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,9 +20,9 @@ namespace GUI.Admin.Workshop
     /// <summary>
     /// Interaction logic for CaseOptions.xaml
     /// </summary>
-    public partial class CaseOptions : Page
+    public partial class ChangeCar : Page
     {
-        public CaseOptions()
+        public ChangeCar()
         {
             InitializeComponent();
         }

@@ -2,7 +2,6 @@
 using GUI.Admin.User;
 using GUI.Admin.Employer;
 using GUI.Login;
-using GUI.Admin.Workshop;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,11 +18,11 @@ using System.Windows.Shapes;
 namespace GUI.Admin.Workshop
 {
     /// <summary>
-    /// Interaction logic for CaseOptions.xaml
+    /// Interaction logic for AddCase.xaml
     /// </summary>
-    public partial class CaseOptions : Page
+    public partial class AddCar : Page
     {
-        public CaseOptions()
+        public AddCar()
         {
             InitializeComponent();
         }
@@ -32,23 +31,18 @@ namespace GUI.Admin.Workshop
             LogginPage logginPage = new LogginPage();
             this.NavigationService.Navigate(logginPage);
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Start(object sender, RoutedEventArgs e)
         {
             HomePageAdmin homePageAdmin = new HomePageAdmin();
             this.NavigationService.Navigate(homePageAdmin);
         }
 
-        private void Button_Dela(object sender, RoutedEventArgs e)
+        private void Button_Dela(object sender, RoutedEventArgs e) //Till ChangeCase
         {
             ChangeCase changeCase = new ChangeCase();
             this.NavigationService.Navigate(changeCase);
         }
 
-        private void Button_Add(object sender, RoutedEventArgs e)
-        {
-            AddCase addCase = new AddCase();
-            this.NavigationService.Navigate(addCase);
-        }
         private void Button_Workshop(object sender, RoutedEventArgs e) //Till CaseOptions (om man vill rensa)
         {
             CaseOptions caseOptions = new CaseOptions();

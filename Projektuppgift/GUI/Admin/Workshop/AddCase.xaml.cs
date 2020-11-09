@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Logic.Entities;
 
 namespace GUI.Admin.Workshop
 {
@@ -60,5 +61,26 @@ namespace GUI.Admin.Workshop
             CaseOption userOptions = new CaseOption();
             this.NavigationService.Navigate(userOptions);
         }
+
+        private void Add(object sender, RoutedEventArgs e) //Lägger till Ärendet i listan
+        {
+
+            List<Orders> ListOfOrder = new List<Orders>();
+
+           // while(Allt är ifyllt (Desc.Text = value; && Id.Text = value))
+            {
+                ListOfOrder.Add(new Order(Desc.Text, Id.Text,
+                                                    (bool)Broms.IsChecked, (bool)Motor.IsChecked, (bool)Tire.IsChecked,
+                                                    (bool)vindrutor.IsChecked, (bool)Kaross.IsChecked));
+
+              
+
+                
+                MessageBox.Show("Ärende är nu tillagt!", "", MessageBoxButton.OK);
+            }
+
+        }
+
+      
     }
 }

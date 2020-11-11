@@ -3,8 +3,9 @@ using GUI.Admin.User;
 using GUI.Admin.Workshop;
 using GUI.Login;
 using GUI.Tools;
+using Logic.Entities;
 using Logic.Interface;
-using Logic.Services.MechanicServices___ADMIN;
+using Logic.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,6 +26,10 @@ namespace GUI.Admin.Employer
     /// </summary>
     public partial class ChangeEmployer : Page
     {
+
+        Mechanic mechanic = new Mechanic();
+        string whichMechanic;
+
         public ChangeEmployer()
         {
             InitializeComponent();
@@ -73,74 +78,144 @@ namespace GUI.Admin.Employer
 
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
-            //----------------------------------------------------------------Sök efter Anställd, koppla till konto eller ta bort, koppla till textbo samt koppla kompetens till radiobuttom.
 
+            ILogic adminService = new AdminService();
+
+            if ((adminService.ActivUser(employerIdSearch.Text)))
+            {
+                List<Mechanic> DeklareraLista = adminService.GetMechanic(employerIdSearch.Text);
+                foreach (var item in DeklareraLista)
+                {
+                    firstName.Text = item.FirstNameOfMechanic;
+                    lastname.Text = item.LastNameOfMechanic;
+                    dateOfBirth.Text = item.BirthdayOfMechanic;
+                    dateOfEmployment.Text = item.DateOfEmploymentOfMechanic;
+                    employerId.Text = employerIdSearch.Text;
+                    Motor.IsChecked= item.Engine;
+                    Däck.IsChecked = item.Tire;
+                    vindrutor.IsChecked = item.Window;
+                    Bromsar.IsChecked = item.Brakes;
+                    Kaross.IsChecked = item.Kaross;
+                }
+            }
+            else
+            {
+                MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            }
         }
+        //----------------------------------------------------------------Sök efter Anställd, koppla till konto eller ta bort, koppla till textbo samt koppla kompetens till radiobuttom.
+
 
         private void Button_Click_8(object sender, RoutedEventArgs e)
         {
-            ImechanicLogin mechanic = new MechanicService();
-      
-            if ((mechanic.ActivUser(employerIdSearch.Text)))
+            ILogic adminService = new AdminService();
+
+            if ((adminService.ActivUser(employerIdSearch.Text)))
             {
 
                 if (MessageBox.Show("Är du säker på att du vill ta bort anställd!", "", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
-                    mechanic.DeleteMechanic(employerIdSearch.Text);   
+                    adminService.DeleteMechanic(employerIdSearch.Text);   
                 }
-
             }
             else
             {
                 MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
              
             }
+            ChangeEmployer changeEmployer = new ChangeEmployer();
+            this.NavigationService.Navigate(changeEmployer);
         }
 
         private void Button_Click_9(object sender, RoutedEventArgs e)
         {
-            //--------------------------------------------------------------Funktion koppla användar-id med anställnings-id
+            List<Mechanic> mechanic = new List<Mechanic>();
+            ILogic adminService = new AdminService();
+
+
+            if (adminService.ValidMechanic(firstName.Text, lastname.Text, dateOfBirth.Text, dateOfEmployment.Text, employerId.Text))
+            {
+
+                if ((adminService.ActivUser(employerIdSearch.Text)))
+                {
+
+                    adminService.DeleteMechanic(employerIdSearch.Text);
+
+                    mechanic.Add(new Mechanic(firstName.Text, lastname.Text,
+                                  dateOfBirth.Text, dateOfEmployment.Text,
+                                    (bool)Motor.IsChecked, (bool)Däck.IsChecked, (bool)vindrutor.IsChecked,
+                                    (bool)Bromsar.IsChecked, (bool)Kaross.IsChecked));
+
+
+
+                    string id = employerId.Text;
+                    adminService.NewMechanic(id, mechanic);
+                    MessageBox.Show("Mekaniker är nu ändrad!", "", MessageBoxButton.OK);
+
+                }
+                else 
+                {
+                    MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+
+            else
+            {
+                MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            ChangeEmployer changeEmployer = new ChangeEmployer();
+            this.NavigationService.Navigate(changeEmployer);
         }
 
-        private void Button_Click_10(object sender, RoutedEventArgs e)
-        {
-            //-------------------------------------------------------------Funktion ta bort koppling mellan användar-id med anställnings-id
-        }
-
-        private void Button_Click_11(object sender, RoutedEventArgs e)
-        {
-            //------------------------------------------------------------Ändra Information om anställd, 
-        }
-
+       
         private void employerIdSearch_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (employerIdSearch.Text == "Anställnings-ID") { employerIdSearch.Text = StringTools._emtyString; }
+            if (employerIdSearch.Text == "Anställnings-ID")
+            {
+                employerIdSearch.Text = string.Empty;
+            }
         }
 
-      
-        private void firstName_GotFocus(object sender, RoutedEventArgs e)
+        private void ComboBox_Loaded(object sender, RoutedEventArgs e)
         {
-            if (firstName.Text == "Namn") { firstName.Text = StringTools._emtyString; }
+            List<string> DeklareraLista = new List<string>();
+            ILogic adminService = new AdminService();
+            DeklareraLista = adminService.GetKey();
+            var combo = sender as ComboBox;
+            combo.ItemsSource = DeklareraLista;
+            combo.SelectedIndex = 0;
+           
         }
 
-        private void lastname_GotFocus(object sender, RoutedEventArgs e)
+        private void Bromsar_Checked(object sender, RoutedEventArgs e)
         {
-            if (lastname.Text == "Efternamn") { lastname.Text = StringTools._emtyString; }
+
+            mechanic.Brakes = true;
+
         }
 
-        private void dateOfBirth_GotFocus(object sender, RoutedEventArgs e)
+        private void Tire_Checked(object sender, RoutedEventArgs e)
         {
-            if (dateOfBirth.Text == "Födelsedatum") { dateOfBirth.Text = StringTools._emtyString; }
+            mechanic.Tire = true;
         }
 
-        private void dateOfEmployment_GotFocus(object sender, RoutedEventArgs e)
+        private void vindrutor_Checked(object sender, RoutedEventArgs e)
         {
-            if (dateOfEmployment.Text == "Anställningdatum") { dateOfEmployment.Text = StringTools._emtyString; }
+            mechanic.Window = true;
         }
 
-        private void employerId_GotFocus(object sender, RoutedEventArgs e)
+        private void Motor_Checked(object sender, RoutedEventArgs e)
         {
-            if (employerId.Text == "Anställnings-ID") { employerId.Text = StringTools._emtyString; }
+            mechanic.Engine = true;
         }
+
+        private void Kaross_Checked(object sender, RoutedEventArgs e)
+        {
+            mechanic.Kaross = true;
+        }
+
+     
     }
-}
+ }
+

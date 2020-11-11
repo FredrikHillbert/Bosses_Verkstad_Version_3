@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Logic.Entities
 {
-  public class Bus : Vehicles
+  public class Bus : Orders
     {
 
         public int NumberOfPassengers { get; set; }

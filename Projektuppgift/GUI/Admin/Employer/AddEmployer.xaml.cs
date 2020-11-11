@@ -16,8 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Logic.Entities;
-using Logic.Services.MechanicServices___ADMIN;
 using Logic.Interface;
+using Logic.Services;
 
 namespace GUI.Admin.Employer
 {
@@ -77,21 +77,19 @@ namespace GUI.Admin.Employer
 
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
-            List<Mechanic> listOfMechanic = new List<Mechanic>();
-            ImechanicLogin mechanicService = new MechanicService();
+            List<Mechanic> mechanic = new List<Mechanic>();
+            ILogic adminService = new AdminService();
 
 
-            if (mechanicService.CheckIfValid(firstName.Text, lastname.Text, dateOfBirth.Text, dateOfEmployment.Text, employerId.Text))
+            if (adminService.ValidMechanic(firstName.Text, lastname.Text, dateOfBirth.Text, dateOfEmployment.Text, employerId.Text))
                 {
-                listOfMechanic.Add(new Mechanic(firstName.Text, lastname.Text,
+                mechanic.Add(new Mechanic(firstName.Text, lastname.Text,
                                                   dateOfBirth.Text, dateOfEmployment.Text,
-                                                    (bool)Bromsar.IsChecked, (bool)Motor.IsChecked, (bool)Tire.IsChecked,
-                                                    (bool)vindrutor.IsChecked, (bool)Kaross.IsChecked));
+                                                     (bool)Motor.IsChecked, (bool)Tire.IsChecked,
+                                                     (bool)vindrutor.IsChecked,(bool)Bromsar.IsChecked,(bool)Kaross.IsChecked));
 
                 string id = employerId.Text;
-                //metod för att skicka vidare.
-
-                mechanicService.CreateNewMechanic(id,listOfMechanic);
+                adminService.NewMechanic(id,mechanic);
                 MessageBox.Show("Mekaniker är nu tillagt!", "", MessageBoxButton.OK);
             }
 
@@ -99,39 +97,37 @@ namespace GUI.Admin.Employer
             {
                 MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            
-            //-----------------------------------------------------------------Funktion Läggtill
         }
 
         private void firstName_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (firstName.Text == "Namn") { firstName.Text = StringTools._emtyString; }
+            if (firstName.Text == "Namn") { firstName.Text = string.Empty; }
         }
 
         private void lastname_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (lastname.Text == "Efternamn") { lastname.Text = StringTools._emtyString; }
+            if (lastname.Text == "Efternamn") { lastname.Text = string.Empty; }
         }
 
         private void dateOfBirth_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (dateOfBirth.Text == "Födelsedatum") { dateOfBirth.Text = StringTools._emtyString; }
+            if (dateOfBirth.Text == "Födelsedatum") { dateOfBirth.Text = string.Empty; }
         }
 
         private void dateOfEmployment_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (dateOfEmployment.Text == "Anställningdatum") { dateOfEmployment.Text = StringTools._emtyString; }
+            if (dateOfEmployment.Text == "Anställningdatum") { dateOfEmployment.Text = string.Empty; }
         }
 
         private void employerId_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (employerId.Text == "Anställnings-ID") { employerId.Text = StringTools._emtyString; }
+            if (employerId.Text == "Anställnings-ID") { employerId.Text = string.Empty; }
         }
 
         private void Bromsar_Checked(object sender, RoutedEventArgs e)
         {
 
-            Bromsar.IsChecked = true;
+            mechanic.Brakes = true;
 
         }
 
@@ -148,6 +144,11 @@ namespace GUI.Admin.Employer
         private void Motor_Checked(object sender, RoutedEventArgs e)
         {
             mechanic.Engine = true;
+        }
+
+        private void Kaross_Checked(object sender, RoutedEventArgs e)
+        {
+            mechanic.Kaross = true;
         }
     }
 }

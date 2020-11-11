@@ -8,15 +8,20 @@ namespace Logic.Entities
     {
         public string ModelName { get; set; }
 
-        public int Matare { get; set; }
+        public string Matare { get; set; }
 
         public string Fuel { get; set; }
 
         public string RegNumber { get; set; }
 
-        public DateTime RegDate { get; set; }
+        public string RegDate { get; set; }
 
-        public string TypeOfVehicle { get; set; }
+        public string SpecificQuestionAboutVehicle1 { get; set; }
+
+        public string SpecificQuestionAboutVehicle2 { get; set; }
+
+
+
 
 
 

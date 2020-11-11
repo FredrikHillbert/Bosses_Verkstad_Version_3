@@ -5,7 +5,6 @@ using GUI.Login;
 using GUI.Tools;
 using Logic.Interface;
 using Logic.Services;
-using Logic.Services.MechanicServices___ADMIN;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -34,28 +33,18 @@ namespace GUI.Admin.User
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-         
-            IuserLogin checkIfValid = new LoginService();
-            ImechanicLogin mechanic = new MechanicService();
 
-            if (checkIfValid.CheckIfLoginIsValid(NewUser.Text, CreatPassword.Password, MatchPassword.Password, userId.Text)&& (mechanic.ActivUser(userId.Text)))
+            ILogic adminService = new AdminService();
+
+            if (adminService.ValidLogin(NewUser.Text, CreatPassword.Password, MatchPassword.Password, userId.Text)&& (adminService.ActivUser(userId.Text)))
             {
                 //Kolla om användare finns Lägg till i samma dic som  användare
-                checkIfValid.CreateNewUser(NewUser.Text, CreatPassword.Password, userId.Text);
+                adminService.NewUser(NewUser.Text, CreatPassword.Password, userId.Text);
                 MessageBox.Show("Användarekonto är nu tillagt!", "", MessageBoxButton.OK);
-                NewUser.Text = "Användarnamn";
-                userId.Text = "Användar-ID";
-                CreatPassword.Password = "Password";
-                MatchPassword.Password = "Password";
-
             }
             else
             {
-                MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                NewUser.Text = "Användarnamn";
-                userId.Text = "Användar-ID";
-                CreatPassword.Password = "Password";
-                MatchPassword.Password ="Password";
+                MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning); 
             }
 
 
@@ -63,24 +52,24 @@ namespace GUI.Admin.User
 
         private void NewUser_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (NewUser.Text == "Användarnamn") {NewUser.Text = StringTools._emtyString;}
+            if (NewUser.Text == "Användarnamn") {NewUser.Text = string.Empty; }
         }
 
         private void userId_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (userId.Text == "Anställnings-ID") { userId.Text = StringTools._emtyString;}
+            if (userId.Text == "Anställnings-ID") { userId.Text = string.Empty; }
         }
 
         private void CreatPassword_GotFocus(object sender, RoutedEventArgs e)
         {
            
-                if (CreatPassword.Password == "Password") { CreatPassword.Password = StringTools._emtyString; }
+                if (CreatPassword.Password == "Password") { CreatPassword.Password = string.Empty; }
               
         }
 
         private void MatchPassword_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (MatchPassword.Password == "Password"){MatchPassword.Password = StringTools._emtyString;}
+            if (MatchPassword.Password == "Password"){MatchPassword.Password = string.Empty; }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

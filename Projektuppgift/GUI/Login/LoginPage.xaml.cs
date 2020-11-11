@@ -1,9 +1,13 @@
 ﻿using GUI.Admin.Home;
+using GUI.Mechanics.Home;
 using GUI.Tools;
+using Logic.DAL;
+using Logic.Entities;
 using Logic.Interface;
 using Logic.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,13 +32,14 @@ namespace GUI.Login
         public LogginPage()
         {
             InitializeComponent();
+         
         }
         /// <summary>
         /// If Textbox got focus = Emty string
         /// </summary>
         private void LoginUserName_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (LoginUserName.Text == "Användarnamn") {LoginUserName.Text = StringTools._emtyString;}
+            if (LoginUserName.Text == "Användarnamn") {LoginUserName.Text = string.Empty; }
         }
 
         /// <summary>
@@ -42,7 +47,7 @@ namespace GUI.Login
         /// </summary>   
         private void LoginPassword_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (LoginPassword.Password == "Password"){LoginPassword.Password = StringTools._emtyString;}
+            if (LoginPassword.Password == "Password"){LoginPassword.Password = string.Empty; }
         }
 
         /// <summary>
@@ -51,27 +56,38 @@ namespace GUI.Login
         /// </summary>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           
             var loggin = LoginUserName.Text;
             var password = LoginPassword.Password;
-
-
-            IuserLogin iuserLogin = new LoginService();
-          
-            if (iuserLogin.Login(loggin, password))
+            ILogic adminService = new AdminService();
+            if (adminService.Login(loggin, password) && Isadmin.IsChecked == true)
             {
                 HomePageAdmin homePageAdmin = new HomePageAdmin();
                 this.NavigationService.Navigate(homePageAdmin);
             }
+            else if (adminService.LoginUser(loggin, password))
+            {
+                ILogicUser userService = new UserService();//------------------Håller koll på vem som loggar in!
+                userService.SetUser(loggin);
+        
+                HomePageMechanic homePageMechanic = new HomePageMechanic();
+                this.NavigationService.Navigate(homePageMechanic);
+            }
             else
             {
-                MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning); 
+                MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            JsonSetFile jsonSetFile = new JsonSetFile();
+            jsonSetFile.SetJson();
+
             Application.Current.Shutdown();
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            Isadmin.IsChecked= true;
         }
     }
 }

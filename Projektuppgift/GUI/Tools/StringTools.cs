@@ -7,6 +7,6 @@ namespace GUI.Tools
    public class StringTools
     {
         public const string _inputError = "Felaktig inmatning, försök igen!";
-        public const string _emtyString = "";
+        
     }
 }

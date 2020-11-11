@@ -3,6 +3,8 @@ using GUI.Admin.Home;
 using GUI.Admin.Workshop;
 using GUI.Login;
 using GUI.Tools;
+using Logic.Interface;
+using Logic.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -71,17 +73,34 @@ namespace GUI.Admin.User
 
         private void searchAfterUser_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (searchAfterUser.Text == "Användar-ID") { searchAfterUser.Text = StringTools._emtyString; }
+            if (RemoveUser.Text == "Användar-ID") { RemoveUser.Text = string.Empty; }
+        }
+
+        private void ComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<string> DeklareraLista = new List<string>();
+            ILogic adminService = new AdminService();
+            DeklareraLista = adminService.GetActivUser();
+            var combo = sender as ComboBox;
+            combo.ItemsSource = DeklareraLista;
+            combo.SelectedIndex = 0;
         }
 
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
-            //---------------------------------------------------------------------Funktion ta bort konto
-        }
-
-        private void Button_Click_8(object sender, RoutedEventArgs e)
-        {
-            //----------------------------------------------------------------Funktion se konto
+            ILogic adminService = new AdminService();
+            if (RemoveUser.Text != String.Empty&& adminService.ActivUser(RemoveUser.Text))
+            {
+                
+                adminService.DeletLogin(RemoveUser.Text);
+                MessageBox.Show("Användarekonto är nu borttaget!", "", MessageBoxButton.OK);
+                ChangeUserAccount changeUserAccount = new ChangeUserAccount();
+                this.NavigationService.Navigate(changeUserAccount);
+            }
+            else
+            {
+                MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

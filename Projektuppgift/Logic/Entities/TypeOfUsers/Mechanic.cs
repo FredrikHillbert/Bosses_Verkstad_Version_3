@@ -1,4 +1,4 @@
-﻿using Logic.Entities.AllTheComponents;
+﻿using Logic.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,8 +10,8 @@ namespace Logic.Entities
     {
         public Mechanic()
         {
-        }
 
+        }
         public Mechanic(string firstName, string lastName, string birthDay, string dateOfEmp, bool engine, bool tire, bool window, bool brakes, bool kaross)
         {
             FirstNameOfMechanic = firstName;

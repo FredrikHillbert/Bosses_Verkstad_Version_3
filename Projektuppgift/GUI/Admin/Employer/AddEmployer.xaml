@@ -151,7 +151,7 @@
                           />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="20,400,0,0">
-                    <RadioButton 
+                    <CheckBox
                         x:Name="Bromsar"
                        FontFamily="Helvetica"
                        FontWeight="Light"
@@ -162,7 +162,9 @@
                         Opacity="1"
                         Height="20" Checked="Bromsar_Checked"
                         />
-                    <RadioButton Margin="20,0,0,0"
+                </StackPanel>
+                <StackPanel>
+                    <CheckBox Margin="120,400,0,0"
                                  x:Name="Tire"
                        FontFamily="Helvetica"
                        FontWeight="Light"
@@ -173,18 +175,21 @@
                         Opacity="1"
                         Height="20" Checked="Tire_Checked"
                         />
-                    <RadioButton Margin="20,0,0,0"
+                </StackPanel>
+                <StackPanel>
+                    <CheckBox Margin="200,400,0,0"
                                  x:Name="vindrutor"
                        FontFamily="Helvetica"
                        FontWeight="Light"
                         FontSize="18"
-                        HorizontalAlignment="Center"
                         Content="Vindrutor" 
                         Foreground="White"
                         Opacity="1"
                         Height="20" Checked="vindrutor_Checked"
                         />
-                    <RadioButton Margin="20,0,0,0"
+                </StackPanel>
+                <StackPanel>
+                        <CheckBox Margin="310,400,0,0"
                                  x:Name="Motor"
                        FontFamily="Helvetica"
                        FontWeight="Light"
@@ -195,7 +200,9 @@
                         Opacity="1"
                         Height="20" Checked="Motor_Checked"
                         />
-                    <RadioButton Margin="20,0,0,0"
+                </StackPanel>
+                <StackPanel>
+                        <CheckBox Margin="410,400,0,0"
                                  x:Name="Kaross"
                        FontFamily="Helvetica"
                        FontWeight="Light"
@@ -204,7 +211,7 @@
                         Content="Kaross" 
                         Foreground="White"
                         Opacity="1"
-                        Height="20" Checked="Motor_Checked"
+                        Height="20" Checked="Kaross_Checked" 
                         />
                 </StackPanel>
 

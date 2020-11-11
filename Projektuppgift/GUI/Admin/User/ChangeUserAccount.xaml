@@ -36,7 +36,7 @@
                     <TextBox  FontFamily="Helvetica"
                              FontWeight="Light"
                              Text="Användar-ID"
-                             x:Name="searchAfterUser"
+                             x:Name="RemoveUser"
                              FontSize="20"
                              HorizontalAlignment="Center"
                              Foreground="White"
@@ -52,30 +52,42 @@
                         Height="2"
                         Background="White"
                         Opacity="0.5"/>
+                <StackPanel Margin="50,125,0,0" Orientation="Horizontal" >
+                    <Label  FontFamily="Helvetica"
+                             FontWeight="Light"
+                             Content="Aktiva-ID"
+                             FontSize="15"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent" 
+                             BorderThickness="0"
+                             Width="150"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="25" 
+                             />
+                </StackPanel>
 
-                
+                <ComboBox Width="30" Height="15"
+                          Loaded="ComboBox_Loaded"
+                          Text="Aktiva anstälda"
+                           FontSize="15" 
+                            Margin="120,130,0,0" Foreground="#FF4B4747"
+                          >
+                </ComboBox>
 
-                
-                  
-
-               
-
-               
                 <StackPanel Orientation="Horizontal" >
                     <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
                          Content="Ta bort" 
                              FontSize="20" 
-                            Margin="20,150,0,0" Click="Button_Click_7"/>
-                    <Button Style="{StaticResource buttomTheme}" Width="150" Height="30"
-                         Content="Befintliga konton" 
-                             FontSize="20" 
-                            Margin="20,150,0,0" Click="Button_Click_8"/>
+                            Margin="60,175,0,0" Click="Button_Click_7"/>
+
+
                 </StackPanel>
 
 
 
             </Canvas>
-
             <Canvas  Grid.RowSpan="2" Background="#FF292929"  Grid.Row="1">
                 <Label Content="   Meny"
                            Margin="0,0,0,0"
@@ -92,7 +104,7 @@
                              FontSize="15"
                              Margin="0,60,0,0" Click="Button_Click_5"  />
                     <Button Style="{StaticResource buttomTheme1}" Width="150" Height="30"
-                         Content="Ändra användare" 
+                         Content="Ta bort användare" 
                              FontSize="15"
                              Margin="0,10,0,0"  />
                    

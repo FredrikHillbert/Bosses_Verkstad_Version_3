@@ -44,23 +44,51 @@
                              Width="150"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="25" GotFocus="employerIdSearch_GotFocus"  
+                             Height="25" GotFocus="employerIdSearch_GotFocus" 
                              />
                 </StackPanel>
                 <Border Margin="50,100,0,0" Width="150"
                         Height="2"
                         Background="White"
                         Opacity="0.5"/>
-                
+                <StackPanel Margin="50,125,0,0" Orientation="Horizontal" >
+                    <Label  FontFamily="Helvetica"
+                             FontWeight="Light"
+                             Content="Aktiva-ID"
+                             x:Name="aktiva"
+                             FontSize="15"
+                             Foreground="White"
+                             Background="Transparent" 
+                             BorderThickness="0"
+                             Width="150"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="25" GotFocus="employerIdSearch_GotFocus" 
+                             />
+                </StackPanel>
+
+                <ComboBox Width="30" Height="15"
+                          Loaded="ComboBox_Loaded"
+                          Text="Aktiva anstälda"
+                             FontSize="15" 
+                            Margin="120,130,0,0" Foreground="#FF4B4747" 
+                          x:Name="cboMechanic"
+                          >
+                    <!--<ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>-->
+                </ComboBox>
+
                 <StackPanel Orientation="Horizontal" >
                     <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
                          Content="Sök" 
                              FontSize="20" 
-                            Margin="20,175,0,0" Click="Button_Click_7"/>
-                    <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
-                         Content="Ta bort" 
-                             FontSize="20" 
-                            Margin="20,175,0,0" Click="Button_Click_8"/>
+                            Margin="60,175,0,0" Click="Button_Click_7"/>
+                   
+
                 </StackPanel>
 
                 <Label
@@ -85,7 +113,7 @@
                              Width="150"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="25" GotFocus="firstName_GotFocus"  
+                             Height="25"   
                              />
                 </StackPanel>
                 <Border Margin="675,100,0,0" Width="150"
@@ -106,7 +134,7 @@
                              Width="150"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="25" GotFocus="lastname_GotFocus" 
+                             Height="25" 
                           />
 
                 </StackPanel>
@@ -127,7 +155,7 @@
                              Width="150"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="25" GotFocus="dateOfBirth_GotFocus"  
+                             Height="25" 
                           />
 
                 </StackPanel>
@@ -148,7 +176,7 @@
                              Width="150"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="25" GotFocus="dateOfEmployment_GotFocus"  
+                             Height="25" 
                           />
                 </StackPanel>
                 <Border Margin="675,250,0,0" Width="150"
@@ -168,7 +196,7 @@
                              Width="150"
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
-                             Height="25" GotFocus="employerId_GotFocus" 
+                             Height="25" 
                           />
                 </StackPanel>
                 <Border Margin="675,300,0,0" Width="150"
@@ -191,8 +219,9 @@
                              Height="30" 
                           />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="600,400,0,0">
-                    <RadioButton 
+                <StackPanel Orientation="Horizontal" Margin="520,400,0,0">
+                    <CheckBox
+                        x:Name="Bromsar"
                        FontFamily="Helvetica"
                        FontWeight="Light"
                         FontSize="18"
@@ -200,9 +229,12 @@
                         Content="Bromsar" 
                         Foreground="White"
                         Opacity="1"
-                        Height="20"
+                        Height="20" Checked="Bromsar_Checked" 
                         />
-                    <RadioButton Margin="20,0,0,0"
+                </StackPanel>
+                <StackPanel>
+                    <CheckBox Margin="620,400,0,0"
+                                 x:Name="Däck"
                        FontFamily="Helvetica"
                        FontWeight="Light"
                         FontSize="18"
@@ -210,19 +242,24 @@
                         Content="Däck" 
                         Foreground="White"
                         Opacity="1"
-                        Height="20"
+                        Height="20" Checked="Tire_Checked"
                         />
-                    <RadioButton Margin="20,0,0,0"
+                </StackPanel>
+                <StackPanel>
+                    <CheckBox Margin="700,400,0,0"
+                                 x:Name="vindrutor"
                        FontFamily="Helvetica"
                        FontWeight="Light"
                         FontSize="18"
-                        HorizontalAlignment="Center"
                         Content="Vindrutor" 
                         Foreground="White"
                         Opacity="1"
-                        Height="20"
+                        Height="20" Checked="vindrutor_Checked"
                         />
-                    <RadioButton Margin="20,0,0,0"
+                </StackPanel>
+                <StackPanel>
+                    <CheckBox Margin="810,400,0,0"
+                                 x:Name="Motor"
                        FontFamily="Helvetica"
                        FontWeight="Light"
                         FontSize="18"
@@ -230,14 +267,31 @@
                         Content="Motorer" 
                         Foreground="White"
                         Opacity="1"
-                        Height="20"
+                        Height="20" Checked="Motor_Checked"
+                        />
+                </StackPanel>
+                <StackPanel>
+                    <CheckBox Margin="910,400,0,0"
+                                 x:Name="Kaross"
+                       FontFamily="Helvetica"
+                       FontWeight="Light"
+                        FontSize="18"
+                        HorizontalAlignment="Center"
+                        Content="Kaross" 
+                        Foreground="White"
+                        Opacity="1"
+                        Height="20" Checked="Kaross_Checked" 
                         />
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="695,500,0,0">
+                <StackPanel Orientation="Horizontal" Margin="650,450,0,0">
                     <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
                          Content="Ändra" 
-                             FontSize="20" Click="Button_Click_11"   />
+                             FontSize="20" Click="Button_Click_9" />
+                    <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
+                         Content="Ta bort" 
+                             FontSize="20" 
+                            Margin="20,0,0,0" Click="Button_Click_8"/>
                 </StackPanel>
 
 

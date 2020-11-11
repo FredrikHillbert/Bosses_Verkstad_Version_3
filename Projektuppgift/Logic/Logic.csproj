@@ -5,12 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="DAL\User.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Exceptio\" />
   </ItemGroup>
 

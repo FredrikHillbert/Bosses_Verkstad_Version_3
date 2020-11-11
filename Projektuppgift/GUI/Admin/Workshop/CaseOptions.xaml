@@ -38,21 +38,13 @@
                              Height="40"/>
                 <StackPanel>
                     <Button Style="{StaticResource buttomTheme1}" Width="150" Height="30"
-                         Content="Lägg till Fordon" 
-                             FontSize="15"
-                             Margin="0,60,0,0"  Click="Button_AddCar"  />
-                    <Button Style="{StaticResource buttomTheme1}" Width="150" Height="30"
-                         Content="Delete/Ändra Fordon" 
-                             FontSize="15"
-                             Margin="0,10,0,0"  Click="Button_ChangeCar"  />
-                    <Button Style="{StaticResource buttomTheme1}" Width="150" Height="30"
                          Content="Lägg till ärende" 
                              FontSize="15"
-                             Margin="0,10,0,0"  Click="Button_Add"  />
+                             Margin="0,60,0,0"  Click="Button_Add" />
                     <Button Style="{StaticResource buttomTheme1}" Width="150" Height="30"
                          Content="Dela/Ändra ärende" 
                              FontSize="15"
-                             Margin="0,10,0,0"  Click="Button_Dela"/>
+                             Margin="0,10,0,0"   Click="Button_Dela"/>
                    
                 </StackPanel>
 

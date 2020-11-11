@@ -78,14 +78,15 @@
                         Background="Black"
                         Opacity="0.5"/>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                        <Button Style="{StaticResource buttomTheme1}" Width="150" Height="30"
-                         Content="Glömt ditt lösenord?" 
+                    <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                        <CheckBox  Width="150" Height="30"
+                             Content="Admin" 
+                             x:Name="Isadmin"
                              FontSize="15"
-                             Margin="63,0,0,0"  />
+                             Margin="75,0,0,0" Checked="CheckBox_Checked"  />
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,60,0,0">
+                    <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
                         <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
                          Content="Logga in" 
                              FontSize="20"

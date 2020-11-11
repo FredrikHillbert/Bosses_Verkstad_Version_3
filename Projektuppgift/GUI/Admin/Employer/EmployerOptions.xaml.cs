@@ -62,11 +62,6 @@ namespace GUI.Admin.Employer
             this.NavigationService.Navigate(changeEmployer);
         }
 
-        private void Button_Click_6(object sender, RoutedEventArgs e)
-        {
-            //---------------------------------------------------------------------Övrigt?
-        }
-
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
             LogginPage logginPage = new LogginPage();

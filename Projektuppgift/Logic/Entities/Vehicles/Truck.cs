@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Logic.Entities
 {
-    public class Truck : Vehicles
+    public class Truck : Orders
     {
 
         public int MaxLast { get; set; }

@@ -32,17 +32,8 @@ namespace GUI.Mechanics.Home
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MechanicUserOptions mechanicUserOptions  = new MechanicUserOptions();
-            this.NavigationService.Navigate(mechanicUserOptions);
+            Profile profile = new Profile();
+            this.NavigationService.Navigate(profile);
         }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            MechArende mechArende = new MechArende();
-            this.NavigationService.Navigate(mechArende);
-
-        }
-
-      
     }
 }

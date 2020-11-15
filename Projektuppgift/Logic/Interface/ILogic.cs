@@ -34,6 +34,7 @@ namespace Logic.Interface
         List<string> GetMechanicForTheJob(string value);
 
         void NewOrder(string id, List<Orders> newOrder);
+        void DeleteOrder(string id);
 
 
     }

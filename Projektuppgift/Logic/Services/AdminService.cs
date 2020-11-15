@@ -268,7 +268,10 @@ namespace Logic.Services
         {
             ActivClasses.orderDictionary.Add(id, newOrder);
         }
-
+        public void DeleteOrder(string id)
+        {
+            ActivClasses.orderDictionary.Remove(id);
+        }
 
     }
 }

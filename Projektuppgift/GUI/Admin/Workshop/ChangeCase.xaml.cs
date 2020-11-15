@@ -14,6 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GUI.Admin.Employer;
+using Logic.Services;
+using Logic.Interface;
+using GUI.Tools;
 
 namespace GUI.Admin.Workshop
 {
@@ -59,5 +62,29 @@ namespace GUI.Admin.Workshop
             CaseOption userOptions = new CaseOption();
             this.NavigationService.Navigate(userOptions);
         }
+        private void Button_Bort(object sender, RoutedEventArgs e)
+        {
+            ILogic adminService = new AdminService();
+
+            if ((adminService.ActivUser(employerIdSearch.Text)))
+            {
+
+                if (MessageBox.Show("Är du säker på att du vill ta bort ärendet?", "", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    string id = employerIdSearch.Text;
+                    adminService.DeleteOrder(employerIdSearch.Text);
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            }
+            ChangeCase changeCase = new ChangeCase();
+            this.NavigationService.Navigate(changeCase);
+        }
     }
+
 }

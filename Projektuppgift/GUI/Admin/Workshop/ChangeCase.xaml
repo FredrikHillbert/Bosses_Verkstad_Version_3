@@ -63,7 +63,14 @@
                              FontSize="20" 
                             Margin="20,175,0,0" />
                 </StackPanel>
+                <StackPanel Orientation="Horizontal" >
+                    <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
+                         Content="Ta bort" 
+                             FontSize="20" 
+                            Margin="60,225,0,0" Click="Button_Bort"  />
 
+
+                </StackPanel>
                 <Label
                     Content="Dela ärende med anställd"
                     FontSize="18"

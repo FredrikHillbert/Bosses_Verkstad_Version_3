@@ -33,7 +33,7 @@ namespace Logic.DAL
             {
                 FileStream fileStream = File.Create(path);
                 using (var streamReader = new StreamReader(fileStream)) { }
-                ActivClasses.loginListAdmin.Add(new User { Username = "Bosse", Password = "1", UserID = "Admin" });
+                ActivClasses.loginListAdmin.Add(new User { Username = "bosse", Password = "1", UserID = "Admin" });
 
 
             }

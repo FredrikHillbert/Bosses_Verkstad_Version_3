@@ -38,6 +38,7 @@ namespace GUI.Admin.User
 
             if (adminService.ValidLogin(NewUser.Text, CreatPassword.Password, MatchPassword.Password, userId.Text)&& (adminService.ActivUser(userId.Text)))
             {
+                NewUser.Text = NewUser.Text.ToLower();
                 //Kolla om användare finns Lägg till i samma dic som  användare
                 adminService.NewUser(NewUser.Text, CreatPassword.Password, userId.Text);
                 MessageBox.Show("Användarekonto är nu tillagt!", "", MessageBoxButton.OK);

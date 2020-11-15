@@ -64,7 +64,7 @@ namespace GUI.Login
                 HomePageAdmin homePageAdmin = new HomePageAdmin();
                 this.NavigationService.Navigate(homePageAdmin);
             }
-            else if (adminService.LoginUser(loggin, password))
+            else if (adminService.LoginUser(loggin.ToLower(), password))
             {
                 ILogicUser userService = new UserService();//------------------Håller koll på vem som loggar in!
                 userService.SetUser(loggin);

@@ -1,5 +1,6 @@
 ﻿using GUI.Login;
 using GUI.Mechanics.User;
+using GUI.Mechanics.Workshop;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -29,7 +30,11 @@ namespace GUI.Mechanics.Home
             LogginPage logginPage = new LogginPage();
             this.NavigationService.Navigate(logginPage);
         }
-
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            CaseOptionMechanic caseOptionMechanic = new CaseOptionMechanic();
+            this.NavigationService.Navigate(caseOptionMechanic);
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Profile profile = new Profile();

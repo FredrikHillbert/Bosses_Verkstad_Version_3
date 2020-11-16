@@ -1,5 +1,6 @@
 ﻿using GUI.Login;
 using GUI.Mechanics.Home;
+using GUI.Mechanics.Workshop;
 using Logic.DAL;
 using Logic.Entities;
 using Logic.Interface;
@@ -91,6 +92,11 @@ namespace GUI.Mechanics.User
         {
             HomePageMechanic homePageMechanic = new HomePageMechanic();
             this.NavigationService.Navigate(homePageMechanic);
+        }
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            CaseOptionMechanic caseOptionMechanic = new CaseOptionMechanic();
+            this.NavigationService.Navigate(caseOptionMechanic);
         }
     }
 }

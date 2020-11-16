@@ -60,7 +60,7 @@
                 <Button Style="{StaticResource buttomTheme1}" Width="150" Height="35"
                          Content="Verkstad" 
                              FontSize="30"
-                             Margin="400,20,0,0"  />
+                             Margin="400,20,0,0" Click="Button_Click_2"/>
                 
             </Canvas>
         </Grid>

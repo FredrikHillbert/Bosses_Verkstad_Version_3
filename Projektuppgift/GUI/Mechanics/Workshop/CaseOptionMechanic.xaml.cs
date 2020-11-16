@@ -4,6 +4,7 @@ using GUI.Mechanics.User;
 using Logic.Entities;
 using Logic.Interface;
 using Logic.Services;
+using Logic.DAL;
 using GUI.Tools;
 using System;
 using System.Collections.Generic;
@@ -237,6 +238,25 @@ namespace GUI.Mechanics.Workshop
         {
             string valueOfMechanicSelected = cbxMechanic.SelectedItem.ToString();
             valueOfMechanic = valueOfMechanicSelected;
+        }
+
+        private void cbxMechanic_Done()
+        {
+            if (statusNo.IsChecked == true)
+            {
+                ActivClasses.FinishedOrder.Add(id);
+                ActivClasses.ActiveOrder.Remove(id);
+            }
+            else if (statusYes.IsChecked == true)
+            {
+                ActivClasses.ActiveOrder.Add(id);
+            }
+
+
+
+
+            CaseOptionMechanic caseOptionMechanic = new CaseOptionMechanic();
+            this.NavigationService.Navigate(caseOptionMechanic);
         }
     }
 }

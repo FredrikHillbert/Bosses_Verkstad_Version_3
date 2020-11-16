@@ -14,26 +14,49 @@ namespace Logic.Services
     public class AdminService : ILogic
     {
         string
-        firstName = String.Empty,
-        lastName = String.Empty,
-        birthDay = String.Empty,
-        dateOfEmp = String.Empty,
-        username = String.Empty,
-        password = String.Empty;
+         firstName = String.Empty,
+         lastName = String.Empty,
+         username = String.Empty,
+         password = String.Empty,
+         orderDescription = String.Empty,
+         typeOfVehicle = String.Empty,
+         ModelName = String.Empty,
+         Regnum = String.Empty,
+         matare = String.Empty,
+         regDate = String.Empty,
+         specificQ1 = String.Empty,
+         specificQ2 = String.Empty,
+         typeOfFuel = String.Empty,
+         assignedMechanic = String.Empty;
 
+        DateTime birthDay,
+                 dateOfEmp;
 
         bool
         engine = false,
         tire = false,
         brakes = false,
         kaross = false,
-        window = false;
+        window = false,
+        status = false;
         public bool ActivUser(string Id)
         {
             if (ActivClasses.mechanicDictionary.ContainsKey(Id))
             { return true; }
             return false;
         }
+
+        public bool ActivOrder(string id)
+        {
+            if (ActivClasses.orderDictionary.ContainsKey(id)) { return true; }
+            else { return false; }
+        }
+
+
+
+
+
+
         public void DeleteMechanic(string id)
         {
             ActivClasses.mechanicDictionary.Remove(id);
@@ -272,6 +295,76 @@ namespace Logic.Services
         {
             ActivClasses.orderDictionary.Remove(id);
         }
+
+
+        public List<Orders> GetOrder(string id)
+        {
+            foreach (var item in ActivClasses.orderDictionary[id])
+            {
+                orderDescription = item.OrderDescription;
+                typeOfVehicle = item.TypeOfVehicle;
+                ModelName = item.ModelName;
+                Regnum = item.RegNumber;
+                matare = item.Matare;
+                regDate = item.RegDate;
+                specificQ1 = item.SpecificQuestionAboutVehicle1;
+                specificQ2 = item.SpecificQuestionAboutVehicle2;
+                engine = item.Engine;
+                tire = item.Tire;
+                brakes = item.Brakes;
+                kaross = item.Kaross;
+                window = item.BrokeWindow;
+                typeOfFuel = item.Fuel;
+                status = item.Status;
+                assignedMechanic = item.Mechanic;
+
+            }
+            List<Orders> changedOrder = new List<Orders>();
+            changedOrder.Add(new Orders
+            {
+                OrderDescription = orderDescription,
+                TypeOfVehicle = typeOfVehicle,
+                ModelName = ModelName,
+                RegNumber = Regnum,
+                Matare = matare,
+                RegDate = regDate,
+                SpecificQuestionAboutVehicle1 = specificQ1,
+                SpecificQuestionAboutVehicle2 = specificQ2,
+                Engine = engine,
+                Tire = tire,
+                Brakes = brakes,
+                Kaross = kaross,
+                BrokeWindow = window,
+                Fuel = typeOfFuel,
+                Status = status,
+                Mechanic = assignedMechanic
+            });
+            return changedOrder;
+        }
+
+
+        public List<string> GetKeyForOrder()
+        {
+            string savekey = "";
+            List<string> DeklareraLista = new List<string>();
+
+            Dictionary<string, List<Orders>>.KeyCollection keys = ActivClasses.orderDictionary.Keys;
+            foreach (string key in keys)
+            {
+                savekey = key;
+                foreach (var item in ActivClasses.orderDictionary[key])
+                {
+                    string add = ($"ID: {savekey}" +
+                        $"\nName: {item.OrderDescription} {item.TypeOfVehicle}");
+                    DeklareraLista.Add(add);
+                }
+            }
+
+            return (DeklareraLista);
+        }
+
+
+
 
     }
 }

@@ -28,8 +28,7 @@ namespace GUI.Admin.Employer
     {
 
         Mechanic mechanic = new Mechanic();
-        string whichMechanic;
-
+       
         public ChangeEmployer()
         {
             InitializeComponent();
@@ -88,8 +87,8 @@ namespace GUI.Admin.Employer
                 {
                     firstName.Text = item.FirstNameOfMechanic;
                     lastname.Text = item.LastNameOfMechanic;
-                    dateOfBirth.Text = item.BirthdayOfMechanic;
-                    dateOfEmployment.Text = item.DateOfEmploymentOfMechanic;
+                    DateTime Birth = item.BirthdayOfMechanic;
+                    DateTime employ = item.DateOfEmploymentOfMechanic;
                     employerId.Text = employerIdSearch.Text;
                     Motor.IsChecked= item.Engine;
                     Däck.IsChecked = item.Tire;
@@ -131,8 +130,10 @@ namespace GUI.Admin.Employer
         private void Button_Click_9(object sender, RoutedEventArgs e)
         {
             List<Mechanic> mechanic = new List<Mechanic>();
+            var activeOrder = new Mechanic();
+            int activeorderForMechanic = activeOrder.ActiveOrders;
+            activeorderForMechanic = 0;
             ILogic adminService = new AdminService();
-
 
             if (adminService.ValidMechanic(firstName.Text, lastname.Text, dateOfBirth.Text, dateOfEmployment.Text, employerId.Text))
             {
@@ -143,9 +144,9 @@ namespace GUI.Admin.Employer
                     adminService.DeleteMechanic(employerIdSearch.Text);
 
                     mechanic.Add(new Mechanic(firstName.Text, lastname.Text,
-                                  dateOfBirth.Text, dateOfEmployment.Text,
+                                  DateTime.Parse(dateOfBirth.Text), DateTime.Parse(dateOfEmployment.Text),
                                     (bool)Motor.IsChecked, (bool)Däck.IsChecked, (bool)vindrutor.IsChecked,
-                                    (bool)Bromsar.IsChecked, (bool)Kaross.IsChecked));
+                                    (bool)Bromsar.IsChecked, (bool)Kaross.IsChecked, activeorderForMechanic));
 
 
 

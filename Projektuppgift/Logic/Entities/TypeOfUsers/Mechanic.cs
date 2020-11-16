@@ -12,7 +12,7 @@ namespace Logic.Entities
         {
 
         }
-        public Mechanic(string firstName, string lastName, string birthDay, string dateOfEmp, bool engine, bool tire, bool window, bool brakes, bool kaross)
+        public Mechanic(string firstName, string lastName, DateTime birthDay, DateTime dateOfEmp, bool engine, bool tire, bool window, bool brakes, bool kaross, int activeOrders)
         {
             FirstNameOfMechanic = firstName;
             LastNameOfMechanic = lastName;
@@ -23,6 +23,8 @@ namespace Logic.Entities
             Brakes = brakes;
             Kaross = kaross;
             Window = window;
+            ActiveOrders = activeOrders;
+
         }
 
 
@@ -30,15 +32,17 @@ namespace Logic.Entities
 
         public string LastNameOfMechanic { get; set; }
 
-        public string BirthdayOfMechanic { get; set; }
+        public DateTime BirthdayOfMechanic { get; set; }
 
-        public string DateOfEmploymentOfMechanic { get; set; }
+        public DateTime DateOfEmploymentOfMechanic { get; set; }
 
         public bool Engine { get; set; }
         public bool Tire { get; set; }
         public bool Window { get; set; }
         public bool Brakes { get; set; }
         public bool Kaross { get; set; }
+
+        public int ActiveOrders { get; set; }
 
 
     }

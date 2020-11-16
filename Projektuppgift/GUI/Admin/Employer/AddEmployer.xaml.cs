@@ -78,15 +78,18 @@ namespace GUI.Admin.Employer
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
             List<Mechanic> mechanic = new List<Mechanic>();
+            var activeOrder = new Mechanic();
+            int activeorderForMechanic = activeOrder.ActiveOrders;
+            activeorderForMechanic = 0;
             ILogic adminService = new AdminService();
 
 
             if (adminService.ValidMechanic(firstName.Text, lastname.Text, dateOfBirth.Text, dateOfEmployment.Text, employerId.Text))
                 {
                 mechanic.Add(new Mechanic(firstName.Text, lastname.Text,
-                                                  dateOfBirth.Text, dateOfEmployment.Text,
-                                                     (bool)Motor.IsChecked, (bool)Tire.IsChecked,
-                                                     (bool)vindrutor.IsChecked,(bool)Bromsar.IsChecked,(bool)Kaross.IsChecked));
+                                                       DateTime.Parse(dateOfBirth.Text), DateTime.Parse(dateOfEmployment.Text),
+                                                         (bool)Motor.IsChecked, (bool)Tire.IsChecked,
+                                                         (bool)vindrutor.IsChecked, (bool)Bromsar.IsChecked, (bool)Kaross.IsChecked, activeorderForMechanic));
 
                 string id = employerId.Text;
                 adminService.NewMechanic(id,mechanic);

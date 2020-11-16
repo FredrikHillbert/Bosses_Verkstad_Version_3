@@ -17,6 +17,7 @@ using GUI.Admin.Employer;
 using Logic.Services;
 using Logic.Interface;
 using GUI.Tools;
+using Logic.Entities;
 
 namespace GUI.Admin.Workshop
 {
@@ -25,6 +26,9 @@ namespace GUI.Admin.Workshop
     /// </summary>
     public partial class ChangeCase : Page
     {
+        Orders order = new Orders();
+        List<string> listOfVehicles = new List<string>();
+        List<string> listOfMechanics = new List<string>();
         public ChangeCase()
         {
             InitializeComponent();
@@ -66,13 +70,13 @@ namespace GUI.Admin.Workshop
         {
             ILogic adminService = new AdminService();
 
-            if ((adminService.ActivUser(employerIdSearch.Text)))
+            if ((adminService.ActivOrder(OrderIdSearch.Text)))
             {
 
                 if (MessageBox.Show("Är du säker på att du vill ta bort ärendet?", "", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
-                    string id = employerIdSearch.Text;
-                    adminService.DeleteOrder(employerIdSearch.Text);
+                    string id = OrderIdSearch.Text;
+                    adminService.DeleteOrder(OrderIdSearch.Text);
                 }
 
 
@@ -85,6 +89,177 @@ namespace GUI.Admin.Workshop
             ChangeCase changeCase = new ChangeCase();
             this.NavigationService.Navigate(changeCase);
         }
+
+
+        private void Button_ClickSearchOrder(object sender, RoutedEventArgs e)
+        {
+            ILogic adminService = new AdminService();
+
+            if ((adminService.ActivOrder(OrderIdSearch.Text)))
+            {
+                List<Orders> listOfSpecificOrder = adminService.GetOrder(OrderIdSearch.Text);
+                foreach (var item in listOfSpecificOrder)
+                {
+                    orderID.Text = OrderIdSearch.Text;
+                    orderDesc.Text = item.OrderDescription;
+                    ModelName.Text = item.ModelName;
+                    RegNum.Text = item.RegNumber;
+                    dateOfReg.Text = item.RegDate;
+                    matare.Text = item.Matare;
+                    specificQ.Text = item.SpecificQuestionAboutVehicle1;
+                    specificQ2.Text = item.SpecificQuestionAboutVehicle2;
+                    Motor.IsChecked = item.Engine;
+                    Däck.IsChecked = item.Tire;
+                    Vindrutor.IsChecked = item.BrokeWindow;
+                    Bromsar.IsChecked = item.Brakes;
+                    Kaross.IsChecked = item.Kaross;
+                    cboType.SelectedItem = item.TypeOfVehicle;
+                    statusYes.IsChecked = item.Status;
+                    cbxMechanic.SelectedItem = item.Mechanic;
+                    if (item.Status == false)
+                    {
+                        statusNo.IsChecked = true;
+                    }
+
+                    if (item.Fuel == "El")
+                    {
+                        el.IsChecked = true;
+                    }
+                    else if (item.Fuel == "Bensin")
+                    {
+                        gasoline.IsChecked = true;
+                    }
+                    else if (item.Fuel == "Etanol")
+                    {
+                        etanol.IsChecked = true;
+                    }
+                    else if (item.Fuel == "Diesel")
+                    {
+                        diesel.IsChecked = true;
+                    }
+
+                }
+            }
+            else
+            {
+                MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            }
+
+
+            cboType.Items.Refresh();
+        }
+
+        private void Bromsar_Checked(object sender, RoutedEventArgs e)
+        {
+            order.Brakes = true;
+            string value = "Brakes";
+            RefreshMethod(value);
+        }
+
+        private void Däck_Checked(object sender, RoutedEventArgs e)
+        {
+            order.Tire = true;
+            string value = "Tire";
+            RefreshMethod(value);
+        }
+
+        private void Vindruta_Checked(object sender, RoutedEventArgs e)
+        {
+            order.BrokeWindow = true;
+            string value = "Window";
+            RefreshMethod(value);
+        }
+
+        private void Motor_Checked(object sender, RoutedEventArgs e)
+        {
+            order.Engine = true;
+            string value = "Engine";
+            RefreshMethod(value);
+        }
+
+        private void Kaross_Checked(object sender, RoutedEventArgs e)
+        {
+            order.Kaross = true;
+            string value = "Kaross";
+            RefreshMethod(value);
+        }
+
+
+        private void ComboBoxVehicle_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            ILogic adminService = new AdminService();
+            listOfVehicles = adminService.GetVehicles();
+            var combo = sender as ComboBox;
+            combo.ItemsSource = listOfVehicles;
+            if (order.TypeOfVehicle == "Bil")
+                combo.SelectedIndex = 0;
+            else if (order.TypeOfVehicle == "Buss")
+                combo.SelectedIndex = 1;
+            else if (order.TypeOfVehicle == "Lastbil")
+                combo.SelectedIndex = 2;
+            else if (order.TypeOfVehicle == "Motorcykel")
+                combo.SelectedIndex = 3;
+            cboType.ItemsSource = listOfVehicles;
+            cbxMechanic.Items.Refresh();
+        }
+
+
+
+        private void cboType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            string whatTypeOfVehicle = order.TypeOfVehicle;
+
+
+
+        }
+
+        private void ComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            List<string> orderLista = new List<string>();
+            ILogic adminService = new AdminService();
+            orderLista = adminService.GetKeyForOrder();
+            var combo = sender as ComboBox;
+            combo.ItemsSource = orderLista;
+            combo.SelectedIndex = 0;
+
+
+
+
+        }
+
+        private void RefreshMethod(string value)
+        {
+            ILogic adminService = new AdminService();
+            listOfMechanics = adminService.GetMechanicForTheJob(value);
+            if (listOfMechanics.Count == 0)
+            {
+                listOfMechanics.Add("Finns inga mekaniker för jobbet.");
+
+            }
+            cbxMechanic.ItemsSource = listOfMechanics;
+            cbxMechanic.Items.Refresh();
+        }
+
+        private void cbxMechanic_Loaded(object sender, RoutedEventArgs e)
+        {
+            cbxMechanic.ItemsSource = listOfMechanics;
+            cbxMechanic.SelectedItem = order.Mechanic;
+
+
+        }
+
+
+
+
+
+
+
+
+
     }
 
 }

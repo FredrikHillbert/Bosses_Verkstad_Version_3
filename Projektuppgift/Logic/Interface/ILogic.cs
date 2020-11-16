@@ -36,6 +36,12 @@ namespace Logic.Interface
         void NewOrder(string id, List<Orders> newOrder);
         void DeleteOrder(string id);
 
+        public bool ActivOrder(string id);
+
+        List<Orders> GetOrder(string id);
+
+        List<string> GetKeyForOrder(); 
+
 
     }
 }

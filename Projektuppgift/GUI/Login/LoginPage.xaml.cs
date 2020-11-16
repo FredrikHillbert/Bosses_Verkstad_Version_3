@@ -59,7 +59,7 @@ namespace GUI.Login
             var loggin = LoginUserName.Text;
             var password = LoginPassword.Password;
             ILogic adminService = new AdminService();
-            if (adminService.Login(loggin, password) && Isadmin.IsChecked == true)
+            if (adminService.Login(loggin.ToLower(), password) && Isadmin.IsChecked == true)
             {
                 HomePageAdmin homePageAdmin = new HomePageAdmin();
                 this.NavigationService.Navigate(homePageAdmin);

@@ -487,13 +487,13 @@
         <Rectangle x:Name="LineHidingRectangle" HorizontalAlignment="Left" Height="93" Margin="1140,350,0,0" VerticalAlignment="Top" Width="164" Fill="#FF2E2E2E" Visibility="Visible"/>
         <Label x:Name="cartypelabel" Content="Bilens Typ:" HorizontalAlignment="Left" Height="31" Margin="817,346,0,0" VerticalAlignment="Top" Width="108" Foreground="#FF969696" FontFamily="Helvetica" FontSize="20"/>
         <Label x:Name="cartowbarlabel" Content="Dragkrok?:" HorizontalAlignment="Left" Height="33" Margin="817,393,0,0" VerticalAlignment="Top" Width="144" Foreground="#FF969696" FontFamily="Helvetica" FontSize="20"/>
-        <ComboBox x:Name="cartypecombo" HorizontalAlignment="Left" Height="25" Margin="930,346,0,0" VerticalAlignment="Top" Width="116" SelectionChanged="cartypecombo_SelectionChanged" SelectedIndex="0">
+        <ComboBox x:Name="cartypecombo" SelectedValuePath="Content" HorizontalAlignment="Left" Height="25" Margin="930,346,0,0" VerticalAlignment="Top" Width="116" SelectionChanged="cartypecombo_SelectionChanged" SelectedIndex="0">
             <ComboBoxItem Content="Sedan"/>
             <ComboBoxItem Content="Herrgårdsvagn"/>
             <ComboBoxItem Content="Cabriolet"/>
             <ComboBoxItem Content="Halvkombi"/>
         </ComboBox>
-        <ComboBox x:Name="cartowbarcombo" HorizontalAlignment="Left" Height="26" Margin="930,396,0,0" VerticalAlignment="Top" Width="116" SelectionChanged="cartowbarcombo_SelectionChanged" SelectedIndex="0">
+        <ComboBox x:Name="cartowbarcombo" SelectedValuePath="Content" HorizontalAlignment="Left" Height="26" Margin="930,396,0,0" VerticalAlignment="Top" Width="116" SelectionChanged="cartowbarcombo_SelectionChanged" SelectedIndex="0">
             <ComboBoxItem Content="Har Dragkrok"/>
             <ComboBoxItem Content="Har ej Dragkrok"/>
         </ComboBox>

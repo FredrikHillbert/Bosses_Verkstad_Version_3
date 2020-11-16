@@ -174,8 +174,8 @@ namespace GUI.Admin.Workshop
                 cartypecombo.Visibility = Visibility.Visible; //It is repeated in other selected vehicles- 2/3
                 cartowbarlabel.Visibility = Visibility.Visible; //in order to hide them when deselecting from Bil. 3/3
                 cartowbarcombo.Visibility = Visibility.Visible;
-                specificQ.Text = cartypecombo.SelectedItem.ToString();
-                specificQ2.Text = cartowbarcombo.SelectedItem.ToString();
+                specificQ.Text = cartypecombo.SelectedValue.ToString();
+                specificQ2.Text = cartowbarcombo.SelectedValue.ToString();
 
             }
             else if (valueOfVehicleSelected == "Motorcykel")

@@ -59,7 +59,14 @@
                             Margin="20,100,0,0" Click="Button_ClickSearchOrder" 
                             x:Name="OrderID"/>
                 </StackPanel>
+                <StackPanel Orientation="Horizontal" >
+                    <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
+                         Content="Ta bort" 
+                             FontSize="20" 
+                            Margin="250,50,0,0" Click="Button_Bort"  />
 
+
+                </StackPanel>
 
                 <StackPanel Margin="130,100,0,0">
                     <Label Foreground="white">Se aktiva ärenden:</Label>

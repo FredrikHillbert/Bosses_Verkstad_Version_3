@@ -131,6 +131,29 @@ namespace GUI.Admin.Workshop
             
         }
 
+        private void Button_Bort(object sender, RoutedEventArgs e)
+        {
+            ILogic adminService = new AdminService();
+
+            if ((adminService.ActivUser(OrderIdSearch.Text)))
+            {
+
+                if (MessageBox.Show("Är du säker på att du vill ta bort ärendet?", "", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    string id = OrderIdSearch.Text;
+                    adminService.DeleteOrder(OrderIdSearch.Text);
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            }
+            ChangeCase changeCase = new ChangeCase();
+            this.NavigationService.Navigate(changeCase);
+        }
 
 
         private void Button_Click_ChangeCase(object sender, RoutedEventArgs e)

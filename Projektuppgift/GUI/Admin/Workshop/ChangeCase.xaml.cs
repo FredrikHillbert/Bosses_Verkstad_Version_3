@@ -140,8 +140,10 @@ namespace GUI.Admin.Workshop
 
                 if (MessageBox.Show("Är du säker på att du vill ta bort ärendet?", "", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
-                    string id = OrderIdSearch.Text;
+                   
                     adminService.DeleteOrder(OrderIdSearch.Text);
+
+                    adminService.DeleteMechanicOrder(valueOfMechanic);
                 }
 
 
@@ -169,7 +171,7 @@ namespace GUI.Admin.Workshop
                 string id = orderID.Text;
                 adminService.DeleteOrder(OrderIdSearch.Text);
 
-                adminService.DeleteMechanicOrder(id, newOrder);
+                adminService.DeleteMechanicOrder(id);
 
                 newOrder.Add(new Orders(orderDesc.Text, order.Brakes, order.BrokeWindow, order.Engine, order.Kaross, order.Tire, valueOfVehicle, valueOfMechanic,
                                         ModelName.Text, RegNum.Text, matare.Text, dateOfReg.Text, order.Fuel, specificQ.Text, specificQ2.Text, order.Status));

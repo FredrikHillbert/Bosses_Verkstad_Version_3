@@ -245,32 +245,32 @@ namespace Logic.Services
                 foreach (var item in ActivClasses.mechanicDictionary[key])
                 {
 
-                    if (value == "Brakes" && item.Brakes == true && item.ActiveOrders < 2)
+                    if (value == "Brakes" && item.Brakes == true && item.ActiveOrders <= 2)
                     {
                         string Name = $"{item.UserID} {item.FirstNameOfMechanic} {item.LastNameOfMechanic}";
 
                         newListOfMechanics.Add(Name);
 
                     }
-                    else if (value == "Tires" && item.Tire == true && item.ActiveOrders < 2)
+                    else if (value == "Tires" && item.Tire == true && item.ActiveOrders <= 2)
                     {
                         string Name = $"{item.UserID} {item.FirstNameOfMechanic} {item.LastNameOfMechanic}";
 
                         newListOfMechanics.Add(Name);
                     }
-                    else if (value == "Engine" && item.Engine == true && item.ActiveOrders < 2)
+                    else if (value == "Engine" && item.Engine == true && item.ActiveOrders <= 2)
                     {
                         string Name = $"{item.UserID} {item.FirstNameOfMechanic} {item.LastNameOfMechanic}";
 
                         newListOfMechanics.Add(Name);
                     }
-                    else if (value == "Window" && item.Window == true && item.ActiveOrders < 2)
+                    else if (value == "Window" && item.Window == true && item.ActiveOrders <= 2)
                     {
                         string Name = $"{item.FirstNameOfMechanic} {item.LastNameOfMechanic}";
 
                         newListOfMechanics.Add(Name);
                     }
-                    else if (value == "Kaross" && item.Kaross == true && item.ActiveOrders < 2)
+                    else if (value == "Kaross" && item.Kaross == true && item.ActiveOrders <= 2)
                     {
                         string Name = $"{item.UserID} {item.FirstNameOfMechanic} {item.LastNameOfMechanic}";
 
@@ -373,6 +373,8 @@ namespace Logic.Services
         public void DeleteOrder(string id)
         {
             ActivClasses.orderDictionary.Remove(id);
+
+            
         }
 
 
@@ -403,7 +405,7 @@ namespace Logic.Services
                 }
             }
         }
-        public void DeleteMechanicOrder(string name, List<Orders> newOrder)
+        public void DeleteMechanicOrder(string name)
         {
             List<string> listaAvKeys = GetOnlyKey();
             for (int i = 0; i < listaAvKeys.Count; i++)
@@ -420,12 +422,13 @@ namespace Logic.Services
                         }
                         catch (Exception)
                         {
-
                             ActivClasses.mechanicOrder2.Remove(key);
                         }
                     }
                 }
             }
+
+
         }
     }
 }

@@ -41,7 +41,7 @@ namespace Logic.Interface
         List<string>GetKeyForOrder();
         void GiveMechanicOrder(string valueOfMechanic, List<Orders> newOrder);
 
-        void DeleteMechanicOrder(string name, List<Orders> newOrder);
+        void DeleteMechanicOrder(string id);
 
         void DeleteOrder(string id);
     }

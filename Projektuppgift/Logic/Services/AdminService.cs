@@ -370,7 +370,10 @@ namespace Logic.Services
         }
 
 
-
+        public void DeleteOrder(string id)
+        {
+            ActivClasses.orderDictionary.Remove(id);
+        }
 
 
 
@@ -399,9 +402,30 @@ namespace Logic.Services
                     }
                 }
             }
+        }
+        public void DeleteMechanicOrder(string name, List<Orders> newOrder)
+        {
+            List<string> listaAvKeys = GetOnlyKey();
+            for (int i = 0; i < listaAvKeys.Count; i++)
+            {
+                string key = listaAvKeys[i];
+                foreach (var item in ActivClasses.mechanicDictionary[key])
+                {
+                    if (name.Contains(item.LastNameOfMechanic))
+                    {
+                        item.ActiveOrders -= 1;
+                        try
+                        {
+                            ActivClasses.mechanicOrder.Remove(key);
+                        }
+                        catch (Exception)
+                        {
 
-            
-
+                            ActivClasses.mechanicOrder2.Remove(key);
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -318,7 +318,7 @@
                           Loaded="cbxMechanic_Loaded"
                               
                              FontSize="15" 
-                            Margin="-360,40,0,0" Foreground="#FF4B4747" 
+                            Margin="-360,40,0,0" Foreground="#FF4B4747" SelectionChanged="cbxMechanic_SelectionChanged" 
                           />
 
 

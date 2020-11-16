@@ -29,6 +29,9 @@ namespace GUI.Admin.Workshop
         Orders order = new Orders();
         List<string> listOfVehicles = new List<string>();
         List<string> listOfMechanics = new List<string>();
+        string valueOfVehicle;
+        string valueOfMechanic;
+        ILogic adminService = new AdminService();
         public ChangeCase()
         {
             InitializeComponent();
@@ -125,7 +128,42 @@ namespace GUI.Admin.Workshop
 
 
             cboType.Items.Refresh();
+            
         }
+
+
+
+        private void Button_Click_ChangeCase(object sender, RoutedEventArgs e)
+        {
+
+            ILogic adminService = new AdminService();
+            List<Orders> newOrder = new List<Orders>();
+
+
+
+            if (adminService.ActivOrder(OrderIdSearch.Text))
+            {
+                string id = orderID.Text;
+                adminService.DeleteOrder(OrderIdSearch.Text);
+
+                adminService.DeleteMechanicOrder(id, newOrder);
+
+                newOrder.Add(new Orders(orderDesc.Text, order.Brakes, order.BrokeWindow, order.Engine, order.Kaross, order.Tire, valueOfVehicle, valueOfMechanic,
+                                        ModelName.Text, RegNum.Text, matare.Text, dateOfReg.Text, order.Fuel, specificQ.Text, specificQ2.Text, order.Status));
+
+
+                adminService.NewOrder(id, newOrder);
+                adminService.GiveMechanicOrder(valueOfMechanic, newOrder);
+                MessageBox.Show("Ärendet är ändrat!", "", MessageBoxButton.OK);
+            }
+            else
+            {
+                MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+
+
 
         private void Bromsar_Checked(object sender, RoutedEventArgs e)
         {
@@ -227,6 +265,12 @@ namespace GUI.Admin.Workshop
             cbxMechanic.SelectedItem = order.Mechanic;
 
      
+        }
+
+        private void cbxMechanic_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string valueOfMechanicSelected = cbxMechanic.SelectedItem.ToString();
+            valueOfMechanic = valueOfMechanicSelected;
         }
     }
 }

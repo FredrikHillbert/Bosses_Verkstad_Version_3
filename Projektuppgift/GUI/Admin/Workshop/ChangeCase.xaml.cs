@@ -200,7 +200,7 @@ namespace GUI.Admin.Workshop
         private void Däck_Checked(object sender, RoutedEventArgs e)
         {
             order.Tire = true;
-            string value = "Tire";
+            string value = "Tires";
             RefreshMethod(value);
         }
 

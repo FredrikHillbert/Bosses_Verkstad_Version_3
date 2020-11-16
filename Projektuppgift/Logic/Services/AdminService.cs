@@ -250,7 +250,6 @@ namespace Logic.Services
                         string Name = $"{item.UserID} {item.FirstNameOfMechanic} {item.LastNameOfMechanic}";
 
                         newListOfMechanics.Add(Name);
-
                     }
                     else if (value == "Tires" && item.Tire == true && item.ActiveOrders <= 2)
                     {
@@ -391,15 +390,17 @@ namespace Logic.Services
                 {
                     if (name.Contains(item.LastNameOfMechanic))
                     {
-                        item.ActiveOrders += 1;
+                        
                         try
                         {
                             ActivClasses.mechanicOrder.Add(key, newOrder);
+                            item.ActiveOrders += 1;
                         }
                         catch (Exception)
                         {
 
                             ActivClasses.mechanicOrder2.Add(key, newOrder);
+                            item.ActiveOrders += 1;
                         }
                     }
                 }

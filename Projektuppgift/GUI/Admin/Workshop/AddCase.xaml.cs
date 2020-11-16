@@ -90,6 +90,7 @@ namespace GUI.Admin.Workshop
                 string value = "Tires";
                 RefreshMethod(value);
             }
+            cbxMechanic.Items.Refresh();
         }
 
         private void Vindrutor_Checked(object sender, RoutedEventArgs e)
@@ -100,6 +101,7 @@ namespace GUI.Admin.Workshop
                 string value = "Window";
                 RefreshMethod(value);
             }
+            cbxMechanic.Items.Refresh();
         }
 
 
@@ -112,6 +114,7 @@ namespace GUI.Admin.Workshop
                 string value = "Engine";
                 RefreshMethod(value);
             }
+            cbxMechanic.Items.Refresh();
         }
 
         private void Kaross_Checked(object sender, RoutedEventArgs e)
@@ -122,7 +125,7 @@ namespace GUI.Admin.Workshop
                 string value = "Kaross";
                 RefreshMethod(value);
             }
-           
+            cbxMechanic.Items.Refresh();
         }
 
         private void ComboBoxVehicle_Loaded(object sender, RoutedEventArgs e)

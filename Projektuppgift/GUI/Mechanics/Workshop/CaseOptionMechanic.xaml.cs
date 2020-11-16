@@ -242,15 +242,15 @@ namespace GUI.Mechanics.Workshop
 
         private void cbxMechanic_Done()
         {
-            if (statusNo.IsChecked == true)
-            {
-                ActivClasses.FinishedOrder.Add(id);
-                ActivClasses.ActiveOrder.Remove(id);
-            }
-            else if (statusYes.IsChecked == true)
-            {
-                ActivClasses.ActiveOrder.Add(id);
-            }
+            //if (statusNo.IsChecked == true)
+            //{
+            //    ActivClasses.FinishedOrder.Add(id);
+            //    ActivClasses.ActiveOrder.Remove(id);
+            //}
+            //else if (statusYes.IsChecked == true)
+            //{
+            //    ActivClasses.ActiveOrder.Add(id);
+            //}
 
 
 

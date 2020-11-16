@@ -135,7 +135,7 @@ namespace GUI.Admin.Workshop
         {
             ILogic adminService = new AdminService();
 
-            if ((adminService.ActivUser(OrderIdSearch.Text)))
+            if ((adminService.ActivOrder(OrderIdSearch.Text)))
             {
 
                 if (MessageBox.Show("Är du säker på att du vill ta bort ärendet?", "", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)

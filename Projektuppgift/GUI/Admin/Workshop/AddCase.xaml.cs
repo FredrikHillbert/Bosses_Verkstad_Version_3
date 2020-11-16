@@ -79,6 +79,7 @@ namespace GUI.Admin.Workshop
                 string value = "Brakes";
                 RefreshMethod(value);
             }
+            cbxMechanic.Items.Refresh();
         }
 
         private void Tire_Checked(object sender, RoutedEventArgs e)
@@ -224,6 +225,7 @@ namespace GUI.Admin.Workshop
 
             }
             cbxMechanic.ItemsSource = listOfMechanics;
+            cbxMechanic.SelectedItem = orders.Mechanic;
             cbxMechanic.Items.Refresh();
         }
 

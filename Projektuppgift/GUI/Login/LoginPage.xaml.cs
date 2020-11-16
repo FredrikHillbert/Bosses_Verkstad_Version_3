@@ -4,6 +4,7 @@ using GUI.Tools;
 using Logic.DAL;
 using Logic.Entities;
 using Logic.Interface;
+using Logic.MyExceptions;
 using Logic.Services;
 using System;
 using System.Collections.Generic;
@@ -56,15 +57,15 @@ namespace GUI.Login
         /// </summary>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var loggin = LoginUserName.Text;
+            var loggin = LoginUserName.Text.ToLower();
             var password = LoginPassword.Password;
             ILogic adminService = new AdminService();
-            if (adminService.Login(loggin.ToLower(), password) && Isadmin.IsChecked == true)
+            if (adminService.Login(loggin, password) && Isadmin.IsChecked == true)
             {
                 HomePageAdmin homePageAdmin = new HomePageAdmin();
                 this.NavigationService.Navigate(homePageAdmin);
             }
-            else if (adminService.LoginUser(loggin.ToLower(), password))
+            else if (adminService.LoginUser(loggin, password))
             {
                 ILogicUser userService = new UserService();//------------------Håller koll på vem som loggar in!
                 userService.SetUser(loggin);
@@ -79,9 +80,19 @@ namespace GUI.Login
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            JsonSetFile jsonSetFile = new JsonSetFile();
-            jsonSetFile.SetJson();
+            
 
+            try
+            {
+                JsonSetFile jsonSetFile = new JsonSetFile();
+                jsonSetFile.SetJson();
+            }
+            catch (ErrorException)
+            {
+                MessageBox.Show("Filen kunde inte Sparas korrekt!" +
+                    "\n" +
+                    "\n Avsluta och starta om programet!");
+            }
             Application.Current.Shutdown();
         }
 

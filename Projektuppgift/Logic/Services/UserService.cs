@@ -11,10 +11,10 @@ namespace Logic.Services
    public class UserService: ILogicUser
     {
         string
-         firstName = String.Empty,
-         lastName = String.Empty,
-         username = String.Empty,
-         password = String.Empty;
+        firstName = String.Empty,
+        lastName = String.Empty,
+        username = String.Empty,
+        password = String.Empty;
 
         DateTime birthDay,
          dateOfEmp;
@@ -44,8 +44,8 @@ namespace Logic.Services
             {
                 firstName = item.FirstNameOfMechanic;
                 lastName = item.LastNameOfMechanic;
-                DateTime Birth = item.BirthdayOfMechanic;
-                DateTime employ = item.DateOfEmploymentOfMechanic;
+                birthDay = item.BirthdayOfMechanic;
+                dateOfEmp = item.DateOfEmploymentOfMechanic;
                 engine = item.Engine;
                 tire = item.Tire;
                 brakes = item.Brakes;

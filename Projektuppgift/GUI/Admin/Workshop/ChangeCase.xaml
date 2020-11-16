@@ -59,31 +59,24 @@
                             Margin="20,100,0,0" Click="Button_ClickSearchOrder" 
                             x:Name="OrderID"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" >
-                    <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
-                         Content="Ta bort" 
-                             FontSize="20" 
-                            Margin="150,100,0,0"  
-                            x:Name="delete" Click="Button_Bort"/>
-                </StackPanel>
 
 
-                <StackPanel Margin="400,100,0,0">
+                <StackPanel Margin="130,100,0,0">
                     <Label Foreground="white">Se aktiva ärenden:</Label>
-
+                    
                 </StackPanel>
-                <StackPanel Margin="550,100,0,0">
+                <StackPanel Margin="250,100,0,0">
 
                     <ComboBox Width="100" Loaded="ComboBox_Loaded">
-
-
-
+                        
+                        
+                        
                     </ComboBox>
-
-
+                    
+                    
                 </StackPanel>
-
-
+                
+                
                 <!--<Label
                     Content="Dela ärende med anställd"
                     FontSize="18"
@@ -153,7 +146,7 @@
                     >
                 </Label>
                 <Border Margin="0,0,0,0" Width="1050" Height="2" Background="White">
-
+                    
                 </Border>
 
                 <StackPanel Margin="50,75,0,0" Orientation="Horizontal" >
@@ -341,7 +334,7 @@
                 </StackPanel>
 
 
-
+               
 
 
                 <StackPanel Margin="675,75,0,0" Orientation="Horizontal" >
@@ -548,10 +541,10 @@
 
                 <StackPanel Margin="650,420,0,0">
                     <Label Foreground="White">Är det ett pågående ärende?</Label>
-
+                    
                 </StackPanel>
-
-
+                
+                
                 <StackPanel>
                     <CheckBox Margin="650,450,0,0"
                        FontFamily="Helvetica"
@@ -636,6 +629,5 @@
                              Margin="800,20,0,0" Click="Button_Users"/>
             </Canvas>
         </Grid>
-
     </Grid>
 </Page>

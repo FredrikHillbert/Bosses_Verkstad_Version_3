@@ -28,7 +28,8 @@ namespace GUI.Admin.Employer
     {
 
         Mechanic mechanic = new Mechanic();
-       
+        string whichMechanic;
+
         public ChangeEmployer()
         {
             InitializeComponent();
@@ -95,6 +96,10 @@ namespace GUI.Admin.Employer
                     vindrutor.IsChecked = item.Window;
                     Bromsar.IsChecked = item.Brakes;
                     Kaross.IsChecked = item.Kaross;
+
+                    dateOfBirth.Text = Birth.ToString("yyyy-MM-dd");
+                    dateOfEmployment.Text = employ.ToString("yyyy-MM-dd");
+            
                 }
             }
             else
@@ -129,11 +134,9 @@ namespace GUI.Admin.Employer
 
         private void Button_Click_9(object sender, RoutedEventArgs e)
         {
-            List<Mechanic> mechanic = new List<Mechanic>();
-            var activeOrder = new Mechanic();
-            int activeorderForMechanic = activeOrder.ActiveOrders;
-            activeorderForMechanic = 0;
+            List<Mechanic> mechanics = new List<Mechanic>();
             ILogic adminService = new AdminService();
+
 
             if (adminService.ValidMechanic(firstName.Text, lastname.Text, dateOfBirth.Text, dateOfEmployment.Text, employerId.Text))
             {
@@ -143,27 +146,27 @@ namespace GUI.Admin.Employer
 
                     adminService.DeleteMechanic(employerIdSearch.Text);
 
-                    mechanic.Add(new Mechanic(firstName.Text, lastname.Text,
-                                  DateTime.Parse(dateOfBirth.Text), DateTime.Parse(dateOfEmployment.Text),
+                    mechanics.Add(new Mechanic(firstName.Text, lastname.Text,
+                                   DateTime.Parse(dateOfBirth.Text), DateTime.Parse(dateOfEmployment.Text),
                                     (bool)Motor.IsChecked, (bool)Däck.IsChecked, (bool)vindrutor.IsChecked,
-                                    (bool)Bromsar.IsChecked, (bool)Kaross.IsChecked, activeorderForMechanic));
+                                    (bool)Bromsar.IsChecked, (bool)Kaross.IsChecked,mechanic.ActiveOrders));
 
 
 
                     string id = employerId.Text;
-                    adminService.NewMechanic(id, mechanic);
+                    adminService.NewMechanic(id, mechanics);
                     MessageBox.Show("Mekaniker är nu ändrad!", "", MessageBoxButton.OK);
 
                 }
                 else 
                 {
-                    MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Kontrollera att allt är ifyllt korrekt!\n Datum ska anges i formatet(yyyy-mm-dd)", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
 
             else
             {
-                MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Kontrollera att allt är ifyllt korrekt!\n Datum ska anges i formatet(yyyy-mm-dd)", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             ChangeEmployer changeEmployer = new ChangeEmployer();
             this.NavigationService.Navigate(changeEmployer);

@@ -82,24 +82,30 @@ namespace GUI.Admin.Employer
             int activeorderForMechanic = activeOrder.ActiveOrders;
             activeorderForMechanic = 0;
             ILogic adminService = new AdminService();
+            string input = string.Empty;
+            
+          
+                if (adminService.ValidMechanic(firstName.Text, lastname.Text, dateOfBirth.Text, dateOfEmployment.Text, employerId.Text))
 
 
-            if (adminService.ValidMechanic(firstName.Text, lastname.Text, dateOfBirth.Text, dateOfEmployment.Text, employerId.Text))
+
                 {
-                mechanic.Add(new Mechanic(firstName.Text, lastname.Text,
+                    mechanic.Add(new Mechanic(firstName.Text, lastname.Text,
                                                        DateTime.Parse(dateOfBirth.Text), DateTime.Parse(dateOfEmployment.Text),
                                                          (bool)Motor.IsChecked, (bool)Tire.IsChecked,
                                                          (bool)vindrutor.IsChecked, (bool)Bromsar.IsChecked, (bool)Kaross.IsChecked, activeorderForMechanic));
 
-                string id = employerId.Text;
-                adminService.NewMechanic(id,mechanic);
-                MessageBox.Show("Mekaniker är nu tillagt!", "", MessageBoxButton.OK);
-            }
+                    string id = employerId.Text;
+                    adminService.NewMechanic(id, mechanic);
+                    MessageBox.Show("Mekaniker är nu tillagt!", "", MessageBoxButton.OK);
+                }
 
-            else
-            {
-                MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
+                else
+                {
+                    MessageBox.Show("Kontrollera att allt är ifyllt korrekt!\n Datum ska anges i formatet(yyyy-mm-dd)", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+
+           
         }
 
         private void firstName_GotFocus(object sender, RoutedEventArgs e)

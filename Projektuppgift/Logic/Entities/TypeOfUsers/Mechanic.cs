@@ -24,7 +24,6 @@ namespace Logic.Entities
             Kaross = kaross;
             Window = window;
             ActiveOrders = activeOrders;
-
         }
 
 
@@ -36,13 +35,15 @@ namespace Logic.Entities
 
         public DateTime DateOfEmploymentOfMechanic { get; set; }
 
+        public int ActiveOrders { get; set; }
+
         public bool Engine { get; set; }
         public bool Tire { get; set; }
         public bool Window { get; set; }
         public bool Brakes { get; set; }
         public bool Kaross { get; set; }
 
-        public int ActiveOrders { get; set; }
+        public List<Orders> listOfActiveOrdersForMechanic = new List<Orders>();
 
 
     }

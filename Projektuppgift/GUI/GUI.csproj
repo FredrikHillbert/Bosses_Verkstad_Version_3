@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Admin\Workshop\" />
+    <Folder Include="Admin\AdminProfile\" />
   </ItemGroup>
 
 </Project>

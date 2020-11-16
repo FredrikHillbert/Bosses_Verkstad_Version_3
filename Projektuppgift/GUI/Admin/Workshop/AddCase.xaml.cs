@@ -143,7 +143,8 @@ namespace GUI.Admin.Workshop
             List<Orders> newOrder = new List<Orders>();
 
             orders.Status = true;
-            if (adminService.ValidOrder(orderDesc.Text, orders.Brakes, orders.BrokeWindow, orders.Engine, orders.Kaross, orders.Tire, valueOfVehicle, valueOfMechanic,
+
+            if (adminService.ValidOrder(orderDesc.Text, valueOfVehicle, valueOfMechanic,
                                         ModelName.Text, RegNum.Text, matare.Text, dateOfReg.Text, orders.Fuel, specificQ.Text, specificQ2.Text))
             {
                 newOrder.Add(new Orders( orderDesc.Text, orders.Brakes, orders.BrokeWindow, orders.Engine, orders.Kaross, orders.Tire, valueOfVehicle, valueOfMechanic,
@@ -151,6 +152,7 @@ namespace GUI.Admin.Workshop
 
                 string id = orderID.Text;
                 adminService.NewOrder(id, newOrder);
+                adminService.GiveMechanicOrder(valueOfMechanic, newOrder);
                 MessageBox.Show("Ett nytt ärende är nu tillagt!", "", MessageBoxButton.OK);
             }
             else
@@ -163,47 +165,31 @@ namespace GUI.Admin.Workshop
         {
             string valueOfVehicleSelected = cboType.SelectedItem.ToString();
             valueOfVehicle = valueOfVehicleSelected;
+
            if (valueOfVehicleSelected == "Bil")
             {
-                specificQ.Visibility = Visibility.Hidden; //Hides Biltyp's textbox for this vehicle.
-                specificQ2.Visibility = Visibility.Hidden; //Hides Dragkrok's textbox for all vehicles (It is not repeated)
-                cartypelabel.Visibility = Visibility.Visible; //Reveals from cartypelabel to cartowbarcombo. 1/3
-                cartypecombo.Visibility = Visibility.Visible; //It is repeated in other selected vehicles- 2/3
-                cartowbarlabel.Visibility = Visibility.Visible; //in order to hide them when deselecting from Bil. 3/3
-                cartowbarcombo.Visibility = Visibility.Visible;
-                specificQ.Text = cartypecombo.SelectedItem.ToString();
-                specificQ2.Text = cartowbarcombo.SelectedItem.ToString();
+           
+                specificQ.Text = "Vad är det för typ av bil?";
+                specificQ2.Text = "Har bilen en dragkrok?";
 
             }
             else if (valueOfVehicleSelected == "Motorcykel")
             {
-                specificQ.Visibility = Visibility.Hidden;
-                cartypelabel.Visibility = Visibility.Hidden;
-                cartypecombo.Visibility = Visibility.Hidden;
-                cartowbarlabel.Visibility = Visibility.Hidden;
-                cartowbarcombo.Visibility = Visibility.Hidden;
+
                 specificQ.Text = "--------------";
                 specificQ2.Text = "-------------";
 
             }
             else if (valueOfVehicleSelected == "Lastbil")
             {
-                specificQ.Visibility = Visibility.Visible;
-                cartypelabel.Visibility = Visibility.Hidden;
-                cartypecombo.Visibility = Visibility.Hidden;
-                cartowbarlabel.Visibility = Visibility.Hidden;
-                cartowbarcombo.Visibility = Visibility.Hidden;
+
                 specificQ.Text = "Vad är maxlast på lastbilen?";
                 specificQ2.Text = "-------------";
 
             }
             else if (valueOfVehicleSelected == "Buss")
             {
-                specificQ.Visibility = Visibility.Visible;
-                cartypelabel.Visibility = Visibility.Hidden;
-                cartypecombo.Visibility = Visibility.Hidden;
-                cartowbarlabel.Visibility = Visibility.Hidden;
-                cartowbarcombo.Visibility = Visibility.Hidden;
+
                 specificQ.Text = "Hur många passagerare tar bussen?";
                 specificQ2.Text = "-------------";
 
@@ -241,20 +227,11 @@ namespace GUI.Admin.Workshop
         {
             orders.Fuel = "Diesel";
         }
+
         private void cbxMechanic_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string valueOfMechanicSelected = cbxMechanic.SelectedItem.ToString();
             valueOfMechanic = valueOfMechanicSelected;
-        }
-
-        private void cartypecombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void cartowbarcombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Logic.DAL;
 using Logic.Entities;
+using Logic.MyExceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,12 +31,12 @@ namespace GUI
             {
                 jsonGetFile.GetJson();
             }
-            catch (Exception)
+            catch (ErrorException)
             {
-
-                MessageBox.Show("Filen kunde inte läsasas korrekt då filen är tom!" +
+                
+                MessageBox.Show("Filen kunde inte läsasas korrekt!" +
                     "\n" +
-                    "\n Testa lägga till en mekaniker och användare, starta sedan om programet!");
+                    "\n Avsluta och starta om programet!");
             }
             
   

@@ -11,21 +11,20 @@ namespace Logic.DAL
     {
         public void SetJson()
         {
-            SaveListAdmin(pathAdmin);
-            SaveMechanicDictionary(pathMechanic);
-            SaveListUser(pathUser);
-            SaveVehicleList(pathVehicles);
-            SaveOrderDictionary(pathOrder);
+            SaveList(pathAdmin, ActivClasses.loginListAdmin);
+            SaveList(pathUser, ActivClasses.loginListUser);
+            SaveList(pathVehicles, ActivClasses.ListOfVehicles);
+            SaveDictionary(pathMechanic, ActivClasses.mechanicDictionary);
+            SaveDictionary(pathOrder, ActivClasses.orderDictionary);
         }
-        private void SaveMechanicDictionary(string path)
+        private void SaveDictionary<T>(string path, Dictionary<string,T> dictonary  )
         {
             FileStream fileStream = File.OpenWrite(path);
             fileStream.SetLength(0);
             fileStream.Close();
-
-            if (ActivClasses.mechanicDictionary.Count != 0)
+            if (dictonary.Count != 0)
             {
-                string Json = JsonSerializer.Serialize(ActivClasses.mechanicDictionary);
+                string Json = JsonSerializer.Serialize(dictonary);
                 fileStream = File.OpenWrite(path);
                 using (StreamWriter streamWriter = new StreamWriter(fileStream))
                 {
@@ -33,97 +32,25 @@ namespace Logic.DAL
 
                 }
             }
-            else
-            {
-                //ta bort json?
-                File.Delete(path);
-
-            }
+            else{ File.Delete(path);}
         }
-
-        private void SaveOrderDictionary(string path)
-        {
-
-            FileStream fileStream = File.OpenWrite(path);
-            fileStream.SetLength(0);
-            fileStream.Close();
-
-            if (ActivClasses.orderDictionary.Count != 0)
-            {
-                string Json = JsonSerializer.Serialize(ActivClasses.orderDictionary);
-                fileStream = File.OpenWrite(path);
-                using (StreamWriter streamWriter = new StreamWriter(fileStream))
-                {
-                    streamWriter.WriteLine(Json);
-
-                }
-            }
-            else
-            {
-                //ta bort json?
-                File.Delete(path);
-
-            }
-        }
-        private void SaveListAdmin(string path)
-        {
-            
-                FileStream fileStream = File.OpenWrite(path);
-                fileStream.SetLength(0);
-                fileStream.Close();
-                string Json = JsonSerializer.Serialize(ActivClasses.loginListAdmin);
-                fileStream = File.OpenWrite(path);
-            using (StreamWriter streamWriter = new StreamWriter(fileStream))
-            {
-                streamWriter.WriteLine(Json);
-
-            }
-
-
-        }
-
-        private void SaveListUser(string path)
+        private void SaveList<T>(string path,List<T> list )
         {
             FileStream fileStream = File.OpenWrite(path);
             fileStream.SetLength(0);
             fileStream.Close();
 
-            if (ActivClasses.loginListUser.Count != 0)
+            if (list.Count != 0)
             {
-                string Json = JsonSerializer.Serialize(ActivClasses.loginListUser);
+                string Json = JsonSerializer.Serialize(list);
                 fileStream = File.OpenWrite(path);
                 using (StreamWriter streamWriter = new StreamWriter(fileStream))
                 {
                     streamWriter.WriteLine(Json);
-
                 }
             }
-            else
-            {
-                //ta bort json?
-                File.Delete(path);
-
-            }
-
-        }
-
-
-        private void SaveVehicleList(string path)
-        {
-
-                FileStream fileStream = File.OpenWrite(path);
-                fileStream.SetLength(0);
-                fileStream.Close();
-                string Json = JsonSerializer.Serialize(ActivClasses.ListOfVehicles);
-                fileStream = File.OpenWrite(path);
-            using (StreamWriter streamWriter = new StreamWriter(fileStream))
-            {
-                streamWriter.WriteLine(Json);
-              
-            }
-
-        }
-
+            else {File.Delete(path); }
+        } 
     }
 }
 

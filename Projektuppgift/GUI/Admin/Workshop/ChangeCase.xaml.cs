@@ -14,10 +14,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GUI.Admin.Employer;
-using Logic.Services;
 using Logic.Interface;
-using GUI.Tools;
+using Logic.Services;
 using Logic.Entities;
+using GUI.Tools;
 
 namespace GUI.Admin.Workshop
 {
@@ -32,6 +32,7 @@ namespace GUI.Admin.Workshop
         public ChangeCase()
         {
             InitializeComponent();
+
         }
         private void Button_Exit(object sender, RoutedEventArgs e)
         {
@@ -66,36 +67,12 @@ namespace GUI.Admin.Workshop
             CaseOption userOptions = new CaseOption();
             this.NavigationService.Navigate(userOptions);
         }
-        private void Button_Bort(object sender, RoutedEventArgs e)
-        {
-            ILogic adminService = new AdminService();
-
-            if ((adminService.ActivOrder(OrderIdSearch.Text)))
-            {
-
-                if (MessageBox.Show("Är du säker på att du vill ta bort ärendet?", "", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-                {
-                    string id = OrderIdSearch.Text;
-                    adminService.DeleteOrder(OrderIdSearch.Text);
-                }
-
-
-            }
-            else
-            {
-                MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-
-            }
-            ChangeCase changeCase = new ChangeCase();
-            this.NavigationService.Navigate(changeCase);
-        }
-
 
         private void Button_ClickSearchOrder(object sender, RoutedEventArgs e)
         {
             ILogic adminService = new AdminService();
 
-            if ((adminService.ActivOrder(OrderIdSearch.Text)))
+            if ((adminService.ActivOrder(OrderIdSearch.Text))) 
             {
                 List<Orders> listOfSpecificOrder = adminService.GetOrder(OrderIdSearch.Text);
                 foreach (var item in listOfSpecificOrder)
@@ -249,17 +226,7 @@ namespace GUI.Admin.Workshop
             cbxMechanic.ItemsSource = listOfMechanics;
             cbxMechanic.SelectedItem = order.Mechanic;
 
-
+     
         }
-
-
-
-
-
-
-
-
-
     }
-
 }

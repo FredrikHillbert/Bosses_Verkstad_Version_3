@@ -17,7 +17,7 @@ namespace Logic.Interface
         // User Service -----
 
         void NewUser(string username, string password, string id);
-        bool ActivUser(string Id);
+        public bool ActivOrder(string id);
          List<string> GetKey();
         List<string> GetActivUser();
 
@@ -28,20 +28,16 @@ namespace Logic.Interface
         void DeleteMechanic(string id);
 
         //Order Service ------
-        bool ValidOrder(string orderDescription, bool whatIsBroken1, bool whatIsBroken2, bool whatIsBroken3, bool whatIsBroken4, bool whatIsBroken5, string vehicle, string mechanic,
+        bool ValidOrder(string orderDescription, string vehicle, string mechanic,
                                string modellName, string regNumber, string matare, string regDate, string typeOfFuel, string specificQOne, string specificQTwo);
         public List<string> GetVehicles();
         List<string> GetMechanicForTheJob(string value);
 
         void NewOrder(string id, List<Orders> newOrder);
-        void DeleteOrder(string id);
-
-        public bool ActivOrder(string id);
 
         List<Orders> GetOrder(string id);
-
-        List<string> GetKeyForOrder(); 
-
-
+        bool ActivUser(string id);
+        List<string>GetKeyForOrder();
+        void GiveMechanicOrder(string valueOfMechanic, List<Orders> newOrder);
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Logic.Entities;
+
+using Logic.MyExceptions;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -11,108 +13,54 @@ namespace Logic.DAL
     public class JsonGetFile : JsonFile
     {
         public void GetJson()
+            {
+            //Kolla på förenkling
+            ActivClasses.loginListAdmin = GetList(pathAdmin, ActivClasses.loginListAdmin);
+            ActivClasses.loginListUser = GetList(pathUser, ActivClasses.loginListUser);
+            ActivClasses.ListOfVehicles = GetList(pathVehicles, ActivClasses.ListOfVehicles);
+            ActivClasses.mechanicDictionary = GetDictionary(pathMechanic, ActivClasses.mechanicDictionary);
+            ActivClasses.orderDictionary = GetDictionary(pathOrder, ActivClasses.orderDictionary);
+            
+            if (ActivClasses.loginListAdmin.Count == 0)
+            {
+                ActivClasses.loginListAdmin.Add(new User { Username = "bosse", Password = "1", UserID = "Admin" });
+            }
+            if (ActivClasses.ListOfVehicles.Count == 0)
+            {
+                ActivClasses.ListOfVehicles.AddRange(new List<String>() { "Bil", "Buss", "Lastbil", "Motorcykel" });
+            }
+        }
+        private List<T> GetList<T>(string path, List<T> list)
         {
 
            
-            AdminJson(pathAdmin);
-            VehiclesJson(pathVehicles);
-            UserJson(pathUser);
-            MecanichJson(pathMechanic);  
-            OrderJson(pathOrder);
-
-        }
-        private void AdminJson(string path)
-        {
             if (File.Exists(path))
             {
                 string jsonString = File.ReadAllText(path);
-                ActivClasses.loginListAdmin = JsonSerializer.Deserialize<List<User>>(jsonString);
-
+                list = JsonSerializer.Deserialize<List<T>>(jsonString);
+                ////throw new ErrorException("Error");
             }
             else
             {
                 FileStream fileStream = File.Create(path);
                 using (var streamReader = new StreamReader(fileStream)) { }
-                ActivClasses.loginListAdmin.Add(new User { Username = "bosse", Password = "1", UserID = "Admin" });
-
-
             }
-
+            return list;
         }
-
-        private void VehiclesJson(string path)
+        private Dictionary<string, T> GetDictionary<T>(string path, Dictionary<string, T> dictonary)
         {
             if (File.Exists(path))
             {
                 string jsonString = File.ReadAllText(path);
-                ActivClasses.ListOfVehicles = JsonSerializer.Deserialize<List<string>>(jsonString);
-
-            }
-            else
-            {
-                FileStream fileStream = File.Create(path);
-                using (var streamReader = new StreamReader(fileStream)) { }
-                ActivClasses.ListOfVehicles.AddRange(new List<String>() { "Bil", "Buss", "Lastbil", "Motorcykel" });
-
-            }
-
-        }
-
-
-
-        private void UserJson(string path)
-        {
-            if (File.Exists(path))
-            {
-
-                    string jsonString = File.ReadAllText(path);
-                    ActivClasses.loginListUser = JsonSerializer.Deserialize<List<User>>(jsonString);
-                   throw new Exception("The file is Empty, (Program will work, pleas add a user and restart!)");
+                dictonary = JsonSerializer.Deserialize<Dictionary<string,T>>(jsonString);
               
             }
             else
             {
                 FileStream fileStream = File.Create(path);
-                using (var streamReader = new StreamReader(fileStream)) { };
+                using (var streamReader = new StreamReader(fileStream)){ }
             }
-
-        }
-
-        private void MecanichJson(string path)
-        {
-            if (File.Exists(path))
-            {
-                    string jsonString = File.ReadAllText(path);
-                    ActivClasses.mechanicDictionary = JsonSerializer.Deserialize<Dictionary<string, List<Mechanic>>>(jsonString);
-                    throw new Exception("The file is Empty, (Program will work, pleas add a Mechanic and restart!)");
-            }
-            else
-            {
-                FileStream fileStream = File.Create(path);
-                using (var streamReader = new StreamReader(fileStream)) { }
-
-            }
-        }
-
-        private void OrderJson(string path)
-        {
-            if (File.Exists(path))
-            { 
-                    string jsonString = File.ReadAllText(path);
-                    ActivClasses.orderDictionary = JsonSerializer.Deserialize<Dictionary<string, List<Orders>>>(jsonString);
-                    throw new Exception("The file is Empty, (Program will work, pleas add a Mechanic and restart!)");
-            }
-            else
-            {
-                FileStream fileStream = File.Create(path);
-                using (var streamReader = new StreamReader(fileStream)) { }
-
-            }
-
-
-
-
-
-        }
+            return dictonary;
+        }       
     }
 }

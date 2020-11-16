@@ -57,7 +57,7 @@ namespace GUI.Login
         /// </summary>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var loggin = LoginUserName.Text;
+            var loggin = LoginUserName.Text.ToLower();
             var password = LoginPassword.Password;
             ILogic adminService = new AdminService();
             if (adminService.Login(loggin, password) && Isadmin.IsChecked == true)
@@ -65,7 +65,7 @@ namespace GUI.Login
                 HomePageAdmin homePageAdmin = new HomePageAdmin();
                 this.NavigationService.Navigate(homePageAdmin);
             }
-            else if (adminService.LoginUser(loggin.ToLower(), password))
+            else if (adminService.LoginUser(loggin, password))
             {
                 ILogicUser userService = new UserService();//------------------Håller koll på vem som loggar in!
                 userService.SetUser(loggin);

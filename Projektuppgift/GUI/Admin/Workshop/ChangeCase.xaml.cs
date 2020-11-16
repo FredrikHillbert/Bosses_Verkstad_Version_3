@@ -180,6 +180,9 @@ namespace GUI.Admin.Workshop
                 adminService.NewOrder(id, newOrder);
                 adminService.GiveMechanicOrder(valueOfMechanic, newOrder);
                 MessageBox.Show("Ärendet är ändrat!", "", MessageBoxButton.OK);
+                ChangeCase changeCase = new ChangeCase();
+                this.NavigationService.Navigate(changeCase);
+
             }
             else
             {
@@ -292,10 +295,10 @@ namespace GUI.Admin.Workshop
      
         }
 
-        private void cbxMechanic_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            string valueOfMechanicSelected = cbxMechanic.SelectedItem.ToString();
-            valueOfMechanic = valueOfMechanicSelected;
-        }
+        //private void cbxMechanic_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    string valueOfMechanicSelected = cbxMechanic.SelectedItem.ToString();
+        //    valueOfMechanic = valueOfMechanicSelected;
+        //}
     }
 }

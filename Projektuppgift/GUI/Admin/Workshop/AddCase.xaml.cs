@@ -158,6 +158,8 @@ namespace GUI.Admin.Workshop
                 adminService.NewOrder(id, newOrder);
                 adminService.GiveMechanicOrder(valueOfMechanic, newOrder);
                 MessageBox.Show("Ett nytt ärende är nu tillagt!", "", MessageBoxButton.OK);
+                CaseOptions caseOptions = new CaseOptions();
+                this.NavigationService.Navigate(caseOptions);
             }
             else
             {

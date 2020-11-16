@@ -213,19 +213,26 @@ namespace Logic.Services
                     DateTime dateTimeOfbirth = DateTime.Parse(input);
                     input = dateOfBirth;
                     DateTime dateTimeOfEmployment = DateTime.Parse(input);
+                    if (ActivClasses.mechanicDictionary.ContainsKey(id))
+                        return false;
+
                     return true;
                 }
-                else{ return false;}
+               
+                else { return false; }
             }
             else { return false; }
         }
 
         public bool ValidOrder(string orderDescription, string vehicle, string mechanic,
-                               string modellName, string regNumber, string matare, string regDate, string typeOfFuel, string specificQOne, string specificQTwo)
+                               string modellName, string regNumber, string matare, string regDate, string typeOfFuel, string specificQOne, string specificQTwo, string id)
         {
             if (orderDescription != String.Empty && vehicle != String.Empty && mechanic != String.Empty &&
                 modellName != String.Empty && regNumber != String.Empty && matare != String.Empty && typeOfFuel != String.Empty && specificQOne != String.Empty && specificQTwo != String.Empty)
             {
+                if (ActivClasses.orderDictionary.ContainsKey(id))
+                    return false;
+
                 return true;
             }
    

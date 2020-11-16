@@ -145,16 +145,16 @@ namespace GUI.Admin.Workshop
 
             ILogic adminService = new AdminService();
             List<Orders> newOrder = new List<Orders>();
-
+            string id = orderID.Text;
             orders.Status = true;
 
             if (adminService.ValidOrder(orderDesc.Text, valueOfVehicle, valueOfMechanic,
-                                        ModelName.Text, RegNum.Text, matare.Text, dateOfReg.Text, orders.Fuel, specificQ.Text, specificQ2.Text))
+                                        ModelName.Text, RegNum.Text, matare.Text, dateOfReg.Text, orders.Fuel, specificQ.Text, specificQ2.Text, id))
             {
                 newOrder.Add(new Orders( orderDesc.Text, orders.Brakes, orders.BrokeWindow, orders.Engine, orders.Kaross, orders.Tire, valueOfVehicle, valueOfMechanic,
                                         ModelName.Text, RegNum.Text, matare.Text, dateOfReg.Text, orders.Fuel, specificQ.Text, specificQ2.Text, orders.Status));
 
-                string id = orderID.Text;
+               
                 adminService.NewOrder(id, newOrder);
                 adminService.GiveMechanicOrder(valueOfMechanic, newOrder);
                 MessageBox.Show("Ett nytt ärende är nu tillagt!", "", MessageBoxButton.OK);

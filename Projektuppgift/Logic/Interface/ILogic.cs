@@ -29,7 +29,7 @@ namespace Logic.Interface
 
         //Order Service ------
         bool ValidOrder(string orderDescription, string vehicle, string mechanic,
-                               string modellName, string regNumber, string matare, string regDate, string typeOfFuel, string specificQOne, string specificQTwo);
+                               string modellName, string regNumber, string matare, string regDate, string typeOfFuel, string specificQOne, string specificQTwo, string id);
         public List<string> GetVehicles();
         List<string> GetMechanicForTheJob(string value);
 

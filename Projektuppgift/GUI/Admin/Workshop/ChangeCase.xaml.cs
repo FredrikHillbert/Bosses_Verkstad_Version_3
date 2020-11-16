@@ -96,6 +96,7 @@ namespace GUI.Admin.Workshop
                     cboType.SelectedItem = item.TypeOfVehicle;
                     statusYes.IsChecked = item.Status;
                     cbxMechanic.SelectedItem = item.Mechanic;
+                    valueOfMechanic = item.Mechanic;
                     if (item.Status == false)
                     {
                         statusNo.IsChecked = true;
@@ -172,6 +173,7 @@ namespace GUI.Admin.Workshop
                 adminService.DeleteOrder(OrderIdSearch.Text);
 
                 adminService.DeleteMechanicOrder(id);
+
 
                 newOrder.Add(new Orders(orderDesc.Text, order.Brakes, order.BrokeWindow, order.Engine, order.Kaross, order.Tire, valueOfVehicle, valueOfMechanic,
                                         ModelName.Text, RegNum.Text, matare.Text, dateOfReg.Text, order.Fuel, specificQ.Text, specificQ2.Text, order.Status));

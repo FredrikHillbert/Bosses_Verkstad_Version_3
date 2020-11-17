@@ -146,13 +146,14 @@ namespace GUI.Admin.Workshop
             ILogic adminService = new AdminService();
             List<Orders> newOrder = new List<Orders>();
             string id = orderID.Text;
-            orders.Status = true;
+            orders.StatusActive = true;
+            orders.StatusInactive = false;
 
             if (adminService.ValidOrder(orderDesc.Text, valueOfVehicle, valueOfMechanic,
                                         ModelName.Text, RegNum.Text, matare.Text, dateOfReg.Text, orders.Fuel, specificQ.Text, specificQ2.Text, id))
             {
                 newOrder.Add(new Orders( orderDesc.Text, orders.Brakes, orders.BrokeWindow, orders.Engine, orders.Kaross, orders.Tire, valueOfVehicle, valueOfMechanic,
-                                        ModelName.Text, RegNum.Text, matare.Text, dateOfReg.Text, orders.Fuel, specificQ.Text, specificQ2.Text, orders.Status));
+                                        ModelName.Text, RegNum.Text, matare.Text, dateOfReg.Text, orders.Fuel, specificQ.Text, specificQ2.Text, orders.StatusActive, orders.StatusInactive));
 
                
                 adminService.NewOrder(id, newOrder);

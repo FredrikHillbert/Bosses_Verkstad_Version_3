@@ -559,7 +559,7 @@
                         FontSize="18"
                         Content="Ja"
                         Foreground="White"
-                              x:Name="statusYes"
+                              x:Name="statusYes" Checked="statusYes_Checked"
                     />
                 </StackPanel>
 
@@ -570,7 +570,7 @@
                         FontSize="18"
                         Content="Nej"
                         Foreground="White"
-                        x:Name="statusNo"
+                        x:Name="statusNo" Checked="statusNo_Checked"
                     />
                 </StackPanel>
 

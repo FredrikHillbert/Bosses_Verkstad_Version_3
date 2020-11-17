@@ -32,6 +32,7 @@ namespace GUI.Admin.Workshop
         string valueOfVehicle;
         string valueOfMechanic;
         ILogic adminService = new AdminService();
+        string notCorrectid;
         public ChangeCase()
         {
             InitializeComponent();
@@ -94,10 +95,10 @@ namespace GUI.Admin.Workshop
                     Bromsar.IsChecked = item.Brakes;
                     Kaross.IsChecked = item.Kaross;
                     cboType.SelectedItem = item.TypeOfVehicle;
-                    statusYes.IsChecked = item.Status;
+                    statusYes.IsChecked = item.StatusActive;
                     cbxMechanic.SelectedItem = item.Mechanic;
                     valueOfMechanic = item.Mechanic;
-                    if (item.Status == false)
+                    if (item.StatusInactive == true)
                     {
                         statusNo.IsChecked = true;
                     }
@@ -165,34 +166,46 @@ namespace GUI.Admin.Workshop
             ILogic adminService = new AdminService();
             List<Orders> newOrder = new List<Orders>();
 
-
-
-            if (adminService.ActivOrder(OrderIdSearch.Text))
+            if (OrderIdSearch.Text == OrderIdSearch.Text)
             {
-                string id = orderID.Text;
-                adminService.DeleteOrder(OrderIdSearch.Text);
-
-                adminService.DeleteMechanicOrder(id);
-
-
-                newOrder.Add(new Orders(orderDesc.Text, order.Brakes, order.BrokeWindow, order.Engine, order.Kaross, order.Tire, valueOfVehicle, valueOfMechanic,
-                                        ModelName.Text, RegNum.Text, matare.Text, dateOfReg.Text, order.Fuel, specificQ.Text, specificQ2.Text, order.Status));
-
-
-                adminService.NewOrder(id, newOrder);
-                adminService.GiveMechanicOrder(valueOfMechanic, newOrder);
-                MessageBox.Show("Ärendet är ändrat!", "", MessageBoxButton.OK);
-                ChangeCase changeCase = new ChangeCase();
-                this.NavigationService.Navigate(changeCase);
-
+                notCorrectid = OrderIdSearch.Text;
+                OrderIdSearch.Text = "Error Meddelande.1111111.AzaAza.@@.Error";
             }
-            else
+
+            if (adminService.ValidOrder(orderDesc.Text, valueOfVehicle, valueOfMechanic,
+                                        ModelName.Text, RegNum.Text, matare.Text, dateOfReg.Text, order.Fuel, specificQ.Text, specificQ2.Text, OrderIdSearch.Text))
             {
-                MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                if (OrderIdSearch.Text == "Error Meddelande.1111111.AzaAza.@@.Error")
+                {
+                    OrderIdSearch.Text = notCorrectid;
+                }
+
+                if (adminService.ActivOrder(OrderIdSearch.Text))
+                {
+                    string id = orderID.Text;
+                    adminService.DeleteOrder(OrderIdSearch.Text);
+
+                    adminService.DeleteMechanicOrder(id);
+
+
+                    newOrder.Add(new Orders(orderDesc.Text, (bool)Bromsar.IsChecked, (bool)Vindrutor.IsChecked, (bool)Motor.IsChecked, (bool)Kaross.IsChecked, (bool)Däck.IsChecked, valueOfVehicle, valueOfMechanic,
+                                            ModelName.Text, RegNum.Text, matare.Text, dateOfReg.Text, order.Fuel, specificQ.Text, specificQ2.Text, (bool)statusYes.IsChecked, (bool)statusNo.IsChecked));
+
+
+                    adminService.NewOrder(id, newOrder);
+                    adminService.GiveMechanicOrder(valueOfMechanic, newOrder);
+                    MessageBox.Show("Ärendet är ändrat!", "", MessageBoxButton.OK);
+                    ChangeCase changeCase = new ChangeCase();
+                    this.NavigationService.Navigate(changeCase);
+
+                }
+                else
+                {
+                    MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
+
         }
-
-
 
 
         private void Bromsar_Checked(object sender, RoutedEventArgs e)
@@ -255,10 +268,9 @@ namespace GUI.Admin.Workshop
         private void cboType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            string whatTypeOfVehicle = order.TypeOfVehicle;
+            string whatTypeOfVehicle = cboType.SelectedItem.ToString();
 
-
-
+            valueOfVehicle = whatTypeOfVehicle;
         }
 
         private void ComboBox_Loaded(object sender, RoutedEventArgs e)
@@ -297,10 +309,23 @@ namespace GUI.Admin.Workshop
      
         }
 
-        //private void cbxMechanic_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    string valueOfMechanicSelected = cbxMechanic.SelectedItem.ToString();
-        //    valueOfMechanic = valueOfMechanicSelected;
-        //}
+        private void cbxMechanic_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string valueOfMechanicSelected = cbxMechanic.SelectedItem.ToString();
+            valueOfMechanic = valueOfMechanicSelected;
+        }
+
+        private void statusYes_Checked(object sender, RoutedEventArgs e)
+        {
+            order.StatusActive = true;
+
+
+        }
+
+        private void statusNo_Checked(object sender, RoutedEventArgs e)
+        {
+            order.StatusInactive = true;
+
+        }
     }
 }

@@ -38,7 +38,8 @@ namespace Logic.Services
         brakes = false,
         kaross = false,
         window = false,
-        status = false;
+        statusActive = false,
+        statusInActive = false;
 
 
 
@@ -309,7 +310,8 @@ namespace Logic.Services
                 kaross = item.Kaross;
                 window = item.BrokeWindow;
                 typeOfFuel = item.Fuel;
-                status = item.Status;
+                statusActive = item.StatusActive;
+                statusInActive = item.StatusInactive;
                 assignedMechanic = item.Mechanic;
 
             }
@@ -330,7 +332,8 @@ namespace Logic.Services
                 Kaross = kaross,
                 BrokeWindow = window,
                 Fuel = typeOfFuel,
-                Status = status,
+                StatusActive= statusActive,
+                StatusInactive = statusInActive,
                 Mechanic = assignedMechanic
             }) ;
             return changedOrder;

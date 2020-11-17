@@ -18,13 +18,15 @@ namespace Logic.Entities
 
         public string Mechanic { get; set; }
 
-        public bool Status { get; set; }
+        public bool StatusActive { get; set; }
+
+        public bool StatusInactive { get; set; }
 
 
 
 
         public Orders(string orderDescription, bool whatIsBroken1, bool whatIsBroken2, bool whatIsBroken3, bool whatIsBroken4, bool whatIsBroken5, string vehicle, string mechanic,
-                               string modellName, string regNumber, string matare, string regDate, string typeOfFuel, string specificQOne, string specificQTwo, bool status)
+                               string modellName, string regNumber, string matare, string regDate, string typeOfFuel, string specificQOne, string specificQTwo, bool statusActive, bool statusInActive)
         {
             OrderDescription = orderDescription;
             TypeOfVehicle = vehicle;
@@ -39,7 +41,8 @@ namespace Logic.Entities
             RegDate = regDate;
             Fuel = typeOfFuel;
             Mechanic = mechanic;
-            Status = status;
+            StatusActive = statusActive;
+            StatusInactive = statusInActive;
 
             if(TypeOfVehicle == "Bil")
             {

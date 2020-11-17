@@ -43,7 +43,7 @@ namespace Logic.Entities
         public bool Brakes { get; set; }
         public bool Kaross { get; set; }
 
-        public List<Orders> listOfActiveOrdersForMechanic = new List<Orders>();
+        public List<Orders> listOfActiveOrdersForMechanic { get; set; } = new List<Orders>();
 
 
     }

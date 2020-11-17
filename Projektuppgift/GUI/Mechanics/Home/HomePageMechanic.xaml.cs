@@ -32,7 +32,7 @@ namespace GUI.Mechanics.Home
         }
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            CaseOptionMechanic caseOptionMechanic = new CaseOptionMechanic();
+            CaseOptionMechanics caseOptionMechanic = new CaseOptionMechanics();
             this.NavigationService.Navigate(caseOptionMechanic);
         }
         private void Button_Click(object sender, RoutedEventArgs e)

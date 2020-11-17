@@ -95,7 +95,7 @@ namespace GUI.Mechanics.User
         }
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            CaseOptionMechanic caseOptionMechanic = new CaseOptionMechanic();
+           CaseOptionMechanics caseOptionMechanic = new CaseOptionMechanics();
             this.NavigationService.Navigate(caseOptionMechanic);
         }
     }

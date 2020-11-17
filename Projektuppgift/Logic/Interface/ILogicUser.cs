@@ -16,5 +16,6 @@ namespace Logic.Interface
        bool Brakes,
        bool Kaross,
        bool Window);
+        List<string> GetOrder();
     }
 }

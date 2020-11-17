@@ -85,5 +85,31 @@ namespace Logic.Services
             }
             
         }
+        public List<string> GetOrder()
+        {
+            List<Orders> DeklareraLista = new List<Orders>();
+            foreach (var item in ActivClasses.mechanicDictionary[ActivClasses.UserKey])
+            {
+                foreach (var items in item.listOfActiveOrdersForMechanic)
+                {
+                    DeklareraLista.Add(items);
+                }
+              
+            }
+  
+            List<string> Lista = new List<string>();
+
+        
+                foreach (var item in DeklareraLista)
+                {
+                    string add = ($"Status:{item.Status}" +
+                        $"\nName: {item.OrderDescription} {item.TypeOfVehicle}");
+                    Lista.Add(add);
+                }
+            
+
+            return (Lista);
+        }
+
     }
 }

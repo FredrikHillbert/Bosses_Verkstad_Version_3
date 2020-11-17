@@ -28,7 +28,8 @@ namespace GUI.Admin.Employer
     {
 
         Mechanic mechanic = new Mechanic();
-        string whichMechanic;
+       
+        string notCorrectid;
 
         public ChangeEmployer()
         {
@@ -137,21 +138,27 @@ namespace GUI.Admin.Employer
             List<Mechanic> mechanics = new List<Mechanic>();
             ILogic adminService = new AdminService();
 
+            if (employerIdSearch.Text == employerId.Text)
+            {
+                notCorrectid = employerId.Text;
+                employerId.Text = "Error Meddelande.1111111.AzaAza.@@.Error";
+            }
 
             if (adminService.ValidMechanic(firstName.Text, lastname.Text, dateOfBirth.Text, dateOfEmployment.Text, employerId.Text))
             {
+                if (employerId.Text == "Error Meddelande.1111111.AzaAza.@@.Error")
+                {
+                    employerId.Text = notCorrectid;
+                }
 
                 if ((adminService.ActivUser(employerIdSearch.Text)))
                 {
 
                     adminService.DeleteMechanic(employerIdSearch.Text);
-
                     mechanics.Add(new Mechanic(firstName.Text, lastname.Text,
                                    DateTime.Parse(dateOfBirth.Text), DateTime.Parse(dateOfEmployment.Text),
                                     (bool)Motor.IsChecked, (bool)Däck.IsChecked, (bool)vindrutor.IsChecked,
                                     (bool)Bromsar.IsChecked, (bool)Kaross.IsChecked,mechanic.ActiveOrders));
-
-
 
                     string id = employerId.Text;
                     adminService.NewMechanic(id, mechanics);

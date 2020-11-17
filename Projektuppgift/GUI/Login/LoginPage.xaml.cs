@@ -97,7 +97,7 @@ namespace GUI.Login
             {
                 MessageBox.Show("Filen kunde inte Sparas korrekt!" +
                    "\n" +
-                   "\n Avsluta och starta om programet!");
+                   "\n ");
             }
             Application.Current.Shutdown();
         }

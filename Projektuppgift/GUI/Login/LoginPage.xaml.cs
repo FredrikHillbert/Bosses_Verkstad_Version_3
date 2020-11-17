@@ -8,6 +8,7 @@ using Logic.MyExceptions;
 using Logic.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -80,18 +81,23 @@ namespace GUI.Login
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            
+
 
             try
             {
                 JsonSetFile jsonSetFile = new JsonSetFile();
                 jsonSetFile.SetJson();
             }
-            catch (ErrorException)
+            catch (DirectoryNotFoundException)
+            {
+                throw new ErrorException();
+                
+            }
+            catch(Exception)
             {
                 MessageBox.Show("Filen kunde inte Sparas korrekt!" +
-                    "\n" +
-                    "\n Avsluta och starta om programet!");
+                   "\n" +
+                   "\n Avsluta och starta om programet!");
             }
             Application.Current.Shutdown();
         }

@@ -31,15 +31,14 @@ namespace GUI
             {
                 jsonGetFile.GetJson();
             }
-            catch (ErrorException)
+            catch (Exception )
             {
-                
                 MessageBox.Show("Filen kunde inte läsasas korrekt!" +
                     "\n" +
                     "\n Avsluta och starta om programet!");
             }
-            
-  
+
+
         }
     }
 }

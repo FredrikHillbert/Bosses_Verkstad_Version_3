@@ -18,6 +18,7 @@ namespace Logic.DAL
             ActivClasses.loginListAdmin = GetList(pathAdmin, ActivClasses.loginListAdmin);
             ActivClasses.loginListUser = GetList(pathUser, ActivClasses.loginListUser);
             ActivClasses.ListOfVehicles = GetList(pathVehicles, ActivClasses.ListOfVehicles);
+            ActivClasses.AllFinishedOrder = GetList(finishedOrder, ActivClasses.AllFinishedOrder);
             ActivClasses.mechanicDictionary = GetDictionary(pathMechanic, ActivClasses.mechanicDictionary);
             ActivClasses.orderDictionary = GetDictionary(pathOrder, ActivClasses.orderDictionary);
             

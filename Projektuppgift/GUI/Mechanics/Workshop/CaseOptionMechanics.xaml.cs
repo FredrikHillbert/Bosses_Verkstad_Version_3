@@ -21,6 +21,7 @@ namespace GUI.Mechanics.Workshop
     /// </summary>
     public partial class CaseOptionMechanics : Page
     {
+      
         public CaseOptionMechanics()
         {
             InitializeComponent();

@@ -293,6 +293,55 @@
                              FontSize="20" 
                             Margin="20,0,0,0" Click="Button_Click_8"/>
                 </StackPanel>
+                <StackPanel Margin="550,500,0,0" Orientation="Horizontal" >
+                    <Label  FontFamily="Helvetica"
+                             FontWeight="Light"
+                             Content="Pågående Ärenden"
+                             FontSize="15"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent" 
+                             BorderThickness="0"
+                             Width="150"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="25" 
+                             />
+                </StackPanel>
+
+                <ComboBox Width="30" Height="15"
+                      
+                            x:Name="Activ"
+                          Text="Aktiva anstälda"
+                           FontSize="15" 
+                            Margin="680,505,0,0" Foreground="#FF4B4747" 
+                          >
+                </ComboBox>
+                <StackPanel Margin="750,500,0,0" Orientation="Horizontal" >
+                    <Label  FontFamily="Helvetica"
+                             FontWeight="Light"
+                             Content="Avslutade Ärenden"
+                             FontSize="15"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent" 
+                             BorderThickness="0"
+                             Width="150"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="25" 
+                             />
+                </StackPanel>
+
+                <ComboBox Width="30" Height="15"
+                   
+                          Text="Aktiva anstälda"
+                           FontSize="15" 
+                            Margin="880,505,0,0" Foreground="#FF4B4747" 
+                           x:Name="All" 
+                          >
+                </ComboBox>
+
 
 
 

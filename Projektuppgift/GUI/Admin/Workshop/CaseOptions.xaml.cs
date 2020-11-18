@@ -65,5 +65,12 @@ namespace GUI.Admin.Workshop
             CaseOption userOptions = new CaseOption();
             this.NavigationService.Navigate(userOptions);
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            AllCase allCase = new AllCase();
+            this.NavigationService.Navigate(allCase);
+
+        }
     }
 }

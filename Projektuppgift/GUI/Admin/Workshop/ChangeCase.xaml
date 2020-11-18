@@ -63,16 +63,24 @@
                     <Button Style="{StaticResource buttomTheme}" Width="100" Height="30"
                          Content="Ta bort" 
                              FontSize="20" 
-                            Margin="250,50,0,0" Click="Button_Bort"  />
+                            Margin="150,100,0,0" Click="Button_Bort"  />
+
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" >
+                    <Button Style="{StaticResource buttomTheme}" Width="150" Height="30"
+                         Content="Avsluta Order" 
+                             FontSize="20" 
+                            Margin="270,100,0,0" Click="Button_Click_1"  />
 
 
                 </StackPanel>
 
-                <StackPanel Margin="130,100,0,0">
+                <StackPanel Margin="300,50,0,0">
                     <Label Foreground="white">Se aktiva ärenden:</Label>
                     
                 </StackPanel>
-                <StackPanel Margin="250,100,0,0">
+                <StackPanel Margin="410,50,0,0">
 
                     <ComboBox Width="100" Loaded="ComboBox_Loaded">
                         
@@ -237,7 +245,8 @@
                         Content="Däck" 
                         Foreground="White"
                         Opacity="1"
-                        Height="20" Checked="Däck_Checked" 
+                        Height="20" 
+                              Checked="Däck_Checked"
                         />
                     <CheckBox Margin="20,0,0,0"
                                 x:Name="Vindrutor"
@@ -323,7 +332,7 @@
                           />
                     <ComboBox x:Name="cbxMechanic" Width="150" Height="25"
                           Loaded="cbxMechanic_Loaded"
-                              
+                          SelectionChanged="cbxMechanic_SelectionChanged"
                              FontSize="15" 
                             Margin="-360,40,0,0" Foreground="#FF4B4747"  
                           />
@@ -336,8 +345,11 @@
                         Height="2"
                         Background="White"
                         Opacity="0.5"/>
-                <StackPanel>
-
+               
+                
+                <StackPanel Margin="50,440,0,0" >
+                    <Label Foreground="White">Tilldelad mekaniker är:</Label>
+                    <Label x:Name="currentMehanic"> </Label>
                 </StackPanel>
 
 
@@ -546,33 +558,7 @@
                              FontSize="20"  Click="Button_Click_ChangeCase" />
                 </StackPanel>
 
-                <StackPanel Margin="650,420,0,0">
-                    <Label Foreground="White">Är det ett pågående ärende?</Label>
-                    
-                </StackPanel>
-                
-                
-                <StackPanel>
-                    <CheckBox Margin="650,450,0,0"
-                       FontFamily="Helvetica"
-                       FontWeight="Light"
-                        FontSize="18"
-                        Content="Ja"
-                        Foreground="White"
-                              x:Name="statusYes" Checked="statusYes_Checked"
-                    />
-                </StackPanel>
-
-                <StackPanel>
-                    <CheckBox Margin="750,450,0,0"
-                       FontFamily="Helvetica"
-                       FontWeight="Light"
-                        FontSize="18"
-                        Content="Nej"
-                        Foreground="White"
-                        x:Name="statusNo" Checked="statusNo_Checked"
-                    />
-                </StackPanel>
+               
 
 
 
@@ -602,6 +588,10 @@
                          Content="Dela/Ändra ärende" 
                              FontSize="15"
                              Margin="0,10,0,0"  />
+                    <Button Style="{StaticResource buttomTheme1}" Width="150" Height="30"
+                         Content="Avslutade" 
+                             FontSize="15"
+                             Margin="0,10,0,0" Click="Button_Click"   />
 
                 </StackPanel>
 

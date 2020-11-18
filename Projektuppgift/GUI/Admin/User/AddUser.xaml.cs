@@ -25,7 +25,8 @@ namespace GUI.Admin.User
     /// </summary>
     public partial class AddUser : Page
     {
-        
+        IValid valid = new ValidService();
+        ILogic adminService = new AdminService();
         public AddUser()
         {
             InitializeComponent();
@@ -33,10 +34,9 @@ namespace GUI.Admin.User
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-            ILogic adminService = new AdminService();
+         
             
-            if (adminService.ValidLogin(NewUser.Text.ToLower(), CreatPassword.Password, MatchPassword.Password, userId.Text)&& (adminService.ActivUser(userId.Text)))
+            if (valid.ValidLogin(NewUser.Text.ToLower(), CreatPassword.Password, MatchPassword.Password, userId.Text)&& (valid.ActivUser(userId.Text)))
             {
                 //Kolla om användare finns Lägg till i samma dic som  användare
                 adminService.NewUser(NewUser.Text.ToLower(), CreatPassword.Password, userId.Text);

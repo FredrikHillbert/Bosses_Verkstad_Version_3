@@ -21,13 +21,13 @@ using Logic.Services;
 
 namespace GUI.Admin.Employer
 {
-    /// <summary>
-    /// Interaction logic for AddEmployer.xaml
-    /// </summary>
+    
+   
     public partial class AddEmployer : Page
     {
         Mechanic mechanic = new Mechanic();
-        
+        IValid valid = new ValidService();
+        ILogic adminService = new AdminService();
 
         public AddEmployer()
         {
@@ -79,23 +79,24 @@ namespace GUI.Admin.Employer
         {
             List<Mechanic> mechanic = new List<Mechanic>();
             var activeOrder = new Mechanic();
-            int activeorderForMechanic = activeOrder.ActiveOrders;
-            activeorderForMechanic = 0;
-            ILogic adminService = new AdminService();
+          
+       
+           
             string input = string.Empty;
             
           
-                if (adminService.ValidMechanic(firstName.Text, lastname.Text, dateOfBirth.Text, dateOfEmployment.Text, employerId.Text))
+                if (valid.ValidMechanic(firstName.Text, lastname.Text, dateOfBirth.Text, dateOfEmployment.Text, employerId.Text))
 
 
 
                 {
-                    mechanic.Add(new Mechanic(firstName.Text, lastname.Text,
+                string id = employerId.Text;
+                mechanic.Add(new Mechanic(firstName.Text, lastname.Text,
                                                        DateTime.Parse(dateOfBirth.Text), DateTime.Parse(dateOfEmployment.Text),
                                                          (bool)Motor.IsChecked, (bool)Tire.IsChecked,
-                                                         (bool)vindrutor.IsChecked, (bool)Bromsar.IsChecked, (bool)Kaross.IsChecked, activeorderForMechanic));
+                                                         (bool)vindrutor.IsChecked, (bool)Bromsar.IsChecked, (bool)Kaross.IsChecked,id));
 
-                    string id = employerId.Text;
+                   
                     adminService.NewMechanic(id, mechanic);
                     MessageBox.Show("Mekaniker är nu tillagt!", "", MessageBoxButton.OK);
                 }

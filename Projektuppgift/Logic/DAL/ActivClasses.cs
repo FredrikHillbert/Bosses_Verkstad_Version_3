@@ -19,15 +19,10 @@ namespace Logic.DAL
         static public Dictionary<string, List<Orders>> orderDictionary { get; set; } = new Dictionary<string, List<Orders>>();
         // Lista av alla fordon som verkstaden kan hantera. 
         static public List<string> ListOfVehicles { get; set; } = new List<string>();
-
-        static public Dictionary<string, List<Orders>> mechanicOrder { get; set; } = new Dictionary<string, List<Orders>>();
-        static public Dictionary<string, List<Orders>> mechanicOrder2 { get; set; } = new Dictionary<string, List<Orders>>();
-
         // Lista med alla färdigmarkerade ärenden
-        static public List<string> FinishedOrder { get; set; } = new List<string>();
+        static public List<Orders> AllFinishedOrder { get; set; } = new List<Orders>();
 
-        // Lista med alla pågåendemarkerade ärenden
-        static public List<string> ActiveOrder { get; set; } = new List<string>();
+     
 
 
     }

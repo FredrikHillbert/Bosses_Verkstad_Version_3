@@ -18,6 +18,7 @@ using Logic.Interface;
 using Logic.Services;
 using Logic.Entities;
 using GUI.Tools;
+using Logic.DAL;
 
 namespace GUI.Admin.Workshop
 {
@@ -32,6 +33,7 @@ namespace GUI.Admin.Workshop
         string valueOfVehicle;
         string valueOfMechanic;
         ILogic adminService = new AdminService();
+        IValid valid = new ValidService();
         string notCorrectid;
         public ChangeCase()
         {
@@ -74,9 +76,9 @@ namespace GUI.Admin.Workshop
 
         private void Button_ClickSearchOrder(object sender, RoutedEventArgs e)
         {
-            ILogic adminService = new AdminService();
+            
 
-            if ((adminService.ActivOrder(OrderIdSearch.Text))) 
+            if ((valid.ActivOrder(OrderIdSearch.Text))) 
             {
                 List<Orders> listOfSpecificOrder = adminService.GetOrder(OrderIdSearch.Text);
                 foreach (var item in listOfSpecificOrder)
@@ -95,13 +97,10 @@ namespace GUI.Admin.Workshop
                     Bromsar.IsChecked = item.Brakes;
                     Kaross.IsChecked = item.Kaross;
                     cboType.SelectedItem = item.TypeOfVehicle;
-                    statusYes.IsChecked = item.StatusActive;
+                    currentMehanic.Content = item.Mechanic;
                     cbxMechanic.SelectedItem = item.Mechanic;
-                    valueOfMechanic = item.Mechanic;
-                    if (item.StatusInactive == true)
-                    {
-                        statusNo.IsChecked = true;
-                    }
+                   
+                  
 
                     if (item.Fuel == "El")
                     {
@@ -120,6 +119,8 @@ namespace GUI.Admin.Workshop
                         diesel.IsChecked = true;
                     }
 
+                    
+
                 }
             }
             else
@@ -135,17 +136,17 @@ namespace GUI.Admin.Workshop
 
         private void Button_Bort(object sender, RoutedEventArgs e)
         {
-            ILogic adminService = new AdminService();
+            
 
-            if ((adminService.ActivOrder(OrderIdSearch.Text)))
+            if ((valid.ActivOrder(OrderIdSearch.Text)))
             {
 
                 if (MessageBox.Show("Är du säker på att du vill ta bort ärendet?", "", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
                    
                     adminService.DeleteOrder(OrderIdSearch.Text);
-
-                    adminService.DeleteMechanicOrder(valueOfMechanic);
+                    
+                    
                 }
 
 
@@ -163,37 +164,47 @@ namespace GUI.Admin.Workshop
         private void Button_Click_ChangeCase(object sender, RoutedEventArgs e)
         {
 
-            ILogic adminService = new AdminService();
-            List<Orders> newOrder = new List<Orders>();
 
-            if (OrderIdSearch.Text == OrderIdSearch.Text)
+            List<Orders> newOrder = new List<Orders>();
+            
+
+            if (OrderIdSearch.Text == orderID.Text)
             {
-                notCorrectid = OrderIdSearch.Text;
-                OrderIdSearch.Text = "Error Meddelande.1111111.AzaAza.@@.Error";
+                notCorrectid = orderID.Text;
+                orderID.Text = "Error Meddelande.1111111.AzaAza.@@.Error";
             }
 
-            if (adminService.ValidOrder(orderDesc.Text, valueOfVehicle, valueOfMechanic,
-                                        ModelName.Text, RegNum.Text, matare.Text, dateOfReg.Text, order.Fuel, specificQ.Text, specificQ2.Text, OrderIdSearch.Text))
+
+
+            if (valid.ValidOrder(orderDesc.Text, valueOfVehicle, valueOfMechanic, ModelName.Text, RegNum.Text, matare.Text, dateOfReg.Text, order.Fuel, specificQ.Text, specificQ2.Text, orderID.Text))
             {
-                if (OrderIdSearch.Text == "Error Meddelande.1111111.AzaAza.@@.Error")
+                if (orderID.Text == "Error Meddelande.1111111.AzaAza.@@.Error")
                 {
-                    OrderIdSearch.Text = notCorrectid;
+                    orderID.Text = notCorrectid;
                 }
-
-                if (adminService.ActivOrder(OrderIdSearch.Text))
+                if (valid.ActivOrder(orderID.Text))
                 {
-                    string id = orderID.Text;
-                    adminService.DeleteOrder(OrderIdSearch.Text);
+                    string mechanicID = adminService.MehanicID();
 
-                    adminService.DeleteMechanicOrder(id);
+                    if (mechanicID == String.Empty)
+                    {
+                        
+                        foreach ( var item in ActivClasses.orderDictionary[orderID.Text])
+                        {
+                            mechanicID = item.MechanicID;
+
+                        }
+                    }
+                    adminService.DeleteOrder(orderID.Text);
+
+                    
+
+                    newOrder.Add(new Orders(orderDesc.Text, order.Brakes, order.BrokeWindow, order.Engine, order.Kaross, order.Tire, valueOfVehicle, valueOfMechanic,
+                                            ModelName.Text, RegNum.Text, matare.Text, dateOfReg.Text, order.Fuel, specificQ.Text, specificQ2.Text, orderID.Text, mechanicID));
 
 
-                    newOrder.Add(new Orders(orderDesc.Text, (bool)Bromsar.IsChecked, (bool)Vindrutor.IsChecked, (bool)Motor.IsChecked, (bool)Kaross.IsChecked, (bool)Däck.IsChecked, valueOfVehicle, valueOfMechanic,
-                                            ModelName.Text, RegNum.Text, matare.Text, dateOfReg.Text, order.Fuel, specificQ.Text, specificQ2.Text, (bool)statusYes.IsChecked, (bool)statusNo.IsChecked));
-
-
-                    adminService.NewOrder(id, newOrder);
-                    adminService.GiveMechanicOrder(valueOfMechanic, newOrder);
+                    adminService.NewOrder(orderID.Text, newOrder);
+                    adminService.GiveMechanicOrder(mechanicID, newOrder);
                     MessageBox.Show("Ärendet är ändrat!", "", MessageBoxButton.OK);
                     ChangeCase changeCase = new ChangeCase();
                     this.NavigationService.Navigate(changeCase);
@@ -204,8 +215,14 @@ namespace GUI.Admin.Workshop
                     MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
+            else
+            {
+                MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
 
         }
+
 
 
         private void Bromsar_Checked(object sender, RoutedEventArgs e)
@@ -268,9 +285,56 @@ namespace GUI.Admin.Workshop
         private void cboType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            string whatTypeOfVehicle = cboType.SelectedItem.ToString();
+            string valueOfVehicleSelected = cboType.SelectedItem.ToString();
+            valueOfVehicle = valueOfVehicleSelected;
+            //if (valueOfVehicleSelected == "Bil")
+            //{
+            //    specificQ.Visibility = Visibility.Hidden; //Hides Biltyp's textbox for this vehicle.
+            //    specificQ2.Visibility = Visibility.Hidden; //Hides Dragkrok's textbox for all vehicles (It is not repeated)
+            //    cartypelabel.Visibility = Visibility.Visible; //Reveals from cartypelabel to cartowbarcombo. 1/3
+            //    cartypecombo.Visibility = Visibility.Visible; //It is repeated in other selected vehicles- 2/3
+            //    cartowbarlabel.Visibility = Visibility.Visible; //in order to hide them when deselecting from Bil. 3/3
+            //    cartowbarcombo.Visibility = Visibility.Visible;
+            //    specificQ.Text = cartypecombo.SelectedValue.ToString();
+            //    specificQ2.Text = cartowbarcombo.SelectedValue.ToString();
 
-            valueOfVehicle = whatTypeOfVehicle;
+            //}
+            //else if (valueOfVehicleSelected == "Motorcykel")
+            //{
+            //    specificQ.Visibility = Visibility.Hidden;
+            //    cartypelabel.Visibility = Visibility.Hidden;
+            //    cartypecombo.Visibility = Visibility.Hidden;
+            //    cartowbarlabel.Visibility = Visibility.Hidden;
+            //    cartowbarcombo.Visibility = Visibility.Hidden;
+            //    specificQ.Text = "--------------";
+            //    specificQ2.Text = "-------------";
+
+            //}
+            //else if (valueOfVehicleSelected == "Lastbil")
+            //{
+
+            //    specificQ.Visibility = Visibility.Visible;
+            //    cartypelabel.Visibility = Visibility.Hidden;
+            //    cartypecombo.Visibility = Visibility.Hidden;
+            //    cartowbarlabel.Visibility = Visibility.Hidden;
+            //    cartowbarcombo.Visibility = Visibility.Hidden;
+            //    specificQ.Text = "Vad är maxlast på lastbilen?";
+            //    specificQ2.Text = "-------------";
+
+            //}
+            //else if (valueOfVehicleSelected == "Buss")
+            //{
+
+            //    specificQ.Visibility = Visibility.Visible;
+            //    cartypelabel.Visibility = Visibility.Hidden;
+            //    cartypecombo.Visibility = Visibility.Hidden;
+            //    cartowbarlabel.Visibility = Visibility.Hidden;
+            //    cartowbarcombo.Visibility = Visibility.Hidden;
+            //    specificQ.Text = "Hur många passagerare tar bussen?";
+            //    specificQ2.Text = "-------------";
+
+            //}
+
         }
 
         private void ComboBox_Loaded(object sender, RoutedEventArgs e)
@@ -309,23 +373,37 @@ namespace GUI.Admin.Workshop
      
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AllCase allCase = new AllCase();
+            this.NavigationService.Navigate(allCase);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (valid.ActivOrder(OrderIdSearch.Text))
+            {
+
+                List<Orders> finished = adminService.finishedOrder(OrderIdSearch.Text);
+
+                adminService.MoveFinishedOrder(finished, OrderIdSearch.Text);
+
+                MessageBox.Show("Färdigt", "", MessageBoxButton.OK);
+            }
+            else { MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning); }
+            ChangeCase changeCase = new ChangeCase();
+            this.NavigationService.Navigate(changeCase);
+        }
+
+
+
+
+
         private void cbxMechanic_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string valueOfMechanicSelected = cbxMechanic.SelectedItem.ToString();
             valueOfMechanic = valueOfMechanicSelected;
-        }
-
-        private void statusYes_Checked(object sender, RoutedEventArgs e)
-        {
-            order.StatusActive = true;
-
-
-        }
-
-        private void statusNo_Checked(object sender, RoutedEventArgs e)
-        {
-            order.StatusInactive = true;
-
+            cbxMechanic.Items.Refresh();
         }
     }
 }

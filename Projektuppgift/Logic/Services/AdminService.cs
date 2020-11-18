@@ -27,11 +27,12 @@ namespace Logic.Services
         specificQ1 = String.Empty,
         specificQ2 = String.Empty,
         typeOfFuel = String.Empty,
-        assignedMechanic = String.Empty;
+        assignedMechanic = String.Empty,
+        mechanicID = String.Empty;
+
 
         DateTime birthDay,
                  dateOfEmp;
-
         bool
         engine = false,
         tire = false,
@@ -40,19 +41,6 @@ namespace Logic.Services
         window = false,
         statusActive = false,
         statusInActive = false;
-
-
-
-        public bool ActivUser(string id)
-        {
-            if (ActivClasses.mechanicDictionary.ContainsKey(id)) {return true;}
-            else{ return false;}
-        }
-        public bool ActivOrder(string id)
-        {
-            if (ActivClasses.orderDictionary.ContainsKey(id)) { return true; }
-            else { return false; }
-        }
 
         public void DeleteMechanic(string id)
         {
@@ -106,7 +94,6 @@ namespace Logic.Services
                     DeklareraLista.Add(add);
                 }
             }
-
             return (DeklareraLista);
         }
         public List<string> GetOnlyKey()
@@ -123,7 +110,6 @@ namespace Logic.Services
                     DeklareraLista.Add(savekey);
                 }
             }
-
             return (DeklareraLista);
         }
         public List<string> GetActivUser()
@@ -145,19 +131,9 @@ namespace Logic.Services
 
             foreach (var item in ActivClasses.ListOfVehicles)
             {
-
                 showVehicles.Add(item);
-
             }
             return showVehicles;
-        }
-        public bool Login(string username, string password)
-        {
-            return ActivClasses.loginListAdmin.Exists(user => user.Username.Equals(username) && user.Password.Equals(password));
-        }
-        public bool LoginUser(string username, string password)
-        {
-            return ActivClasses.loginListUser.Exists(user => user.Username.Equals(username) && user.Password.Equals(password));
         }
         public void NewMechanic(string id, List<Mechanic> listOfMechanic)
         {
@@ -166,16 +142,13 @@ namespace Logic.Services
 
         public void NewUser(string username, string password, string id)
         {
-
-            if (ActivClasses.mechanicDictionary.ContainsKey(id))//----------------------------------------------------------------------Ändra från lista till mechanic!
+            if (ActivClasses.mechanicDictionary.ContainsKey(id))//-------------------------Kollar efter användare finns
             {
-
-
                 foreach (var item in ActivClasses.mechanicDictionary[id])
                 {
                     item.Username = username;
                     item.Password = password;
-                    item.UserID = id;
+                   
                 }
             }
             ActivClasses.loginListUser.Add(new User { Username = username, Password = password, UserID = id });
@@ -188,58 +161,19 @@ namespace Logic.Services
                 {
                     item.Username = string.Empty;
                     item.Password = string.Empty;
-                    item.UserID = string.Empty;
+                    
                 }
                 int index = ActivClasses.loginListUser.FindIndex(x => x.UserID == id);
                 ActivClasses.loginListUser.RemoveAt(index);    
             }
         }
-        public bool ValidLogin(string username, string password, string password2, string id)
+
+        public string MehanicID()
         {
-            if (Regex.IsMatch(username, @"^([\w-.]+)@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.)|(([\w-]+.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(]?)$") && password == password2 && id != null)
-            {
-                if (ActivClasses.loginListUser.Exists(x => x.Username.Equals(username))) { return false; }
-                else { return true; }     
-            }
-            else { return false;}
+            return mechanicID;
+            
         }
 
-        public bool ValidMechanic(string firstName, string lastName, string dateOfBirth, string dateOfEmp, string id)
-        {
-            if (firstName != String.Empty && lastName != String.Empty && dateOfBirth != String.Empty && dateOfEmp != String.Empty && id != String.Empty)
-            {
-                if (Regex.IsMatch(dateOfBirth, @"^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$") && Regex.IsMatch(dateOfEmp, @"^^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$"))
-                {
-                    string input = dateOfEmp;
-                    DateTime dateTimeOfbirth = DateTime.Parse(input);
-                    input = dateOfBirth;
-                    DateTime dateTimeOfEmployment = DateTime.Parse(input);
-                    if (ActivClasses.mechanicDictionary.ContainsKey(id))
-                        return false;
-
-                    return true;
-                }
-               
-                else { return false; }
-            }
-            else { return false; }
-        }
-
-        public bool ValidOrder(string orderDescription, string vehicle, string mechanic,
-                               string modellName, string regNumber, string matare, string regDate, string typeOfFuel, string specificQOne, string specificQTwo, string id)
-        {
-            if (orderDescription != String.Empty && vehicle != String.Empty && mechanic != String.Empty &&
-                modellName != String.Empty && regNumber != String.Empty && matare != String.Empty && typeOfFuel != String.Empty && specificQOne != String.Empty && specificQTwo != String.Empty)
-            {
-                if (ActivClasses.orderDictionary.ContainsKey(id))
-                    return false;
-
-                return true;
-            }
-   
-            else { return false; }
-        }
-        // gör en metod för varje
         public List<string> GetMechanicForTheJob(string value)
         {
             List<string> listaAvKeys = GetOnlyKey();
@@ -249,39 +183,47 @@ namespace Logic.Services
             for (int i = 0; i < listaAvKeys.Count; i++)
             {
                 string key = listaAvKeys[i];
-
                 foreach (var item in ActivClasses.mechanicDictionary[key])
                 {
-
-                    if (value == "Brakes" && item.Brakes == true && item.ActiveOrders <= 2)
+                    if (value == "Brakes" && item.Brakes == true && item.ActivOrdersMechanic.Count <= 1)
+                    {
+                        string Name = $"{item.UserID} {item.UserID} {item.FirstNameOfMechanic} {item.LastNameOfMechanic}";
+                        string id = item.UserID;
+                        mechanicID = id;
+                        newListOfMechanics.Add(Name);
+                        
+                    }
+                    else if (value == "Tires" && item.Tire == true && item.ActivOrdersMechanic.Count <= 1)
                     {
                         string Name = $"{item.UserID} {item.FirstNameOfMechanic} {item.LastNameOfMechanic}";
-
+                        string id = item.UserID;
+                        mechanicID = id;
                         newListOfMechanics.Add(Name);
+                        
                     }
-                    else if (value == "Tires" && item.Tire == true && item.ActiveOrders <= 2)
+                    else if (value == "Engine" && item.Engine == true && item.ActivOrdersMechanic.Count <= 1)
                     {
                         string Name = $"{item.UserID} {item.FirstNameOfMechanic} {item.LastNameOfMechanic}";
-
+                        string id = item.UserID;
+                        mechanicID = id;
                         newListOfMechanics.Add(Name);
+                      
                     }
-                    else if (value == "Engine" && item.Engine == true && item.ActiveOrders <= 2)
+                    else if (value == "Window" && item.Window == true && item.ActivOrdersMechanic.Count <= 1)
                     {
                         string Name = $"{item.UserID} {item.FirstNameOfMechanic} {item.LastNameOfMechanic}";
-
+                        string id = item.UserID;
+                        mechanicID = id;
                         newListOfMechanics.Add(Name);
+                        
                     }
-                    else if (value == "Window" && item.Window == true && item.ActiveOrders <= 2)
-                    {
-                        string Name = $"{item.FirstNameOfMechanic} {item.LastNameOfMechanic}";
-
-                        newListOfMechanics.Add(Name);
-                    }
-                    else if (value == "Kaross" && item.Kaross == true && item.ActiveOrders <= 2)
+                    else if (value == "Kaross" && item.Kaross == true && item.ActivOrdersMechanic.Count <= 1)
                     {
                         string Name = $"{item.UserID} {item.FirstNameOfMechanic} {item.LastNameOfMechanic}";
-
+                        string id = item.UserID;
+                        mechanicID = id;
                         newListOfMechanics.Add(Name);
+                        
                     }
                 }
             }
@@ -310,8 +252,6 @@ namespace Logic.Services
                 kaross = item.Kaross;
                 window = item.BrokeWindow;
                 typeOfFuel = item.Fuel;
-                statusActive = item.StatusActive;
-                statusInActive = item.StatusInactive;
                 assignedMechanic = item.Mechanic;
 
             }
@@ -332,13 +272,10 @@ namespace Logic.Services
                 Kaross = kaross,
                 BrokeWindow = window,
                 Fuel = typeOfFuel,
-                StatusActive= statusActive,
-                StatusInactive = statusInActive,
                 Mechanic = assignedMechanic
             }) ;
             return changedOrder;
         }
-
         public List<string> GetOnlyOrdersKey()
         {
             string savekey = string.Empty;
@@ -350,14 +287,11 @@ namespace Logic.Services
                 savekey = key;
                 foreach (var item in ActivClasses.orderDictionary[key])
                 {
-
                     DeklareraLista.Add(savekey);
                 }
             }
-
             return (DeklareraLista);
         }
-
         public List<string> GetKeyForOrder()
         {
             string savekey = "";
@@ -374,72 +308,113 @@ namespace Logic.Services
                     DeklareraLista.Add(add);
                 }
             }
-
             return (DeklareraLista);
         }
-
-
         public void DeleteOrder(string id)
         {
-            ActivClasses.orderDictionary.Remove(id);
 
+            List<string> listaAvKeys = GetOnlyKey();
+            
+            for (int i = 0; i < listaAvKeys.Count; i++)
+            {
+                int index = -1;
+                string key = listaAvKeys[i];
+                foreach (var item in ActivClasses.mechanicDictionary[key])
+                {
+                    index = item.ActivOrdersMechanic.FindIndex(x => x.ID == id);
+                    
+                    if(index != -1)
+                    {
+                        item.ActivOrdersMechanic.RemoveAt(index);
+                    }
+                }
+                
+            }
+            ActivClasses.orderDictionary.Remove(id);
+        }
+        public void GiveMechanicOrder(string id, List<Orders> newOrder)
+        {
+           
+         
+                foreach (var item in ActivClasses.mechanicDictionary[id])
+                {
+                    
+                   List<Orders> newOrder1 = item.ActivOrdersMechanic;
+                     if (newOrder1.Count==1)
+                         item.ActivOrdersMechanic = newOrder.Concat(newOrder1).ToList();
+                     else
+                         item.ActivOrdersMechanic = newOrder;
+                    
+                }
             
         }
-
-
-
-
-
-        public void GiveMechanicOrder(string name, List<Orders> newOrder)
-        {
-            List<string> listaAvKeys = GetOnlyKey();
-            for (int i = 0; i < listaAvKeys.Count; i++)
+        public List<string> GetfinishedOrder()
+        {  
+            List<string> Lista = new List<string>();
+            foreach (var item in ActivClasses.AllFinishedOrder)
             {
-                string key = listaAvKeys[i];
-                foreach (var item in ActivClasses.mechanicDictionary[key])
-                {
-                    if (name.Contains(item.LastNameOfMechanic))
-                    {
-                        
-                        try
-                        {
-                            ActivClasses.mechanicOrder.Add(key, newOrder);
-                            item.ActiveOrders += 1;
-                        }
-                        catch (Exception)
-                        {
-
-                            ActivClasses.mechanicOrder2.Add(key, newOrder);
-                            item.ActiveOrders += 1;
-                        }
-                    }
-                }
+                string add = ($"ID: {item.ID}" +
+                    $"\n Beskrivning: {item.OrderDescription} {item.TypeOfVehicle}" +
+                    $"\n Fordnon:{item.TypeOfVehicle} " +
+                    $"\n Ansvarig:{item.Mechanic}");
+                Lista.Add(add);
             }
+            return (Lista);
         }
-        public void DeleteMechanicOrder(string name)
+
+
+        public List<Orders> finishedOrder(string id)
         {
-            List<string> listaAvKeys = GetOnlyKey();
-            for (int i = 0; i < listaAvKeys.Count; i++)
+            List<Orders> DeklareraLista = new List<Orders>();
+            string mechanic = null;
+            foreach (var items in ActivClasses.orderDictionary[id])
             {
-                string key = listaAvKeys[i];
-                foreach (var item in ActivClasses.mechanicDictionary[key])
-                {
-                    if (name.Contains(item.LastNameOfMechanic))
-                    {
-                        item.ActiveOrders -= 1;
-                        try
-                        {
-                            ActivClasses.mechanicOrder.Remove(key);
-                        }
-                        catch (Exception)
-                        {
-                            ActivClasses.mechanicOrder2.Remove(key);
-                        }
-                    }
-                }
+
+                string orderDescription = items.OrderDescription;
+                bool whatIsBroken1 = items.Brakes;
+                bool whatIsBroken2 = items.BrokeWindow;
+                bool whatIsBroken3 = items.Engine;
+                bool whatIsBroken4 = items.Kaross;
+                bool whatIsBroken5 = items.Tire;
+                string vehicle = items.TypeOfVehicle;
+                mechanic = items.Mechanic;
+                string modellName = items.ModelName;
+                string regNumber = items.RegNumber;
+                string matare = items.Matare;
+                string regDate = items.RegDate;
+                string typeOfFuel = items.Fuel;
+                string specificQOne = items.SpecificQuestionAboutVehicle1;
+                string specificQTwo = items.SpecificQuestionAboutVehicle2;
+                string mechanicID = items.MechanicID;
+
+                string ide = items.ID;
+
+                DeklareraLista.Add(new Orders(orderDescription, whatIsBroken1, whatIsBroken2, whatIsBroken3, whatIsBroken4, whatIsBroken5, vehicle, mechanic, modellName, regNumber, matare, regDate
+                   , typeOfFuel, specificQOne, specificQTwo, ide, mechanicID));
+
             }
 
+            return DeklareraLista;
+        }
 
+
+        public void MoveFinishedOrder(List<Orders> finished, string id) 
+        {
+            string mechanicID = "";
+
+            foreach (var item in finished)
+            {
+                mechanicID = item.MechanicID;
+            }
+      
+            foreach (var item in ActivClasses.mechanicDictionary[mechanicID])
+             {
+              item.FinishedOrdersMechanic.AddRange(finished);
+              ActivClasses.AllFinishedOrder.AddRange(finished);
+              int index = item.ActivOrdersMechanic.FindIndex(x => x.ID == id);
+              item.ActivOrdersMechanic.RemoveAt(index);
+              }
+             ActivClasses.orderDictionary.Remove(id);
         }
     }
 }

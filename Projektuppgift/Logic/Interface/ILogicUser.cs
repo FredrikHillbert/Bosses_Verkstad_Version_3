@@ -17,5 +17,10 @@ namespace Logic.Interface
        bool Kaross,
        bool Window);
         List<string> GetOrder();
+        List<string> GetOrder(string id);
+       void finishedOrder(string id);
+        bool ActivOrder(string id);
+        List<string> GetfinishedOrder();
+        List<string> GetfinishedOrder(string id);
     }
 }

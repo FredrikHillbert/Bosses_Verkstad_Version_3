@@ -31,6 +31,7 @@ namespace GUI.Admin.Workshop
         string valueOfMechanic;
         List<string> listOfMechanics = new List<string>();
         ILogic adminService = new AdminService();
+        IValid valid = new ValidService();
 
         public AddCase()
         {
@@ -131,7 +132,7 @@ namespace GUI.Admin.Workshop
         private void ComboBoxVehicle_Loaded(object sender, RoutedEventArgs e)
         {
             List<string> listOfVehicles = new List<string>();
-            ILogic adminService = new AdminService();
+            
             listOfVehicles = adminService.GetVehicles();
             var combo = sender as ComboBox;
             combo.ItemsSource = listOfVehicles;
@@ -143,21 +144,20 @@ namespace GUI.Admin.Workshop
         private void ButtonSAVE_Click(object sender, RoutedEventArgs e) 
         {
 
-            ILogic adminService = new AdminService();
+          
             List<Orders> newOrder = new List<Orders>();
-            string id = orderID.Text;
-            orders.StatusActive = true;
-            orders.StatusInactive = false;
 
-            if (adminService.ValidOrder(orderDesc.Text, valueOfVehicle, valueOfMechanic,
-                                        ModelName.Text, RegNum.Text, matare.Text, dateOfReg.Text, orders.Fuel, specificQ.Text, specificQ2.Text, id))
+            string mechanicID = adminService.MehanicID();
+
+            if (valid.ValidOrder(orderDesc.Text, valueOfVehicle, valueOfMechanic,
+                                        ModelName.Text, RegNum.Text, matare.Text, dateOfReg.Text, orders.Fuel, specificQ.Text, specificQ2.Text, orderID.Text))
             {
                 newOrder.Add(new Orders( orderDesc.Text, orders.Brakes, orders.BrokeWindow, orders.Engine, orders.Kaross, orders.Tire, valueOfVehicle, valueOfMechanic,
-                                        ModelName.Text, RegNum.Text, matare.Text, dateOfReg.Text, orders.Fuel, specificQ.Text, specificQ2.Text, orders.StatusActive, orders.StatusInactive));
+                                        ModelName.Text, RegNum.Text, matare.Text, dateOfReg.Text, orders.Fuel, specificQ.Text, specificQ2.Text, orderID.Text, mechanicID));
 
                
-                adminService.NewOrder(id, newOrder);
-                adminService.GiveMechanicOrder(valueOfMechanic, newOrder);
+                adminService.NewOrder(orderID.Text, newOrder);
+                adminService.GiveMechanicOrder(mechanicID, newOrder);
                 MessageBox.Show("Ett nytt ärende är nu tillagt!", "", MessageBoxButton.OK);
                 CaseOptions caseOptions = new CaseOptions();
                 this.NavigationService.Navigate(caseOptions);
@@ -259,6 +259,7 @@ namespace GUI.Admin.Workshop
         {
             string valueOfMechanicSelected = cbxMechanic.SelectedItem.ToString();
             valueOfMechanic = valueOfMechanicSelected;
+
         }
         private void cartypecombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -268,6 +269,12 @@ namespace GUI.Admin.Workshop
         private void cartowbarcombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AllCase allCase = new AllCase();
+            this.NavigationService.Navigate(allCase);
         }
     }
 }

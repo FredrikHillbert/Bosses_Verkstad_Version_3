@@ -1,6 +1,7 @@
 ﻿using GUI.Login;
 using GUI.Mechanics.Home;
 using GUI.Mechanics.User;
+using GUI.Tools;
 using Logic.Interface;
 using Logic.Services;
 using System;
@@ -23,6 +24,7 @@ namespace GUI.Mechanics.Workshop
     /// </summary>
     public partial class ActivCaseMechanic : Page
     {
+        ILogicUser logicUser = new UserService();
         public ActivCaseMechanic()
         {
             InitializeComponent();
@@ -60,17 +62,26 @@ namespace GUI.Mechanics.Workshop
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-            //Funktion klarmarkera Hamna i andra listan!
+
+            if (logicUser.ActivOrder(ChangeStatus.Text))
+            {
+                logicUser.finishedOrder(ChangeStatus.Text);
+                MessageBox.Show("Färdigt", "", MessageBoxButton.OK);
+            }
+            else { MessageBox.Show(StringTools._inputError, "Error", MessageBoxButton.OK, MessageBoxImage.Warning); }
+            CaseOptionMechanics caseOptionMechanic = new CaseOptionMechanics();
+            this.NavigationService.Navigate(caseOptionMechanic);
         }
 
         private void ComboBox_Loaded(object sender, RoutedEventArgs e)
         {
             List<string> orderLista = new List<string>();
-            ILogicUser logicUser = new UserService();
+           
             orderLista = logicUser.GetOrder();
             var combo = sender as ComboBox;
             combo.ItemsSource = orderLista;
             combo.SelectedIndex = 0;
+            
         }
 
         private void ChangeStatus_GotFocus(object sender, RoutedEventArgs e)

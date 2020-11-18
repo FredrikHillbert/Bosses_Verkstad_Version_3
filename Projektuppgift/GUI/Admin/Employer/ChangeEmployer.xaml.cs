@@ -27,9 +27,12 @@ namespace GUI.Admin.Employer
     public partial class ChangeEmployer : Page
     {
 
+        ILogic adminService = new AdminService();
         Mechanic mechanic = new Mechanic();
-       
+        IValid valid = new ValidService();
         string notCorrectid;
+        ILogicUser logicUser = new UserService();
+    
 
         public ChangeEmployer()
         {
@@ -80,11 +83,15 @@ namespace GUI.Admin.Employer
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
 
-            ILogic adminService = new AdminService();
+           
 
-            if ((adminService.ActivUser(employerIdSearch.Text)))
+            if ((valid.ActivUser(employerIdSearch.Text)))
             {
                 List<Mechanic> DeklareraLista = adminService.GetMechanic(employerIdSearch.Text);
+
+                All_Loaded();
+                Activ_Loaded();
+
                 foreach (var item in DeklareraLista)
                 {
                     firstName.Text = item.FirstNameOfMechanic;
@@ -114,9 +121,9 @@ namespace GUI.Admin.Employer
 
         private void Button_Click_8(object sender, RoutedEventArgs e)
         {
-            ILogic adminService = new AdminService();
+             
 
-            if ((adminService.ActivUser(employerIdSearch.Text)))
+            if ((valid.ActivUser(employerIdSearch.Text)))
             {
 
                 if (MessageBox.Show("Är du säker på att du vill ta bort anställd!", "", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
@@ -136,7 +143,7 @@ namespace GUI.Admin.Employer
         private void Button_Click_9(object sender, RoutedEventArgs e)
         {
             List<Mechanic> mechanics = new List<Mechanic>();
-            ILogic adminService = new AdminService();
+           
 
             if (employerIdSearch.Text == employerId.Text)
             {
@@ -144,23 +151,24 @@ namespace GUI.Admin.Employer
                 employerId.Text = "Error Meddelande.1111111.AzaAza.@@.Error";
             }
 
-            if (adminService.ValidMechanic(firstName.Text, lastname.Text, dateOfBirth.Text, dateOfEmployment.Text, employerId.Text))
+            if (valid.ValidMechanic(firstName.Text, lastname.Text, dateOfBirth.Text, dateOfEmployment.Text, employerId.Text))
             {
                 if (employerId.Text == "Error Meddelande.1111111.AzaAza.@@.Error")
                 {
                     employerId.Text = notCorrectid;
                 }
 
-                if ((adminService.ActivUser(employerIdSearch.Text)))
+                if ((valid.ActivUser(employerIdSearch.Text)))
                 {
 
+                    string id = employerId.Text;
                     adminService.DeleteMechanic(employerIdSearch.Text);
                     mechanics.Add(new Mechanic(firstName.Text, lastname.Text,
                                    DateTime.Parse(dateOfBirth.Text), DateTime.Parse(dateOfEmployment.Text),
                                     (bool)Motor.IsChecked, (bool)Däck.IsChecked, (bool)vindrutor.IsChecked,
-                                    (bool)Bromsar.IsChecked, (bool)Kaross.IsChecked,mechanic.ActiveOrders));
+                                    (bool)Bromsar.IsChecked, (bool)Kaross.IsChecked, id));
 
-                    string id = employerId.Text;
+                   
                     adminService.NewMechanic(id, mechanics);
                     MessageBox.Show("Mekaniker är nu ändrad!", "", MessageBoxButton.OK);
 
@@ -191,7 +199,7 @@ namespace GUI.Admin.Employer
         private void ComboBox_Loaded(object sender, RoutedEventArgs e)
         {
             List<string> DeklareraLista = new List<string>();
-            ILogic adminService = new AdminService();
+         
             DeklareraLista = adminService.GetKey();
             var combo = sender as ComboBox;
             combo.ItemsSource = DeklareraLista;
@@ -226,7 +234,33 @@ namespace GUI.Admin.Employer
             mechanic.Kaross = true;
         }
 
-     
+      
+
+        private void Activ_Loaded()
+        {
+            if ((valid.ActivUser(employerIdSearch.Text)))
+            {
+                List<string> orderLista = new List<string>();
+
+                orderLista = logicUser.GetOrder(employerIdSearch.Text);
+               
+                Activ.ItemsSource = orderLista;
+             
+            }
+
+        }
+
+        private void All_Loaded()
+        {
+            if ((valid.ActivUser(employerIdSearch.Text)))
+            {
+                List<string> orderLista = new List<string>();
+
+                orderLista = logicUser.GetfinishedOrder(employerIdSearch.Text);
+          
+                All.ItemsSource = orderLista;    
+            }
+        }
     }
  }
 

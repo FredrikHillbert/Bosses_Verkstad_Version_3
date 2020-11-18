@@ -1,6 +1,8 @@
 ﻿using GUI.Login;
 using GUI.Mechanics.Home;
 using GUI.Mechanics.User;
+using Logic.Interface;
+using Logic.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,24 +23,14 @@ namespace GUI.Mechanics.Workshop
     /// </summary>
     public partial class AllCaseMechanic : Page
     {
+        ILogicUser logicUser = new UserService();
+
         public AllCaseMechanic()
         {
             InitializeComponent();
         }
 
-        private void ComboBox_Loaded(object sender, RoutedEventArgs e)
-        {
-            //List<string> DeklareraLista = new List<string>();
-            //ILogic adminService = new AdminService();
-            //DeklareraLista = adminService.GetActivUser();
-            //var combo = sender as ComboBox;
-            //combo.ItemsSource = DeklareraLista;
-            //combo.SelectedIndex = 0;
-
-
-            //Funktion visa alla avslutade jobb
-        }
-
+       
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             HomePageMechanic homePageMechanic = new HomePageMechanic();
@@ -67,6 +59,16 @@ namespace GUI.Mechanics.Workshop
         {
             ActivCaseMechanic activCaseMechanic = new ActivCaseMechanic();
             this.NavigationService.Navigate(activCaseMechanic);
+        }
+
+        private void ComboBox_Loaded_1(object sender, RoutedEventArgs e)
+        {
+            List<string> orderLista = new List<string>();
+
+            orderLista = logicUser.GetfinishedOrder();
+            var combo = sender as ComboBox;
+            combo.ItemsSource = orderLista;
+            combo.SelectedIndex = 0;
         }
     }
 }

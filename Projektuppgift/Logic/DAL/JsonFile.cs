@@ -11,5 +11,6 @@ namespace Logic.DAL
         protected const string pathMechanic = @"DAL\Mechanic.json";
         protected const string pathOrder= @"DAL\Orders.json";
         protected const string pathVehicles = @"DAL\Vehicles.json";
+        protected const string finishedOrder = @"DAL\finishedOrder.json";
     }
 }

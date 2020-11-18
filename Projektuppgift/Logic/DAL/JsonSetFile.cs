@@ -14,6 +14,7 @@ namespace Logic.DAL
             SaveList(pathAdmin, ActivClasses.loginListAdmin);
             SaveList(pathUser, ActivClasses.loginListUser);
             SaveList(pathVehicles, ActivClasses.ListOfVehicles);
+            SaveList(finishedOrder, ActivClasses.AllFinishedOrder);
             SaveDictionary(pathMechanic, ActivClasses.mechanicDictionary);
             SaveDictionary(pathOrder, ActivClasses.orderDictionary);
         }
